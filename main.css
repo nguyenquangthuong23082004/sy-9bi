@@ -141,10 +141,19 @@ button,input{
   color:#fff;
   transition:.35s var(--ease)
 }
-.header.is-scrolled,.header.is-open{
-  background:#fff;
-  color:var(--dark);
+.header.is-scrolled,.header.is-open,.header:hover,.header:focus-within{
+  background:#fff !important;
+  color:var(--dark) !important;
   box-shadow:0 8px 30px rgba(0,0,0,.08)
+}
+.header:hover .header-mask,.header:focus-within .header-mask{
+  opacity:1
+}
+.header:hover .gnb-link,.header:focus-within .gnb-link{
+  color:#222
+}
+.header:hover .btn-language,.header:focus-within .btn-language,.header:hover .btn-gnb,.header:focus-within .btn-gnb{
+  color:var(--dark)
 }
 .header-mask{
   position:absolute;
@@ -226,8 +235,24 @@ button,input{
   height:82px;
   padding:0 25px;
   font-size:18px;
-  font-weight:750px;  
+  font-weight:750;  
   color:#222;
+}
+.gnb-item.is-current > .gnb-link{
+  color:var(--primary) !important;
+  font-weight:800;
+  position:relative;
+}
+.gnb-item.is-current > .gnb-link::after{
+  color:var(--primary) !important;
+  content:"";
+  position:absolute;
+  bottom:18px;
+  left:25px;
+  right:25px;
+  height:3px;
+  background-color:var(--primary);
+  border-radius:3px;
 }
 .gnb-depth{
   position:absolute;
@@ -253,9 +278,9 @@ button,input{
   margin:0 auto
 }
 .gnb-depth-inner{
-  display:grid;
-  grid-template-columns:290px repeat(5,1fr);
-  gap:34px;
+  display:flex;
+  align-items:flex-start;
+  gap:40px;
   padding:44px 0 48px
 }
 .depth-intro-title{
@@ -277,7 +302,8 @@ button,input{
 .gnb-depth-list{
   list-style:none;
   margin:0;
-  padding:0
+  padding:0;
+  min-width:180px
 }
 .gnb-depth-item{
   margin-bottom:18px
@@ -1107,11 +1133,16 @@ button,input{
   position:relative
 }
 .family select{
-  background:#111d2e;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  background:#111d2e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat calc(100% - 20px) center;
   color:#fff;
   border:1px solid rgba(255,255,255,.2);
   border-radius:999px;
-  padding:12px 44px 12px 18px
+  padding:12px 46px 12px 20px;
+  cursor:pointer;
+  outline:none
 }
 /* layer search */
 .layer-search{

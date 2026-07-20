@@ -88,7 +88,7 @@ if (! function_exists('sy_site_nav')) {
 
 			'medical' => [
 				'label'     => '의료진 지원',
-				'url'       => 'medical',
+				'url'       => 'medical/support',
 				'minHeight' => 300,
 				'intro'     => [
 					'title' => '의료진 지원',
@@ -136,6 +136,12 @@ $depthCurrent = $depthCurrent ?? '';
 $syNav      = sy_site_nav();
 $syLogoTag  = $isHome ? 'h1' : 'p';
 $syLogoHref = $isHome ? '#content' : base_url();
+
+$sySiteLogoHeader = sy_site_setting('logos');
+$syHeaderLogoSrc  = (!empty($sySiteLogoHeader) && file_exists(FCPATH . 'uploads/setting/' . $sySiteLogoHeader))
+	? base_url('uploads/setting/' . $sySiteLogoHeader)
+	: base_url('images/logo_h.webp');
+$sySiteName       = sy_site_setting('site_name', '신영로파마');
 ?>
 <header id="header" class="header<?= $isHome ? ' is-transparent header-home' : '' ?>">
 	<div class="header-mask"></div>
@@ -144,7 +150,7 @@ $syLogoHref = $isHome ? '#content' : base_url();
 		<!-- 서브페이지의 h1 은 페이지 제목이므로 로고는 p 로 마크업합니다. -->
 		<<?= $syLogoTag ?> class="logo">
 			<a href="<?= $syLogoHref ?>" class="logo-link">
-				<img src="<?= base_url('images/logo_h.webp') ?>" alt="신영로파마<?= $isHome ? '' : ' 홈으로 이동' ?>" class="logo-img">
+				<img src="<?= $syHeaderLogoSrc ?>" alt="<?= esc($sySiteName) ?><?= $isHome ? '' : ' 홈으로 이동' ?>" class="logo-img">
 			</a>
 		</<?= $syLogoTag ?>>
 
@@ -155,8 +161,7 @@ $syLogoHref = $isHome ? '#content' : base_url();
 						<?php
 						$hasDepth  = ! empty($nav['groups']);
 						$isCurrent = $navKey === $gnbCurrent;
-						// 메인에서는 1depth 를 하위메뉴 토글로만 사용합니다.
-						$topIsLink = ! ($isHome && $hasDepth);
+						$topIsLink = ! empty($nav['url']);
 						?>
 						<li class="gnb-item<?= $isCurrent ? ' is-current' : '' ?>"<?= ! empty($nav['minHeight']) ? ' data-min-height="' . (int) $nav['minHeight'] . '"' : '' ?>>
 							<a href="<?= $topIsLink ? sy_nav_url($nav['url'], $isHome) : '#none' ?>" class="gnb-link<?= $topIsLink ? '' : ' no-link' ?>"><?= esc($nav['label']) ?></a>
@@ -213,3 +218,92 @@ $syLogoHref = $isHome ? '#content' : base_url();
 		</div>
 	</div>
 </header>
+
+<script>
+(function() {
+	function alignGnbSubmenus() {
+		if (window.innerWidth <= 1180) return;
+		var gnbItems = document.querySelectorAll('.gnb-item');
+		gnbItems.forEach(function(item) {
+			var gnbLink = item.querySelector('.gnb-link');
+			var depthWrap = item.querySelector('.gnb-depth-wrap');
+			var depthIntro = item.querySelector('.gnb-depth-intro');
+			if (!gnbLink || !depthWrap || !depthIntro) return;
+
+			var linkRect = gnbLink.getBoundingClientRect();
+			var wrapRect = depthWrap.getBoundingClientRect();
+			var targetLeft = linkRect.left - wrapRect.left;
+			var gap = 40;
+			var introWidth = targetLeft - gap;
+
+			if (introWidth > 100) {
+				depthIntro.style.width = introWidth + 'px';
+				depthIntro.style.minWidth = introWidth + 'px';
+				depthIntro.style.flexShrink = '0';
+			}
+		});
+	}
+
+	function setupGnbActive() {
+		var gnbLinks = document.querySelectorAll('.gnb-link');
+		gnbLinks.forEach(function(link) {
+			link.addEventListener('click', function() {
+				var parentItem = this.closest('.gnb-item');
+				if (parentItem) {
+					document.querySelectorAll('.gnb-item').forEach(function(item) {
+						item.classList.remove('is-current');
+					});
+					parentItem.classList.add('is-current');
+				}
+			});
+		});
+
+		function checkHashActive() {
+			var hash = window.location.hash;
+			if (hash) {
+				var targetLink = document.querySelector('.gnb-link[href*="' + hash + '"]');
+				if (targetLink && targetLink.closest('.gnb-item')) {
+					document.querySelectorAll('.gnb-item').forEach(function(item) {
+						item.classList.remove('is-current');
+					});
+					targetLink.closest('.gnb-item').classList.add('is-current');
+				}
+			}
+		}
+
+		checkHashActive();
+		window.addEventListener('hashchange', checkHashActive);
+
+		var mallSec = document.getElementById('mall');
+		if (mallSec && 'IntersectionObserver' in window) {
+			var observer = new IntersectionObserver(function(entries) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						var mallLink = document.querySelector('.gnb-link[href*="#mall"]');
+						if (mallLink && mallLink.closest('.gnb-item')) {
+							document.querySelectorAll('.gnb-item').forEach(function(item) {
+								item.classList.remove('is-current');
+							});
+							mallLink.closest('.gnb-item').classList.add('is-current');
+						}
+					}
+				});
+			}, { threshold: 0.4 });
+			observer.observe(mallSec);
+		}
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', function() {
+			alignGnbSubmenus();
+			setupGnbActive();
+		});
+	} else {
+		alignGnbSubmenus();
+		setupGnbActive();
+	}
+	window.addEventListener('load', alignGnbSubmenus);
+	window.addEventListener('resize', alignGnbSubmenus);
+})();
+</script>
+

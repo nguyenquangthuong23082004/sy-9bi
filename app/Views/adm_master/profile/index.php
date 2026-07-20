@@ -123,23 +123,33 @@ $setting = $setting ?? [];
                 </div>
 
                 <div class="col-md-6">
+                    <label class="form-label fw-bold">회사명 / 사이트명</label>
+                    <input type="text" name="site_name" value="<?= esc($setting['site_name'] ?? '') ?>" class="form-control" placeholder="예: (주)신영로파마">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">대표 전화번호</label>
+                    <input type="text" name="custom_phone" value="<?= esc($setting['custom_phone'] ?? '') ?>" class="form-control" placeholder="예: 02-900-0436">
+                </div>
+
+                <div class="col-md-6">
                     <label class="form-label fw-bold">사업자등록번호</label>
                     <input type="text" name="comnum" value="<?= esc($setting['comnum'] ?? '') ?>" class="form-control" placeholder="예: 144-86-01453">
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label fw-bold">대표 이메일</label>
-                    <input type="email" name="email" value="<?= esc($setting['email'] ?? '') ?>" class="form-control" placeholder="예: admin01@auto-style.kr">
+                    <input type="email" name="email" value="<?= esc($setting['email'] ?? '') ?>" class="form-control" placeholder="예: lofarma@lofarma.kr">
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label fw-bold">회사 주소</label>
-                    <input type="text" name="addr1" value="<?= esc($setting['addr1'] ?? '') ?>" class="form-control" placeholder="예: 서울특별시 강서구 마곡중앙6로 42...">
+                    <input type="text" name="addr1" value="<?= esc($setting['addr1'] ?? '') ?>" class="form-control" placeholder="예: 서울특별시 도봉구 도봉로 156길 17-5">
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label fw-bold">Copyright 문구</label>
-                    <input type="text" name="copyright" value="<?= esc($setting['copyright'] ?? '') ?>" class="form-control" placeholder="예: 2024 AUTOSTYLE. All rights reserved.">
+                    <input type="text" name="copyright" value="<?= esc($setting['copyright'] ?? '') ?>" class="form-control" placeholder="예: Copyright &copy; Shinyoung Lofarma. All Rights Reserved.">
                 </div>
 
                 <!-- 이메일 연동 (SMTP) 설정 Section -->

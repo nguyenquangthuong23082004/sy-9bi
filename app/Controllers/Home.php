@@ -159,11 +159,20 @@ class Home extends BaseController
                          ->limit(4)
                          ->findAll();
 
+        $mainBanners = $bbsModel->where('code', 'banner')
+                                ->where('notice_yn', 'Y')
+                                ->groupStart()
+                                    ->where('b_category', 'main')
+                                    ->orWhere('b_category IS NULL')
+                                    ->orWhere('b_category', '')
+                                ->groupEnd()
+                                ->orderBy('onum', 'DESC')
+                                ->orderBy('bbs_idx', 'DESC')
+                                ->findAll();
+
         return view('home', [
-            'metaTitle' => "오토스타일 (AUTOSTYLE) - 롯데렌터카 전속 세일즈 파트너",
-            'metaDescription' => "영업강요는 NO! 교육 제공은 YES! 수수료 없는 영업지원 và 최저가 출고. 누구나 장기렌터카 판매를 시작할 수 있도록 돕습니다.",
-            'ogImage' => base_url('images/logo_app.png'),
-            'faqs' => $faqs
+            'faqs'        => $faqs,
+            'mainBanners' => $mainBanners,
         ]);
     }
 
@@ -268,11 +277,11 @@ class Home extends BaseController
             $settingModel = new \App\Models\Setting();
             $setting = $settingModel->getSettings();
 
-            $smtpHost = $setting['smtp_host'] ?? '';
-            $smtpId = $setting['smtp_id'] ?? '';
-            $smtpPass = $setting['smtp_pass'] ?? '';
+            $smtpHost       = $setting['smtp_host'] ?? '';
+            $smtpId         = $setting['smtp_id'] ?? '';
+            $smtpPass       = $setting['smtp_pass'] ?? '';
             $adminEmailList = $setting['admin_email_list'] ?? '';
-            $siteName = '오토스타일';
+            $siteName       = !empty($setting['site_name']) ? $setting['site_name'] : '신영로파마';
 
             if (!empty($smtpHost) && !empty($smtpId) && !empty($smtpPass) && !empty($adminEmailList)) {
                 $recipients = preg_split('/[\s,;]+/', trim($adminEmailList));
@@ -300,7 +309,7 @@ class Home extends BaseController
 
                     $emailService->initialize($emailConfig);
 
-                    $subject = "[{$siteName}] 새로운 제휴 파트너 신청이 접수되었습니다.";
+                    $subject = "[{$siteName}] 새로운 문의/신청이 접수되었습니다.";
 
                     // Parse English values to Korean
                     $userName = $inquiry['manager'] ?? '';
@@ -312,59 +321,52 @@ class Home extends BaseController
                     $experience = $experienceRaw === 'yes' ? '경험 있음' : '경험 없음';
                     $partnerType = $partnerTypeRaw === 'corporate' ? '법인 제휴' : '개인 제휴';
 
-                    // Beautiful Warm Rose Pink HTML Table for Admin Notification
+                    // Primary Blue HTML Table for Admin Notification
                     $htmlContent = "
-                    <div style='max-width: 600px; margin: 20px auto; font-family: -apple-system, BlinkMacSystemFont, \"Apple SD Gothic Neo\", \"Malgun Gothic\", sans-serif; color: #374151; line-height: 1.6; border: 1px solid #ffe4e6; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(255, 75, 114, 0.08), 0 4px 6px -2px rgba(255, 75, 114, 0.04); background-color: #ffffff;'>
-                        <!-- Top Gradient Header -->
-                        <div style='background: linear-gradient(135deg, #ff4e73 0%, #ff7b92 100%); padding: 35px 24px; text-align: center;'>
-                            <h1 style='color: #ffffff; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(190, 18, 60, 0.2);'>제휴 파트너 신청 알림</h1>
-                            <p style='color: rgba(255, 255, 255, 0.95); margin: 10px 0 0 0; font-size: 15px; font-weight: 500;'>{$siteName} 웹사이트에서 새로운 제휴 신청서가 도착했습니다.</p>
+                    <div style='max-width: 650px; margin: 20px auto; font-family: Pretendard, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Noto Sans KR\", sans-serif; color: #1e293b; line-height: 1.6; border: 1px solid #dbe8ff; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 70, 255, 0.08); background-color: #ffffff;'>
+                        <!-- Header -->
+                        <div style='background: linear-gradient(135deg, #0046ff 0%, #0a8cff 100%); padding: 36px 28px; text-align: center;'>
+                            <h1 style='color: #ffffff; margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;'>새로운 문의 / 신청 알림</h1>
+                            <p style='color: rgba(255, 255, 255, 0.92); margin: 8px 0 0 0; font-size: 14px;'>{$siteName} 웹사이트에서 새로운 문의가 접수되었습니다.</p>
                         </div>
                         
                         <!-- Content Body -->
-                        <div style='padding: 35px 28px;'>
-                            <!-- Section Heading -->
-                            <div style='border-bottom: 2px solid #ff4e73; padding-bottom: 10px; margin-bottom: 20px;'>
-                                <span style='background-color: #ff4e73; width: 4px; height: 18px; display: inline-block; vertical-align: middle; border-radius: 2px; margin-right: 8px;'></span>
-                                <h2 style='font-size: 17px; font-weight: 800; color: #be123c; margin: 0; display: inline-block; vertical-align: middle;'>접수 내역</h2>
+                        <div style='padding: 32px 28px;'>
+                            <div style='border-bottom: 2px solid #0046ff; padding-bottom: 10px; margin-bottom: 20px;'>
+                                <h2 style='font-size: 17px; font-weight: 800; color: #0046ff; margin: 0;'>📋 접수 내역</h2>
                             </div>
                             
-                            <!-- Table -->
-                            <table style='width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 30px; border: 1px solid #ffe4e6; border-radius: 8px; overflow: hidden;'>
+                            <table style='width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; margin-bottom: 25px; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden;'>
                                     <tr>
-                                        <th style='width: 32%; text-align: left; padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>이름 / 담당자</th>
-                                        <td style='padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; font-weight: bold; color: #111827;'>{$userName}</td>
+                                        <th style='width: 30%; text-align: left; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0046ff; font-weight: bold; background-color: #f0f5ff;'>이름 / 담당자</th>
+                                        <td style='padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: bold; color: #0f172a;'>{$userName}</td>
                                     </tr>
                                     <tr>
-                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>휴대전화번호</th>
-                                        <td style='padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; font-weight: bold; color: #ff4e73;'>{$userPhone}</td>
+                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0046ff; font-weight: bold; background-color: #f0f5ff;'>휴대전화번호</th>
+                                        <td style='padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; font-weight: bold; color: #0046ff;'>{$userPhone}</td>
                                     </tr>
                                     <tr>
-                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>현재 하는 일</th>
-                                        <td style='padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #4b5563;'>{$userJob}</td>
+                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0046ff; font-weight: bold; background-color: #f0f5ff;'>회사 / 소속</th>
+                                        <td style='padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #334155;'>{$userJob}</td>
                                     </tr>
                                     <tr>
-                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>영업/유관 경험</th>
-                                        <td style='padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #4b5563;'>{$experience}</td>
+                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #0046ff; font-weight: bold; background-color: #f0f5ff;'>내용</th>
+                                        <td style='padding: 14px 16px; border-bottom: 1px solid #e2e8f0; font-size: 14px; color: #334155;'>{$partnerType}</td>
                                     </tr>
                                     <tr>
-                                        <th style='text-align: left; padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>희망 파트너 유형</th>
-                                        <td style='padding: 14px 16px; border-bottom: 1px solid #ffe4e6; font-size: 14px; color: #4b5563;'>{$partnerType}</td>
-                                    </tr>
-                                    <tr>
-                                        <th style='text-align: left; padding: 14px 16px; font-size: 14px; color: #be123c; font-weight: bold; background-color: #fff1f2;'>신청 일시</th>
-                                        <td style='padding: 14px 16px; font-size: 14px; color: #6b7280;'>{$inquiry['regdate']}</td>
+                                        <th style='text-align: left; padding: 14px 16px; font-size: 14px; color: #0046ff; font-weight: bold; background-color: #f0f5ff;'>신청 일시</th>
+                                        <td style='padding: 14px 16px; font-size: 14px; color: #64748b;'>{$inquiry['regdate']}</td>
                                     </tr>
                             </table>
                             
-                            <div style='text-align: center; margin-top: 25px;'>
-                                <a href='" . base_url('AdmMaster') . "' style='display: inline-block; background: linear-gradient(135deg, #ff4e73 0%, #ff7b92 100%); color: #ffffff; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: bold; box-shadow: 0 6px 20px rgba(255, 75, 114, 0.35); transition: all 0.2s;'>관리자 페이지에서 상세 정보 확인</a>
+                            <div style='text-align: center; margin-top: 28px;'>
+                                <a href='" . base_url('AdmMaster') . "' style='display: inline-block; background: linear-gradient(135deg, #0046ff 0%, #0a8cff 100%); color: #ffffff; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-size: 14px; font-weight: bold; box-shadow: 0 6px 18px rgba(0, 70, 255, 0.3);'>관리자 페이지에서 확인하기</a>
                             </div>
                         </div>
                         
-                        <div style='text-align: center; padding: 24px; background-color: #fff5f5; border-top: 1px solid #ffe4e6; font-size: 12px; color: #9ca3af;'>
-                            <p style='margin: 0; color: #f43f5e; font-weight: 500;'>본 메일은 시스템에서 자동으로 발송되는 알림 메일입니다.</p>
-                            <p style='margin: 6px 0 0 0;'>© " . date('Y') . " {$siteName}. All rights reserved.</p>
+                        <div style='text-align: center; padding: 20px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8;'>
+                            <p style='margin: 0; color: #64748b;'>본 메일은 {$siteName} 웹사이트에서 자동으로 발송된 알림 메일입니다.</p>
+                            <p style='margin: 4px 0 0 0;'>© " . date('Y') . " {$siteName}. All rights reserved.</p>
                         </div>
                     </div>
                     ";

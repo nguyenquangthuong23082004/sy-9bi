@@ -215,8 +215,10 @@ class Bbs extends BaseController
             'writer' => $this->request->getPost('writer') ?: '관리자',
             'email' => $this->request->getPost('email') ?: '',
             'subject' => $this->request->getPost('subject') ?: '',
+            'sub_title' => $this->request->getPost('sub_title') ?: '',
+            'b_category' => $this->request->getPost('b_category') ?: 'main',
             'contents' => $this->request->getPost('contents') ?: '',
-            'notice_yn' => $this->request->getPost('notice_yn') ?: 'N',
+            'notice_yn' => $this->request->getPost('notice_yn') ?: ($code === 'banner' ? 'Y' : 'N'),
             'secure_yn' => $this->request->getPost('secure_yn') ?: 'N',
             'hit' => $this->request->getPost('hit') ?: 0,
             'r_date' => $this->request->getPost('r_date') ?: date('Y-m-d H:i:s'),
@@ -307,6 +309,19 @@ class Bbs extends BaseController
             }
         }
         return $this->response->setJSON(['status' => 'OK']);
+    }
+
+    public function toggleNotice()
+    {
+        $id = $this->request->getPost('bbs_idx');
+        $bbsModel = new BbsModel();
+        $item = $bbsModel->find($id);
+        if ($item) {
+            $newStatus = (($item['notice_yn'] ?? 'N') == 'Y') ? 'N' : 'Y';
+            $bbsModel->update($id, ['notice_yn' => $newStatus]);
+            return $this->response->setJSON(['status' => 'OK', 'new_status' => $newStatus]);
+        }
+        return $this->response->setJSON(['status' => 'ERROR']);
     }
 
     public function delete($code, $id)

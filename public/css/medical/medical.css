@@ -104,7 +104,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 24px 30px;
 }
-.sy-medical-field { display: flex; flex-direction: column; }
+.sy-medical-field { display: flex; flex-direction: column; margin-top: 0; }
+.sy-medical-form-grid .sy-medical-field { margin-top: 0 !important; }
 .sy-medical-field--full { grid-column: 1 / -1; }
 .sy-medical-field label {
   font-size: 15px;
@@ -124,16 +125,14 @@
   background: #fff;
   color: var(--sy-company-navy);
   font-size: 16px;
-  border-radius: 0;
-  transition: border-color .2s var(--ease);
+  border-radius: 8px;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
 }
 .sy-medical-field textarea { min-height: 150px; resize: vertical; line-height: 1.7; }
 .sy-medical-field input::placeholder,
 .sy-medical-field textarea::placeholder { color: #9aa5b4; }
 .sy-medical-field input:focus,
-.sy-medical-field textarea:focus { outline: none; border-color: var(--sy-company-deep); }
-.sy-medical-field input:focus-visible,
-.sy-medical-field textarea:focus-visible { outline: 3px solid var(--primary2); outline-offset: 2px; }
+.sy-medical-field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 70, 255, 0.12); }
 
 .sy-medical-fieldset { margin: 34px 0 0; padding: 0; border: 0; }
 .sy-medical-fieldset legend {
@@ -155,21 +154,22 @@
   background: #fff;
   font-size: 16px;
   color: var(--sy-company-text);
+  border-radius: 8px;
   cursor: pointer;
   transition: .2s var(--ease);
   word-break: keep-all;
 }
-.sy-medical-choice:hover { border-color: var(--sy-company-deep); }
-.sy-medical-choice input { accent-color: var(--sy-company-deep); width: 18px; height: 18px; margin: 0; }
+.sy-medical-choice:hover { border-color: var(--primary); }
+.sy-medical-choice input { accent-color: var(--primary); width: 18px; height: 18px; margin: 0; }
 .sy-medical-choice:has(input:checked) {
-  border-color: var(--sy-company-deep);
-  background: var(--light);
-  color: var(--sy-company-navy);
+  border-color: var(--primary);
+  background: #f0f5ff;
+  color: var(--primary);
   font-weight: 700;
 }
 .sy-medical-choice:focus-within { outline: 3px solid var(--primary2); outline-offset: 2px; }
 
-.sy-medical-form .sy-medical-field + .sy-medical-field,
+.sy-medical-form > .sy-medical-field,
 .sy-medical-fieldset + .sy-medical-field { margin-top: 34px; }
 
 .sy-medical-form-note {

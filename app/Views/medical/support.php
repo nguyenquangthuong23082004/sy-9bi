@@ -21,9 +21,15 @@ $syOld = static fn (string $key, string $default = ''): string => (string) (old(
 		</article>
 
 		<?php if (session()->getFlashdata('success')): ?>
+			<script>
+				alert(<?= json_encode(session()->getFlashdata('success')) ?>);
+			</script>
 			<p class="sy-medical-alert sy-medical-alert--ok" role="status"><?= esc(session()->getFlashdata('success')) ?></p>
 		<?php endif; ?>
 		<?php if (session()->getFlashdata('error')): ?>
+			<script>
+				alert(<?= json_encode(session()->getFlashdata('error')) ?>);
+			</script>
 			<p class="sy-medical-alert sy-medical-alert--error" role="alert"><?= esc(session()->getFlashdata('error')) ?></p>
 		<?php endif; ?>
 
@@ -115,18 +121,23 @@ $syOld = static fn (string $key, string $default = ''): string => (string) (old(
 		<span class="sy-company-eyebrow">CONTACT</span>
 		<h2 id="sy-support-contact" class="sy-company-h2">담당 연락처</h2>
 
+		<?php
+		$syContactPhone = sy_site_setting('custom_phone', '02-900-0436');
+		$syContactEmail = sy_site_setting('email', 'lofarma@lofarma.kr');
+		$syContactAddr  = trim(sy_site_setting('addr1', '서울시 도봉구 도봉로 156길 17-5') . ' ' . sy_site_setting('addr2', ''));
+		?>
 		<dl class="sy-medical-info">
 			<div>
 				<dt>대표 전화</dt>
-				<dd><a href="tel:02-900-0436">02-900-0436</a></dd>
+				<dd><a href="tel:<?= esc($syContactPhone, 'attr') ?>"><?= esc($syContactPhone) ?></a></dd>
 			</div>
 			<div>
 				<dt>이메일</dt>
-				<dd><a href="mailto:lofarma@lofarma.kr">lofarma@lofarma.kr</a></dd>
+				<dd><a href="mailto:<?= esc($syContactEmail, 'attr') ?>"><?= esc($syContactEmail) ?></a></dd>
 			</div>
 			<div>
 				<dt>주소</dt>
-				<dd>서울시 도봉구 도봉로 156길 17-5</dd>
+				<dd><?= esc($syContactAddr) ?></dd>
 			</div>
 		</dl>
 	</div>

@@ -156,7 +156,7 @@ $scategory   = $scategory ?? '';
                         <th style="width: 1%; white-space: nowrap;">선택</th>
                         <th style="width: 1%; white-space: nowrap;">번호</th>
 
-                        <?php if ($isCategory == 'Y'): ?>
+                        <?php if ($isCategory == 'Y' || $code == 'banner'): ?>
                             <th style="width: 1%; white-space: nowrap;">구분</th>
                         <?php endif; ?>
 
@@ -215,11 +215,20 @@ $scategory   = $scategory ?? '';
 
                             <td><?= $nums ?></td>
 
-                            <?php if ($isCategory == 'Y'): ?>
+                            <?php if ($isCategory == 'Y' || $code == 'banner'): ?>
                                 <td>
-                                    <span class="badge bg-info text-dark">
-                                        <?= esc($row['category_name'] ?? '-') ?>
-                                    </span>
+                                    <?php 
+                                    $catMap = [
+                                        'main' => '메인배너',
+                                        'company' => '회사소개배너',
+                                        'product' => '제품배너',
+                                        'business' => '사업영역 배너',
+                                        'medical' => '의료진 지원 배너',
+                                    ];
+                                    $catVal = $row['b_category'] ?? '';
+                                    $catLabel = !empty($catVal) && isset($catMap[$catVal]) ? $catMap[$catVal] : (!empty($row['category_name']) ? $row['category_name'] : '-');
+                                    ?>
+                                    <span class="badge <?= !empty($catLabel) && $catLabel !== '-' ? 'bg-primary' : 'bg-secondary' ?> px-2 py-1"><?= esc($catLabel) ?></span>
                                 </td>
                             <?php endif; ?>
 

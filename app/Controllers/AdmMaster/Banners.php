@@ -40,7 +40,8 @@ class Banners extends BaseController
         $totalCount = $totalCountBuilder->countAllResults(false);
         $totalPages = ceil($totalCount / $limit);
 
-        $list = $builder->orderBy('l.bbs_idx', 'DESC')
+        $list = $builder->orderBy('l.onum', 'DESC')
+                        ->orderBy('l.bbs_idx', 'DESC')
                         ->get($limit, $offset)
                         ->getResultArray();
 
@@ -65,7 +66,36 @@ class Banners extends BaseController
 
     public function save()
     {
-        // Redirect to BBS save for banner
-        return redirect()->to(base_url('AdmMaster/bbs/banner/save'), 'post');
+        $bbsController = new Bbs();
+        return $bbsController->save('banner');
+    }
+
+    public function toggleNotice()
+    {
+        $id = $this->request->getPost('bbs_idx');
+        if (!$id) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => 'Missing ID']);
+        }
+        $bbsModel = new BbsModel();
+        $item = $bbsModel->find($id);
+        if ($item) {
+            $newStatus = (($item['notice_yn'] ?? 'N') == 'Y') ? 'N' : 'Y';
+            $bbsModel->update($id, ['notice_yn' => $newStatus]);
+            return $this->response->setJSON(['status' => 'OK', 'new_status' => $newStatus, 'id' => $id]);
+        }
+        return $this->response->setJSON(['status' => 'ERROR', 'message' => 'Banner not found ID: ' . $id]);
+    }
+
+    public function updateOrder()
+    {
+        $orders = $this->request->getPost('orders');
+        if (empty($orders) || !is_array($orders)) {
+            return $this->response->setJSON(['status' => 'ERROR', 'message' => 'No data']);
+        }
+        $bbsModel = new BbsModel();
+        foreach ($orders as $id => $onum) {
+            $bbsModel->update((int)$id, ['onum' => (int)$onum]);
+        }
+        return $this->response->setJSON(['status' => 'OK']);
     }
 }

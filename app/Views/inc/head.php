@@ -13,29 +13,68 @@
  *  - $jsonLd          : JSON-LD 배열 (schema.org)
  *  - $headExtra       : head 마지막에 그대로 출력할 추가 마크업
  */
-$syTitle       = $metaTitle       ?? '신영로파마 | 알레르기 전문 기업';
-$syDesc        = $metaDescription ?? '신영로파마는 알레르기의 진단, 치료, 증상 관리, 일상 케어까지 환자의 여정 전체를 함께하는 알레르기 전문 기업입니다.';
-$syKeywords    = $metaKeywords    ?? '신영로파마, 로파마, Lofarma, 알레르기, 라이스정, 피부단자시험, EARVENT, 이비온, 루베어';
-$syCss         = $cssFiles        ?? [];
-$syPretendard  = $usePretendard   ?? true;
-$syPreconnect  = $preconnect      ?? [];
-$syAssetVer    = $assetVersion    ?? '1.0.0';
+$syFaviconName = sy_site_setting('favico');
+$syFaviconSrc  = (!empty($syFaviconName) && file_exists(FCPATH . 'uploads/setting/' . $syFaviconName))
+	? base_url('uploads/setting/' . $syFaviconName)
+	: null;
+
+$syOgImgName = sy_site_setting('og_img');
+$syDefaultOg = (!empty($syOgImgName) && file_exists(FCPATH . 'uploads/setting/' . $syOgImgName))
+	? base_url('uploads/setting/' . $syOgImgName)
+	: null;
+$syOgImage    = $ogImage ?? $syDefaultOg;
+
+$sySiteName  = sy_site_setting('site_name');
+$syTitle     = sy_site_setting('browser_title') ?: ($metaTitle ?? $sySiteName);
+$syDesc      = sy_site_setting('og_des') ?: sy_site_setting('meta_tag') ?: $metaDescription;
+$syKeywords  = sy_site_setting('meta_keyword') ?: $metaKeywords;
+
+$syOgTitle   = sy_site_setting('og_title') ?: ($ogTitle ?? $syTitle);
+$syOgDesc    = sy_site_setting('og_des')   ?: ($ogDescription ?? $syDesc);
+$syOgUrl     = sy_site_setting('og_url')   ?: ($ogUrl ?? current_url());
+$syOgSite    = sy_site_setting('og_site')  ?: ($ogSite ?? $sySiteName);
+$sySchemaJson= sy_site_setting('schema_jsonld');
+
+$syCss        = $cssFiles      ?? [];
+$syPretendard = $usePretendard ?? true;
+$syPreconnect = $preconnect    ?? [];
+$syAssetVer   = $assetVersion  ?? '1.0.0';
 ?>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="format-detection" content="telephone=no" />
 
-<title><?= esc($syTitle) ?></title>
-<meta name="description" content="<?= esc($syDesc) ?>" />
-<meta name="keywords" content="<?= esc($syKeywords) ?>" />
+<?php if (!empty($syTitle)): ?>
+	<title><?= esc($syTitle) ?></title>
+<?php endif; ?>
+<?php if (!empty($syDesc)): ?>
+	<meta name="description" content="<?= esc($syDesc) ?>" />
+<?php endif; ?>
+<?php if (!empty($syKeywords)): ?>
+	<meta name="keywords" content="<?= esc($syKeywords) ?>" />
+<?php endif; ?>
 
-<meta property="og:title" content="<?= esc($syTitle) ?>" />
-<meta property="og:description" content="<?= esc($syDesc) ?>" />
+<?php if ($syFaviconSrc): ?>
+	<link rel="shortcut icon" href="<?= esc($syFaviconSrc, 'attr') ?>" type="image/x-icon" />
+	<link rel="icon" href="<?= esc($syFaviconSrc, 'attr') ?>" type="image/x-icon" />
+<?php endif; ?>
+
+<?php if (!empty($syOgTitle)): ?>
+	<meta property="og:title" content="<?= esc($syOgTitle) ?>" />
+<?php endif; ?>
+<?php if (!empty($syOgDesc)): ?>
+	<meta property="og:description" content="<?= esc($syOgDesc) ?>" />
+<?php endif; ?>
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?= current_url() ?>" />
-<?php if (!empty($ogImage)): ?>
-	<meta property="og:image" content="<?= esc($ogImage, 'attr') ?>" />
+<?php if (!empty($syOgUrl)): ?>
+	<meta property="og:url" content="<?= esc($syOgUrl, 'attr') ?>" />
+<?php endif; ?>
+<?php if (!empty($syOgSite)): ?>
+	<meta property="og:site_name" content="<?= esc($syOgSite) ?>" />
+<?php endif; ?>
+<?php if (!empty($syOgImage)): ?>
+	<meta property="og:image" content="<?= esc($syOgImage, 'attr') ?>" />
 <?php endif; ?>
 
 <?php foreach ($syPreconnect as $syHost): ?>
@@ -55,6 +94,10 @@ $syAssetVer    = $assetVersion    ?? '1.0.0';
 <?php if (!empty($jsonLd)): ?>
 	<script type="application/ld+json">
 	<?= json_encode($jsonLd, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+	</script>
+<?php elseif (!empty($sySchemaJson)): ?>
+	<script type="application/ld+json">
+	<?= $sySchemaJson ?>
 	</script>
 <?php endif; ?>
 

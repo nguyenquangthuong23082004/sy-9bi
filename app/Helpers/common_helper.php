@@ -30,4 +30,22 @@ if (!function_exists('get_code_name')) {
     }
 }
 
-// Add other functions as needed during migration
+if (!function_exists('sy_site_setting')) {
+    function sy_site_setting(?string $key = null, $default = null)
+    {
+        static $setting = null;
+        if ($setting === null) {
+            try {
+                $settingModel = new \App\Models\Setting();
+                $setting = $settingModel->getSettings() ?: [];
+            } catch (\Throwable $e) {
+                $setting = [];
+            }
+        }
+        if ($key === null) {
+            return $setting;
+        }
+        return (isset($setting[$key]) && $setting[$key] !== '') ? $setting[$key] : $default;
+    }
+}
+

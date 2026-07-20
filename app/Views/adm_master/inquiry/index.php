@@ -73,11 +73,11 @@
                         <tr>
                             <th style="width: 50px;">선택</th>
                             <th style="width: 60px;">번호</th>
-                            <th style="width: 150px;">이름</th>
-                            <th style="width: 150px;">휴대전화</th>
-                            <th style="width: 150px;">직업/주업</th>
-                            <th style="width: 150px;">판매 경험 여부</th>
-                            <th style="width: 150px;">제휴 희망 형태</th>
+                            <th style="width: 160px;">병원명 / 성함</th>
+                            <th style="width: 130px;">연락처</th>
+                            <th style="width: 120px;">진료과</th>
+                            <th style="width: 150px;">요청 사항</th>
+                            <th style="width: 130px;">방문 희망 여부</th>
                             <th style="width: 150px;">신청일</th>
                             <th style="width: 100px;">관리</th>
                         </tr>
@@ -123,15 +123,21 @@
                                 <td><?= esc($row['phone'] ?? '') ?></td>
                                 <td class="small text-muted"><?= esc($row['r_date'] ?? '') ?></td>
                             <?php else: ?>
-                                <td class="fw-bold">
+                                <td class="fw-bold text-start">
                                     <a href="<?= base_url('AdmMaster/inquiry/'.$type.'/view/'.$row['idx']) ?>" class="text-decoration-none text-dark">
-                                        <?= esc($row['manager'] ?? '') ?>
+                                        <?= esc(!empty($row['hospital']) ? $row['hospital'] : ($row['company'] ?? '-')) ?> / <?= esc($row['manager'] ?? '-') ?>
                                     </a>
                                 </td>
-                                <td><?= esc($row['tel'] ?? '') ?></td>
-                                <td><?= esc($row['company'] ?? '') ?></td>
-                                <td><?= ($row['location'] ?? '') == 'yes' ? '경험 있음' : '경험 없음' ?></td>
-                                <td><?= ($row['content'] ?? '') == 'corporate' ? 'B2B/법인 제휴' : '개인 제휴' ?></td>
+                                <td><?= esc($row['tel'] ?? '-') ?></td>
+                                <td><?= esc($row['department'] ?? '-') ?></td>
+                                <td>
+                                    <?php if (!empty($row['request_type'])): ?>
+                                        <span class="badge bg-primary"><?= esc($row['request_type']) ?></span>
+                                    <?php else: ?>
+                                        <span class="text-muted">-</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= esc(!empty($row['visit']) ? $row['visit'] : ($row['location'] ?? '-')) ?></td>
                                 <td class="small text-muted"><?= !empty($row['regdate']) ? date('Y-m-d H:i', strtotime($row['regdate'])) : '' ?></td>
                             <?php endif; ?>
                             <td>

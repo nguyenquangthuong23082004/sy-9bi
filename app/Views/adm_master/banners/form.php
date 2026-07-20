@@ -25,22 +25,45 @@
             <input type="hidden" name="bbs_idx" value="<?= $banner['bbs_idx'] ?? '' ?>">
             
             <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold text-primary">노출위치</label>
+                    <?php $currCat = $banner['b_category'] ?? $banner['category_code'] ?? ''; ?>
+                    <select name="b_category" class="form-select fw-bold text-primary" style="height: 38px !important;">
+                        <option value="">선택</option>
+                        <option value="main" <?= $currCat == 'main' ? 'selected' : '' ?>>메인배너</option>
+                        <option value="company" <?= $currCat == 'company' ? 'selected' : '' ?>>회사소개배너</option>
+                        <option value="product" <?= $currCat == 'product' ? 'selected' : '' ?>>제품배너</option>
+                        <option value="business" <?= $currCat == 'business' ? 'selected' : '' ?>>사업영역 배너</option>
+                        <option value="medical" <?= $currCat == 'medical' ? 'selected' : '' ?>>의료진 지원 배너</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">제목</label>
+                    <input type="text" name="subject" value="<?= esc($banner['subject'] ?? '') ?>" class="form-control fw-bold" style="height: 38px !important;" placeholder="배너 제목 (빈칸 시 미노출)">
+                </div>
+
                 <div class="col-12">
-                    <label class="form-label fw-bold text-danger">배너 제목</label>
-                    <input type="text" name="subject" value="<?= esc($banner['subject'] ?? '') ?>" class="form-control form-control-lg" required placeholder="배너 제목을 입력하세요">
+                    <label class="form-label fw-bold">상단 소제목</label>
+                    <input type="text" name="sub_title" value="<?= esc($banner['sub_title'] ?? '') ?>" class="form-control" placeholder="상단 소제목을 입력하세요 (빈칸 시 미노출)">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-bold">하단 설명문</label>
+                    <textarea name="contents" class="form-control" rows="3" placeholder="하단 설명문을 입력하세요 (빈칸 시 미노출)"><?= esc($banner['contents'] ?? '') ?></textarea>
                 </div>
 
                 <div class="col-12">
                     <label class="form-label fw-bold">링크 URL</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
-                        <input type="text" name="url" value="<?= esc($banner['url'] ?? '') ?>" class="form-control" placeholder="http://...">
+                        <input type="text" name="url" value="<?= esc($banner['url'] ?? '') ?>" class="form-control" placeholder="http://">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label fw-bold">PC용 이미지</label>
-                    <input type="file" name="ufile6" class="form-control" accept="image/*">
+                    <input type="file" name="ufile6" class="form-control" accept="image/*,.webp,image/webp">
                     <?php if(!empty($banner['ufile6'])): ?>
                         <div class="mt-2 p-2 border rounded bg-light">
                             <img src="<?= base_url('data/bbs/'.$banner['ufile6']) ?>" class="img-fluid rounded shadow-sm mb-2" style="max-height: 150px;">
@@ -51,7 +74,7 @@
 
                 <div class="col-md-6">
                     <label class="form-label fw-bold">모바일용 이미지</label>
-                    <input type="file" name="ufile5" class="form-control" accept="image/*">
+                    <input type="file" name="ufile5" class="form-control" accept="image/*,.webp,image/webp">
                     <?php if(!empty($banner['ufile5'])): ?>
                         <div class="mt-2 p-2 border rounded bg-light">
                             <img src="<?= base_url('data/bbs/'.$banner['ufile5']) ?>" class="img-fluid rounded shadow-sm mb-2" style="max-height: 150px;">

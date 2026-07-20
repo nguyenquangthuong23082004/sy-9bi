@@ -157,10 +157,19 @@ button,input{
   color:#fff;
   transition:.35s var(--ease)
 }
-.header.is-scrolled,.header.is-open{
-  background:#fff;
-  color:var(--dark);
+.header.is-scrolled,.header.is-open,.header:hover,.header:focus-within{
+  background:#fff !important;
+  color:var(--dark) !important;
   box-shadow:0 8px 30px rgba(0,0,0,.08)
+}
+.header:hover .header-mask,.header:focus-within .header-mask{
+  opacity:1
+}
+.header:hover .gnb-link,.header:focus-within .gnb-link{
+  color:#222
+}
+.header:hover .btn-language,.header:focus-within .btn-language,.header:hover .btn-gnb,.header:focus-within .btn-gnb{
+  color:var(--dark)
 }
 .header-mask{
   position:absolute;
@@ -242,8 +251,23 @@ button,input{
   height:82px;
   padding:0 25px;
   font-size:18px;
-  font-weight:750px;  
+  font-weight:750;  
   color:#222;
+}
+.gnb-item.is-current > .gnb-link{
+  color:var(--primary) !important;
+  font-weight:800;
+  position:relative;
+}
+.gnb-item.is-current > .gnb-link::after{
+  content:"";
+  position:absolute;
+  bottom:18px;
+  left:25px;
+  right:25px;
+  height:3px;
+  background-color:var(--primary);
+  border-radius:3px;
 }
 .gnb-depth{
   position:absolute;
@@ -269,9 +293,9 @@ button,input{
   margin:0 auto
 }
 .gnb-depth-inner{
-  display:grid;
-  grid-template-columns:290px repeat(5,1fr);
-  gap:34px;
+  display:flex;
+  align-items:flex-start;
+  gap:40px;
   padding:44px 0 48px
 }
 .depth-intro-title{
@@ -293,7 +317,8 @@ button,input{
 .gnb-depth-list{
   list-style:none;
   margin:0;
-  padding:0
+  padding:0;
+  min-width:180px
 }
 .gnb-depth-item{
   margin-bottom:18px
@@ -1123,11 +1148,16 @@ button,input{
   position:relative
 }
 .family select{
-  background:#111d2e;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  background:#111d2e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat calc(100% - 20px) center;
   color:#fff;
   border:1px solid rgba(255,255,255,.2);
   border-radius:999px;
-  padding:12px 44px 12px 18px
+  padding:12px 46px 12px 20px;
+  cursor:pointer;
+  outline:none
 }
 /* layer search */
 .layer-search{
@@ -1688,31 +1718,46 @@ button,input{
           <div class="key-visual-inner">
             <div class="swiper swiper-key-visual">
               <div class="kv-wrapper">
-                <div class="kv-slide is-active">
-                  <video class="key-visual-video" autoplay muted loop playsinline poster="/images/v_main1.webp">
-				  <source src="https://videos.pexels.com/video-files/5453622/5453622-hd_1920_1080_25fps.mp4" type="video/mp4"></video>
-                  <div class="key-visual-content"><span class="sub-title">
-					<span class="text">알레르기, 진단부터 치료와 케어까지</span></span>
-					<span class="title"><span class="text">Allergy Care<br>Journey Partner</span></span>
-					<p class="desc">신영로파마는 알레르기의 진단, 원인 치료, 증상 관리, 일상 케어까지 환자의 여정 전체를 함께합니다.</p>
-				  </div>
-                </div>
-				
-                <div class="kv-slide is-black is-top is-right is-text-right">
-					<img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=1920&q=85" alt="알레르기 연구와 진단 이미지" class="key-visual-img">
-					<div class="key-visual-content"><span class="sub-title"><span class="text">정확한 진단에서 시작되는 치료</span></span>
-						<span class="title"><span class="text">Diagnosis<br>to Treatment</span></span>
-						<p class="desc">라이스정과 피부단자시험 시약으로 의료진의 진료 판단을 지원합니다.</p>
-					</div>
-				</div>
-				
-                <div class="kv-slide is-bottom">
-					<img src="/images/v_main2.webp" alt="의약품과 의료기기 이미지" class="key-visual-img">
-						<div class="key-visual-content"><span class="sub-title">의약품 · 의료기기 · 스킨케어</span><span class="title">One Expertise<br>Three Areas</span>
-						<p class="desc">환자의 삶 전반을 고려한 포트폴리오를 운영합니다.</p>
-					</div>
-				</div>
-                <div class="kv-slide is-black"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1920&q=85" alt="환자의 일상 케어 이미지" class="key-visual-img"><div class="key-visual-content"><span class="sub-title">진료실 안과 밖을 잇는 전문성</span><span class="title">Care<br>Beyond Clinic</span><p class="desc">의료진에게는 신뢰할 수 있는 파트너로, 환자에게는 더 나은 일상을 돕는 브랜드로 성장합니다.</p></div></div>
+                <?php if (!empty($mainBanners) && is_array($mainBanners)): ?>
+                  <?php foreach ($mainBanners as $idx => $mb): ?>
+                    <?php
+                    $mbImgPc   = !empty($mb['ufile6']) ? base_url('data/bbs/' . $mb['ufile6']) : (!empty($mb['ufile5']) ? base_url('data/bbs/' . $mb['ufile5']) : '');
+                    $mbImgMob  = !empty($mb['ufile5']) ? base_url('data/bbs/' . $mb['ufile5']) : (!empty($mb['ufile6']) ? base_url('data/bbs/' . $mb['ufile6']) : '');
+                    $mbSub     = esc($mb['sub_title'] ?? '');
+                    $mbTitle   = !empty($mb['subject']) ? nl2br(esc($mb['subject'])) : '';
+                    $mbDesc    = !empty($mb['contents']) ? nl2br(esc($mb['contents'])) : '';
+                    $mbUrl     = !empty($mb['url']) ? esc($mb['url'], 'attr') : '';
+                    $mbHasImg  = !empty($mbImgPc) || !empty($mbImgMob);
+                    ?>
+                    <?php if (!$mbHasImg) continue; ?>
+                    <div class="kv-slide<?= $idx === 0 ? ' is-active' : '' ?>">
+                      <?php if ($mbUrl): ?>
+                        <a href="<?= $mbUrl ?>" class="kv-slide-link" style="position:absolute;inset:0;z-index:2;display:block;" aria-label="<?= esc($mb['subject'] ?? '배너 링크') ?>"></a>
+                      <?php endif; ?>
+                      <?php if ($mbHasImg): ?>
+                        <picture>
+                          <?php if ($mbImgMob): ?>
+                            <source media="(max-width: 767px)" srcset="<?= $mbImgMob ?>">
+                          <?php endif; ?>
+                          <img src="<?= $mbImgPc ?: $mbImgMob ?>" alt="<?= esc($mb['subject'] ?? '') ?>" class="key-visual-img" style="width:100%; height:100%; object-fit:cover;">
+                        </picture>
+                      <?php endif; ?>
+                      <?php if (!empty($mbSub) || !empty($mbTitle) || !empty($mbDesc)): ?>
+                        <div class="key-visual-content">
+                          <?php if (!empty($mbSub)): ?>
+                            <span class="sub-title"><span class="text"><?= $mbSub ?></span></span>
+                          <?php endif; ?>
+                          <?php if (!empty($mbTitle)): ?>
+                            <span class="title"><span class="text"><?= $mbTitle ?></span></span>
+                          <?php endif; ?>
+                          <?php if (!empty($mbDesc)): ?>
+                            <p class="desc"><?= $mbDesc ?></p>
+                          <?php endif; ?>
+                        </div>
+                      <?php endif; ?>
+                    </div>
+                  <?php endforeach; ?>
+                <?php endif; ?>
               </div>
               <div class="group-btn"><button type="button" class="btn-key-visual btn-key-visual-prev" aria-label="이전 슬라이드"></button><button type="button" class="btn-key-visual btn-key-visual-next" aria-label="다음 슬라이드"></button></div>
               <div class="key-visual-function"><div class="key-visual-progress"><span class="current">01</span><span class="line-progress"><span class="line-progress-current"></span></span><span class="total">04</span></div><button type="button" class="btn-control is-pause js-btn-control-kv" aria-label="Pause"><span class="blind">pause</span></button></div>
@@ -2371,9 +2416,7 @@ button,input{
     </main>
     <!-- //[D] CONTENTS -->
 
-    <footer class="footer">
-      <div class="footer-inner"><div class="footer-top"><div><div class="footer-logo">신영로파마123</div><p>알레르기 환자의 여정을 함께 설계합니다 — 신영로파마</p></div><nav class="footer-menu"><a href="#company">회사소개</a><a href="#products">제품</a><a href="#business">사업영역</a><a href="#medical">의료진 지원</a><a href="#mall">병원전문 쇼핑몰</a><a href="#support">고객지원</a></nav></div><div class="footer-bottom"><div><p>서울시 도봉구 도봉로 156길 17-5 | 대표번호 02-900-0436 | 이메일 lofarma@lofarma.kr</p><p>Copyright © Shinyoung Lofarma. All Rights Reserved.</p><p><a href="#">개인정보처리방침</a></p></div><div class="family"><select aria-label="Family Site"><option>Family Site</option><option>병원전문쇼핑몰</option><option>이비온</option><option>루베어</option></select></div></div></div>
-    </footer>
+    <?= view('inc/footer') ?>
   </div>
 
   <div id="js-layer-search" class="layer-search" aria-hidden="true"><button type="button" class="layer-close js-close-layer">×</button><div class="layer-panel"><h2>제품 통합 검색</h2><div class="search-row"><input type="search" placeholder="검색어를 입력하세요"><button type="button">검색</button></div><div class="keyword-list"><a href="#">라이스정</a><a href="#">피부단자시험</a><a href="#">EARVENT</a><a href="#">ibion</a><a href="#">ruvair</a></div></div></div>
@@ -2440,5 +2483,7 @@ button,input{
       document.querySelectorAll('.section,.statistic-list').forEach(el=>io.observe(el));
     });
   </script>
+
+  <?= view('inc/popup') ?>
 </body>
 </html>

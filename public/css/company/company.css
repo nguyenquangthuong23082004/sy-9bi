@@ -87,7 +87,7 @@ select:focus-visible {
   border-bottom: 1px solid var(--line);
   transition: .35s var(--ease);
 }
-.header.is-scrolled, .header.is-open { box-shadow: 0 8px 30px rgba(0, 0, 0, .08); }
+.header.is-scrolled, .header.is-open, .header:hover, .header:focus-within { background: #fff !important; box-shadow: 0 8px 30px rgba(0, 0, 0, .08); }
 
 .header-mask { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; transition: .35s; }
 .header.is-open .header-mask { opacity: 1; }
@@ -117,7 +117,21 @@ select:focus-visible {
   font-weight: 750;
   color: #222;
 }
-.gnb-item.is-current > .gnb-link { color: var(--primary); }
+.gnb-item.is-current > .gnb-link {
+  color: var(--primary) !important;
+  font-weight: 800;
+  position: relative;
+}
+.gnb-item.is-current > .gnb-link::after {
+  content: "";
+  position: absolute;
+  bottom: 18px;
+  left: 25px;
+  right: 25px;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 3px;
+}
 
 .gnb-depth {
   position: absolute;
@@ -138,15 +152,15 @@ select:focus-visible {
 
 .gnb-depth-wrap { width: min(1440px, calc(100% - 110px)); margin: 0 auto; }
 .gnb-depth-inner {
-  display: grid;
-  grid-template-columns: 290px repeat(5, 1fr);
-  gap: 34px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
   padding: 44px 0 48px;
 }
 .depth-intro-title { font-size: 34px; font-weight: 750; display: block; margin-bottom: 16px; }
 .depth-intro-desc { font-size: 17px; color: #616b7b; }
 
-.gnb-depth-list { list-style: none; margin: 0; padding: 0; }
+.gnb-depth-list { list-style: none; margin: 0; padding: 0; min-width: 180px; }
 .gnb-depth-item { margin-bottom: 18px; }
 .gnb-depth-link { font-size: 16px; font-weight: 700; }
 .gnb-depth-link:hover { color: var(--primary); }
@@ -195,11 +209,16 @@ select:focus-visible {
 .footer-bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 34px; color: #94a3b8; }
 .footer-bottom p { margin: 4px 0; }
 .family select {
-  background: #111d2e;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #111d2e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat calc(100% - 20px) center;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 999px;
-  padding: 12px 44px 12px 18px;
+  padding: 12px 46px 12px 20px;
+  cursor: pointer;
+  outline: none;
 }
 
 /* --------------------------------------------------------------------------

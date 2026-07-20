@@ -64,6 +64,7 @@ $routes->group('AdmMaster', ['namespace' => 'App\Controllers\AdmMaster', 'filter
     $routes->get('banners/form', 'Banners::form');
     $routes->get('banners/form/(:num)', 'Banners::form/$1');
     $routes->post('banners/save', 'Banners::save');
+    $routes->post('banners/toggleNotice', 'Banners::toggleNotice');
     $routes->get('banners/delete/(:num)', 'Banners::delete/$1');
     $routes->post('banners/bulkDelete', 'Banners::bulkDelete');
     $routes->post('banners/updateStatus', 'Banners::updateStatus');

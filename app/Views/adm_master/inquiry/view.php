@@ -82,22 +82,34 @@
                         </tr>
                     <?php else: ?>
                         <tr>
-                            <th class="px-4 py-3 fw-bold text-start">이름</th>
-                            <td class="px-4 py-3"><?= esc($item['manager'] ?? '') ?></td>
-                            <th class="px-4 py-3 fw-bold text-start">휴대전화</th>
-                            <td class="px-4 py-3"><?= esc($item['tel'] ?? '') ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">병원명</th>
+                            <td class="px-4 py-3 fw-bold text-primary"><?= esc(!empty($item['hospital']) ? $item['hospital'] : ($item['company'] ?? '-')) ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">진료과</th>
+                            <td class="px-4 py-3"><?= esc($item['department'] ?? '-') ?></td>
                         </tr>
                         <tr>
-                            <th class="px-4 py-3 fw-bold text-start">직업/주업</th>
-                            <td class="px-4 py-3"><?= esc($item['company'] ?? '') ?></td>
-                            <th class="px-4 py-3 fw-bold text-start">장기렌터카 판매 경험 여부</th>
-                            <td class="px-4 py-3"><?= ($item['location'] ?? '') == 'yes' ? '경험 있음' : '경험 없음' ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">성함</th>
+                            <td class="px-4 py-3"><?= esc($item['manager'] ?? '-') ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">연락처</th>
+                            <td class="px-4 py-3"><?= esc($item['tel'] ?? '-') ?></td>
                         </tr>
                         <tr>
-                            <th class="px-4 py-3 fw-bold text-start">제휴 희망 형태</th>
-                            <td class="px-4 py-3"><?= ($item['content'] ?? '') == 'corporate' ? 'B2B/법인 제휴' : '개인 제휴' ?></td>
-                            <th class="px-4 py-3 fw-bold text-start">신청일</th>
-                            <td class="px-4 py-3"><?= esc($item['regdate'] ?? '') ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">이메일</th>
+                            <td class="px-4 py-3"><?= esc($item['email'] ?? '-') ?></td>
+                            <th class="px-4 py-3 fw-bold text-start">신청일 / IP</th>
+                            <td class="px-4 py-3"><?= esc($item['regdate'] ?? '-') ?> (IP: <?= esc($item['ip_address'] ?? '-') ?>)</td>
+                        </tr>
+                        <tr>
+                            <th class="px-4 py-3 fw-bold text-start">요청 사항</th>
+                            <td class="px-4 py-3"><span class="badge bg-primary fs-6"><?= esc($item['request_type'] ?? '-') ?></span></td>
+                            <th class="px-4 py-3 fw-bold text-start">방문 희망 여부</th>
+                            <td class="px-4 py-3"><span class="badge bg-info text-dark fs-6"><?= esc(!empty($item['visit']) ? $item['visit'] : ($item['location'] ?? '-')) ?></span></td>
+                        </tr>
+                        <tr>
+                            <th class="px-4 py-3 fw-bold text-start">상세 내용</th>
+                            <td colspan="3" class="px-4 py-3">
+                                <div class="p-3 border rounded bg-white" style="min-height: 150px; white-space: pre-wrap; font-size: 0.95rem; line-height: 1.6;"><?= esc(!empty($item['message']) ? $item['message'] : ($item['content'] ?? '-')) ?></div>
+                            </td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

@@ -37,11 +37,11 @@
             <input type="hidden" name="code" value="<?= $code ?>">
             
             <?php 
-            $skin = $config['skin'] ?? 'basic';
-            $isCategory = ($code == 'faq') ? 'N' : ($config['is_category'] ?? 'N');
-            $isNotice = ($code == 'faq') ? 'N' : ($config['is_notice'] ?? 'N');
-            $isSecure = ($code == 'faq') ? 'N' : ($config['is_secure'] ?? 'N');
-            $hide_fields = in_array($skin, ['faq', 'gallery', 'media', 'event']) || $code == 'faq';
+            $skin = ($code == 'banner') ? 'banner' : ($config['skin'] ?? 'basic');
+            $isCategory = in_array($code, ['faq', 'banner']) ? 'N' : ($config['is_category'] ?? 'N');
+            $isNotice = in_array($code, ['faq', 'banner']) ? 'N' : ($config['is_notice'] ?? 'N');
+            $isSecure = in_array($code, ['faq', 'banner']) ? 'N' : ($config['is_secure'] ?? 'N');
+            $hide_fields = in_array($skin, ['faq', 'gallery', 'media', 'event', 'banner']) || in_array($code, ['faq', 'banner']);
             ?>
 
             <div class="row g-3">
@@ -113,7 +113,7 @@
                 <?php endif; ?>
 
                 <!-- 등록일/조회수 -->
-                <div class="col-md-3" <?= in_array($skin, ['faq', 'media', 'event']) ? 'style="display:none"' : '' ?>>
+                <div class="col-md-3" <?= (in_array($skin, ['faq', 'media', 'event']) || $code == 'banner') ? 'style="display:none"' : '' ?>>
                     <label class="form-label fw-bold">등록일</label>
                     <input type="text" name="r_date" value="<?= esc($item['r_date'] ?? date('Y-m-d H:i:s')) ?>" class="form-control bg-light" readonly />
                 </div>
@@ -127,11 +127,31 @@
                     <input type="hidden" name="hit" value="<?= esc($item['hit'] ?? '0') ?>">
                 <?php endif; ?>
 
+                <!-- 노출위치 & 제목 (배너 게시판) -->
+                <?php if ($code == 'banner'): ?>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold text-primary">노출위치</label>
+                    <?php $currCat = $item['b_category'] ?? ''; ?>
+                    <select name="b_category" class="form-select fw-bold text-primary" style="height: 38px !important;">
+                        <option value="">선택</option>
+                        <option value="main" <?= $currCat == 'main' ? 'selected' : '' ?>>메인배너</option>
+                        <option value="company" <?= $currCat == 'company' ? 'selected' : '' ?>>회사소개배너</option>
+                        <option value="product" <?= $currCat == 'product' ? 'selected' : '' ?>>제품배너</option>
+                        <option value="business" <?= $currCat == 'business' ? 'selected' : '' ?>>사업영역 배너</option>
+                        <option value="medical" <?= $currCat == 'medical' ? 'selected' : '' ?>>의료진 지원 배너</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">제목</label>
+                    <input type="text" name="subject" value="<?= esc($item['subject'] ?? '') ?>" class="form-control" style="height: 38px !important;" placeholder="배너 제목 (빈칸 시 미노출)" />
+                </div>
+                <?php else: ?>
                 <!-- 제목 -->
                 <div class="<?= ($code == 'app' || $code == 'faq') ? 'col-md-10' : 'col-12' ?>">
                     <label class="form-label fw-bold text-danger">제목</label>
                     <input type="text" name="subject" value="<?= esc($item['subject'] ?? '') ?>" class="form-control" style="height: 38px !important;" required />
                 </div>
+                <?php endif; ?>
 
                 <!-- 순위 (onum) -->
                 <?php if ($code == 'app' || $code == 'faq'): ?>
@@ -141,15 +161,39 @@
                 </div>
                 <?php endif; ?>
 
-                <!-- 배너 링크 -->
+                <!-- 배너 전용 옵션 -->
                 <?php if ($code == 'banner'): ?>
+                <div class="col-12">
+                    <label class="form-label fw-bold">상단 소제목</label>
+                    <input type="text" name="sub_title" value="<?= esc($item['sub_title'] ?? '') ?>" class="form-control" placeholder="상단 소제목을 입력하세요 (빈칸 시 미노출)" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label fw-bold">하단 설명문</label>
+                    <textarea name="contents" class="form-control" rows="3" placeholder="하단 설명문을 입력하세요 (빈칸 시 미노출)"><?= esc($item['contents'] ?? '') ?></textarea>
+                </div>
+
                 <div class="col-12">
                     <label class="form-label fw-bold">링크 URL</label>
                     <input type="text" name="url" value="<?= esc($item['url'] ?? '') ?>" class="form-control" placeholder="http://" />
                 </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-bold d-block">노출 상태</label>
+                    <div class="p-2 border rounded bg-light">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="notice_yn" id="noticeY" value="Y" <?= ($item['notice_yn'] ?? 'Y') == 'Y' ? 'checked' : '' ?>>
+                            <label class="form-check-label" for="noticeY">노출함</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="notice_yn" id="noticeN" value="N" <?= ($item['notice_yn'] ?? '') == 'N' ? 'checked' : '' ?>>
+                            <label class="form-check-label" for="noticeN">숨김</label>
+                        </div>
+                    </div>
+                </div>
                 <?php endif; ?>
 
-                <!-- 내용 (Summernote) -->
+                <!-- 내용 (Summernote) - 배너 제외 게시판 -->
                 <?php if ($code != 'banner'): ?>
                 <div class="col-12">
                     <label class="form-label fw-bold">내용</label>
@@ -188,8 +232,23 @@
 
                         <?php if ($code == 'banner'): ?>
                         <div class="col-md-6">
-                            <label class="form-label small fw-bold">모바일 이미지 첨부</label>
-                            <input type="file" name="ufile5" class="form-control" />
+                            <label class="form-label small fw-bold">PC용 이미지 첨부 (.webp 가능)</label>
+                            <input type="file" name="ufile6" class="form-control" accept="image/*,.webp,image/webp" />
+                            <?php if (!empty($item['ufile6'])): ?>
+                                <div class="mt-2 p-2 border rounded bg-light">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="del_6" id="del_6" value="Y">
+                                        <label class="form-check-label text-danger small" for="del_6">삭제</label>
+                                    </div>
+                                    <a href="<?= base_url('data/bbs/'.$item['ufile6']) ?>" target="_blank" class="small text-decoration-none">
+                                        <i class="bi bi-image"></i> <?= esc($item['rfile6']) ?>
+                                    </a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">모바일용 이미지 첨부 (.webp 가능)</label>
+                            <input type="file" name="ufile5" class="form-control" accept="image/*,.webp,image/webp" />
                             <?php if (!empty($item['ufile5'])): ?>
                                 <div class="mt-2 p-2 border rounded bg-light">
                                     <div class="form-check form-check-inline">
@@ -204,7 +263,7 @@
                         </div>
                         <?php endif; ?>
 
-                        <?php if (!in_array($skin, ['faq', 'gallery', 'media', 'event'])): ?>
+                        <?php if (!in_array($skin, ['faq', 'gallery', 'media', 'event', 'banner']) && $code !== 'banner'): ?>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">파일 첨부</label>
                             <input type="file" name="ufile1" class="form-control" />
@@ -293,7 +352,11 @@ $(function() {
                 <?php if (empty($item['bbs_idx'])): ?>
                     alert_("정상적으로 등록되었습니다.");
                     setTimeout(function() {
+                        <?php if ($code == 'banner'): ?>
+                        location.href = "<?= base_url('AdmMaster/banners') ?>";
+                        <?php else: ?>
                         location.href = "<?= base_url('AdmMaster/bbs/'.$code) ?>";
+                        <?php endif; ?>
                     }, 1000);
                 <?php else: ?>
                     alert_("정상적으로 수정되었습니다.");
@@ -313,10 +376,17 @@ $(function() {
 
 function send_it() {
     var frm = document.frm;
+    <?php if ($code == 'banner'): ?>
+    // banner: only image required, text fields optional
+    var hasImg = (frm.ufile6 && frm.ufile6.files.length > 0) || (frm.ufile5 && frm.ufile5.files.length > 0);
+    <?php if (!empty($item['ufile6']) || !empty($item['ufile5'])): ?>
+    // editing - existing image ok
+    <?php else: ?>
+    if (!hasImg) { alert("이미지를 첨부해주세요. (PC용 또는 모바일용)"); return; }
+    <?php endif; ?>
+    <?php else: ?>
     if (frm.subject.value == "") { alert("제목을 입력해주세요."); frm.subject.focus(); return; }
     if (frm.writer && frm.writer.value == "") { alert("작성자를 입력해주세요."); frm.writer.focus(); return; }
-    
-    <?php if ($code != 'banner'): ?>
     if ($('#contents_').summernote('isEmpty')) { alert("내용을 입력하셔야 합니다."); return; }
     <?php endif; ?>
 

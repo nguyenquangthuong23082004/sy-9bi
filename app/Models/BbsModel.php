@@ -10,7 +10,7 @@ class BbsModel extends Model
     protected $primaryKey = 'bbs_idx';
     protected $returnType = 'array';
     protected $allowedFields = [
-        'code', 'category', 'subject', 'writer', 'email', 'user_id', 'm_idx', 
+        'code', 'category', 'b_category', 'subject', 'sub_title', 'writer', 'email', 'user_id', 'm_idx', 
         'passwd', 'notice_yn', 'secure_yn', 'recomm_yn', 'contents', 'simple', 
         'hit', 'country_code', 'url', 's_date', 'e_date', 'reply', 
         'ufile1', 'rfile1', 'ufile2', 'rfile2', 'ufile3', 'rfile3', 

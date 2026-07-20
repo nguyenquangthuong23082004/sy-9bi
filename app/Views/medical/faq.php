@@ -3,36 +3,48 @@
 <?= $this->section('content') ?>
 
 <?php
-$syFaqList = [
-	[
-		'q' => '라이스정 관련 자료는 어디서 확인할 수 있나요?',
-		'a' => '<p>라이스정은 전문의약품으로, 상세 제품 자료는 보건의료전문가를 대상으로 제공됩니다.
-				<a href="' . base_url('medical/support?req=lais') . '">샘플·MR 방문 신청</a> 양식에 소속과 성함을 남겨주시면
-				담당자가 확인 후 자료를 안내드립니다.</p>
-				<p>설하면역치료의 개념과 치료 단계 등 일반 정보는
-				<a href="' . base_url('product/lais') . '">라이스정 제품 페이지</a>에서 확인하실 수 있습니다.</p>',
-	],
-	[
-		'q' => '피부단자시험 시약 항원 리스트는 어떻게 받나요?',
-		'a' => '<p>공급 가능 항원 리스트는 수급 상황에 따라 변동될 수 있어 요청 시점 기준으로 안내드리고 있습니다.
-				<a href="' . base_url('medical/support?req=skin-test') . '">자료 요청 양식</a>을 통해 신청해 주시면
-				최신 리스트와 유효기간 정보를 함께 보내드립니다.</p>',
-	],
-	[
-		'q' => '신규 거래 개설 절차가 궁금합니다.',
-		'a' => '<p>신규 거래는 담당자 상담 후 진행됩니다. 병원명, 진료과, 담당자 연락처를 남겨주시면
-				담당 MR이 연락드려 필요한 서류와 절차를 안내드립니다.</p>
-				<p>대표 전화 <a href="tel:02-900-0436">02-900-0436</a> 또는
-				<a href="mailto:lofarma@lofarma.kr">lofarma@lofarma.kr</a> 으로도 문의하실 수 있습니다.</p>',
-	],
-	[
-		'q' => 'EARVENT 및 ibion 문의는 어디로 접수하나요?',
-		'a' => '<p>의료기기 제품 문의는 <a href="' . base_url('medical/support?req=earvent') . '">샘플·MR 방문 신청</a> 양식에서
-				요청 사항을 선택해 접수하실 수 있습니다.</p>
-				<p>EARVENT의 용도와 사용 방법은
-				<a href="' . base_url('product/earvent') . '">제품 페이지</a>에서 확인하실 수 있습니다.</p>',
-	],
-];
+$dbFaqs = $faqs ?? [];
+$syFaqList = [];
+
+if (!empty($dbFaqs) && is_array($dbFaqs)) {
+	foreach ($dbFaqs as $item) {
+		$syFaqList[] = [
+			'q' => $item['subject'] ?? $item['title'] ?? '',
+			'a' => $item['contents'] ?? $item['content'] ?? '',
+		];
+	}
+} else {
+	$syFaqList = [
+		[
+			'q' => '라이스정 관련 자료는 어디서 확인할 수 있나요?',
+			'a' => '<p>라이스정은 전문의약품으로, 상세 제품 자료는 보건의료전문가를 대상으로 제공됩니다.
+					<a href="' . base_url('medical/support?req=lais') . '">샘플·MR 방문 신청</a> 양식에 소속과 성함을 남겨주시면
+					담당자가 확인 후 안내드립니다.</p>
+					<p>설하면역치료의 개념과 치료 단계 등 일반 정보는
+					<a href="' . base_url('product/lais') . '">라이스정 제품 페이지</a>에서 확인하실 수 있습니다.</p>',
+		],
+		[
+			'q' => '피부단자시험 시약 항원 리스트는 어떻게 받나요?',
+			'a' => '<p>공급 가능 항원 리스트는 수급 상황에 따라 변동될 수 있어 요청 시점 기준으로 안내드리고 있습니다.
+					<a href="' . base_url('medical/support?req=skin-test') . '">자료 요청 양식</a>을 통해 신청해 주시면
+					최신 리스트와 유효기간 정보를 함께 보내드립니다.</p>',
+		],
+		[
+			'q' => '신규 거래 개설 절차가 궁금합니다.',
+			'a' => '<p>신규 거래는 담당자 상담 후 진행됩니다. 병원명, 진료과, 담당자 연락처를 남겨주시면
+					담당 MR이 연락드려 필요한 서류와 절차를 안내드립니다.</p>
+					<p>대표 전화 <a href="tel:02-900-0436">02-900-0436</a> 또는
+					<a href="mailto:lofarma@lofarma.kr">lofarma@lofarma.kr</a> 으로도 문의하실 수 있습니다.</p>',
+		],
+		[
+			'q' => 'EARVENT 및 ibion 문의는 어디로 접수하나요?',
+			'a' => '<p>의료기기 제품 문의는 <a href="' . base_url('medical/support?req=earvent') . '">샘플·MR 방문 신청</a> 양식에서
+					요청 사항을 선택해 접수하실 수 있습니다.</p>
+					<p>EARVENT의 용도와 사용 방법은
+					<a href="' . base_url('product/earvent') . '">제품 페이지</a>에서 확인하실 수 있습니다.</p>',
+		],
+	];
+}
 ?>
 
 <section class="sy-company-section" aria-labelledby="sy-faq-title">

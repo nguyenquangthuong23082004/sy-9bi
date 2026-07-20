@@ -31,8 +31,8 @@ $sySection  = $syNavAll[$sectionKey] ?? null;
 // 로컬 내비게이션 = 해당 섹션 드롭다운의 첫 번째 컬럼 (실제 하위 페이지 목록)
 $syLocalNav = $sySection['groups'][0] ?? [];
 
-$syMetaTitle = $metaTitle ?? (($pageTitle ?? '신영로파마') . ' | 신영로파마');
-$syMetaDesc  = $metaDescription ?? '신영로파마는 알레르기 한 분야에 집중해온 알레르기 전문 기업입니다.';
+$syMetaTitle = $metaTitle ?? null;
+$syMetaDesc  = $metaDescription ?? null;
 // 섹션별 전용 CSS (모두 company.css 를 import 하므로 한 개만 로드하면 됩니다)
 $syCssMap = [
 	'product'  => 'css/product/product.css',
@@ -68,6 +68,31 @@ foreach ($syLocalNav as $syItem) {
 		break;
 	}
 }
+
+// Subpage Banner (company, product, business, medical)
+$sySubBanner = null;
+if (!empty($sectionKey)) {
+	$bbsModel = new \App\Models\BbsModel();
+	$sySubBanner = $bbsModel->where('code', 'banner')
+							->where('notice_yn', 'Y')
+							->where('b_category', $sectionKey)
+							->orderBy('bbs_idx', 'DESC')
+							->first();
+}
+
+$sySubImg = !empty($sySubBanner['ufile6']) ? base_url('data/bbs/' . $sySubBanner['ufile6']) : null;
+
+if (!empty($sySubBanner)) {
+	// Custom DB Banner: render custom text if written in admin, no hardcoded fallbacks
+	$sySubEyebrow = !empty($sySubBanner['sub_title']) ? esc($sySubBanner['sub_title']) : '';
+	$sySubHeading = !empty($sySubBanner['subject']) ? nl2br(esc($sySubBanner['subject'])) : esc($pageTitle ?? '');
+	$sySubDesc    = !empty($sySubBanner['contents']) ? nl2br(esc($sySubBanner['contents'])) : '';
+} else {
+	// Default page header
+	$sySubEyebrow = $sectionKey ? strtoupper($sectionKey) : '';
+	$sySubHeading = esc($pageTitle ?? '');
+	$sySubDesc    = esc($pageDesc ?? '');
+}
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -91,25 +116,31 @@ foreach ($syLocalNav as $syItem) {
 		<main id="content" class="sy-company-main">
 
 			<!-- 서브 비주얼 -->
-			<section class="sy-company-visual" aria-labelledby="sy-page-title">
-				<!-- 장식용 라인 그래픽 (의미 없음) -->
-				<svg class="sy-company-visual-deco" viewBox="0 0 520 340" aria-hidden="true" focusable="false">
-					<g fill="none" stroke="#ffffff" stroke-width="1.2">
-						<circle cx="330" cy="170" r="150" />
-						<circle cx="330" cy="170" r="104" />
-						<circle cx="330" cy="170" r="58" />
-						<path d="M0 262h150l26-64 30 128 28-92 24 44h242" stroke-width="1.6" />
-						<path d="M330 20v300M180 170h300" stroke-dasharray="4 8" />
-					</g>
-				</svg>
+			<section class="sy-company-visual" aria-labelledby="sy-page-title"<?= $sySubImg ? ' style="background: linear-gradient(rgba(7, 17, 31, 0.6), rgba(7, 17, 31, 0.6)), url(\'' . esc($sySubImg, 'attr') . '\') center/cover no-repeat;"' : '' ?>>
+			<?php $sySubUrl = !empty($sySubBanner['url']) ? esc($sySubBanner['url'], 'attr') : ''; ?>
+			<?php if ($sySubUrl): ?>
+				<a href="<?= $sySubUrl ?>" style="position:absolute;inset:0;z-index:2;display:block;" aria-label="배너 링크"></a>
+			<?php endif; ?>
+				<!-- 장식용 라인 그래픽 (이미지 없을 때만 표시) -->
+			<?php if (!$sySubImg): ?>
+			<svg class="sy-company-visual-deco" viewBox="0 0 520 340" aria-hidden="true" focusable="false">
+				<g fill="none" stroke="#ffffff" stroke-width="1.2">
+					<circle cx="330" cy="170" r="150" />
+					<circle cx="330" cy="170" r="104" />
+					<circle cx="330" cy="170" r="58" />
+					<path d="M0 262h150l26-64 30 128 28-92 24 44h242" stroke-width="1.6" />
+					<path d="M330 20v300M180 170h300" stroke-dasharray="4 8" />
+				</g>
+			</svg>
+			<?php endif; ?>
 
 				<div class="container">
-					<?php if ($sectionKey): ?>
-						<span class="sy-company-visual-eyebrow"><?= esc(strtoupper($sectionKey)) ?></span>
+					<?php if (!empty($sySubEyebrow)): ?>
+						<span class="sy-company-visual-eyebrow"><?= $sySubEyebrow ?></span>
 					<?php endif; ?>
-					<h1 id="sy-page-title"><?= esc($pageTitle ?? '') ?></h1>
-					<?php if (! empty($pageDesc)): ?>
-						<p class="sy-company-visual-desc"><?= esc($pageDesc) ?></p>
+					<h1 id="sy-page-title"><?= $sySubHeading ?></h1>
+					<?php if (!empty($sySubDesc)): ?>
+						<p class="sy-company-visual-desc"><?= $sySubDesc ?></p>
 					<?php endif; ?>
 
 					<nav class="sy-company-breadcrumb" aria-label="현재 위치">

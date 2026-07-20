@@ -3,14 +3,59 @@
 
 <head>
     <?php 
-    $site_title = !empty($_settings['title']) ? $_settings['title'] : '오토스타일';
-    $favicon = !empty($_settings['favico']) ? base_url('uploads/setting/' . $_settings['favico']) : base_url('favicon.ico');
+    $siteName     = sy_site_setting('site_name', '신영로파마');
+    $site_title   = sy_site_setting('browser_title') ?: $siteName;
+    $metaDesc     = sy_site_setting('og_des') ?: sy_site_setting('meta_tag');
+    $metaKeywords = sy_site_setting('meta_keyword');
+
+    $favicoFile   = sy_site_setting('favico');
+    $favicon      = (!empty($favicoFile) && file_exists(FCPATH . 'uploads/setting/' . $favicoFile))
+        ? base_url('uploads/setting/' . $favicoFile)
+        : base_url('favicon.ico');
+
+    $ogTitle      = sy_site_setting('og_title') ?: ($title ?? 'Admin Panel');
+    $ogDesc       = sy_site_setting('og_des') ?: $metaDesc;
+    $ogUrl        = sy_site_setting('og_url') ?: current_url();
+    $ogSite       = sy_site_setting('og_site') ?: $siteName;
+
+    $ogImgFile    = sy_site_setting('og_img');
+    $ogImage      = (!empty($ogImgFile) && file_exists(FCPATH . 'uploads/setting/' . $ogImgFile))
+        ? base_url('uploads/setting/' . $ogImgFile)
+        : null;
+
+    $schemaJson   = sy_site_setting('schema_jsonld');
     ?>
-    <title><?= $title ?? 'Admin Panel' ?> - <?= $site_title ?></title>
+    <title><?= esc($title ?? 'Admin Panel') ?> - <?= esc($site_title) ?></title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <?php if (!empty($metaDesc)): ?>
+        <meta name="description" content="<?= esc($metaDesc) ?>" />
+    <?php endif; ?>
+    <?php if (!empty($metaKeywords)): ?>
+        <meta name="keywords" content="<?= esc($metaKeywords) ?>" />
+    <?php endif; ?>
+
     <link rel="shortcut icon" type="image/x-icon" href="<?= $favicon ?>">
+    <link rel="icon" type="image/x-icon" href="<?= $favicon ?>">
+
+    <meta property="og:title" content="<?= esc($ogTitle) ?>" />
+    <?php if (!empty($ogDesc)): ?>
+        <meta property="og:description" content="<?= esc($ogDesc) ?>" />
+    <?php endif; ?>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?= esc($ogUrl, 'attr') ?>" />
+    <meta property="og:site_name" content="<?= esc($ogSite) ?>" />
+    <?php if (!empty($ogImage)): ?>
+        <meta property="og:image" content="<?= esc($ogImage, 'attr') ?>" />
+    <?php endif; ?>
+
+    <?php if (!empty($schemaJson)): ?>
+        <script type="application/ld+json">
+        <?= $schemaJson ?>
+        </script>
+    <?php endif; ?>
 
     <!-- Legacy CSS -->
     <link rel="stylesheet" href="<?= base_url('adm_assets/_common/css/import.css') ?>" type="text/css" />
@@ -122,7 +167,7 @@
                 $isNoticeEn = $isPath('AdmMaster/bbs/notice_en');
                 $isNews = $isPath('AdmMaster/bbs/news');
                 $isNewsEn = $isPath('AdmMaster/bbs/news_en');
-                $isBanners = $isActive('AdmMaster/banners');
+                $isBanners = $isActive('AdmMaster/banners') || $isPath('AdmMaster/bbs/banner');
                 $isLineCard = $isPath('AdmMaster/line_card');
                 $isBbsParent = $isNotice || $isNoticeEn || $isNews || $isNewsEn || $isBanners || $isLineCard;
 
@@ -164,6 +209,13 @@
                     <div class="nav-item">
                         <a class="nav-link <?= $isPopups ? 'active' : '' ?>" href="<?= base_url('AdmMaster/popups') ?>">
                             <i class="bi bi-window"></i> 팝업관리
+                        </a>
+                    </div>
+
+                    <!-- 배너관리 -->
+                    <div class="nav-item">
+                        <a class="nav-link <?= $isBanners ? 'active' : '' ?>" href="<?= base_url('AdmMaster/banners') ?>">
+                            <i class="bi bi-images"></i> 배너관리
                         </a>
                     </div>
 
