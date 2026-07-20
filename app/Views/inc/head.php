@@ -35,7 +35,12 @@ $syOgUrl     = sy_site_setting('og_url')   ?: ($ogUrl ?? current_url());
 $syOgSite    = sy_site_setting('og_site')  ?: ($ogSite ?? $sySiteName);
 $sySchemaJson= sy_site_setting('schema_jsonld');
 
-$syCss        = $cssFiles      ?? [];
+$syBaseCss    = [
+	'css/common.css',
+	'css/header.css',
+	'css/footer.css',
+];
+$syCss        = array_merge($syBaseCss, $cssFiles ?? []);
 $syPretendard = $usePretendard ?? true;
 $syPreconnect = $preconnect    ?? [];
 $syAssetVer   = $assetVersion  ?? '1.0.0';

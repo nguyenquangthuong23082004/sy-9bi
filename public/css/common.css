@@ -1,0 +1,238 @@
+/* ==========================================================================
+   common.css - Global Styles & Tokens (Shinyoung Lofarma)
+   - PC Desktop (>= 1181px): Original Pixel (px) Values
+   - Mobile / Tablet (<= 1180px -> 210px): Dynamic REM & Responsive Scaling
+   ========================================================================== */
+
+:root {
+  --primary: #0046ff;
+  --primary2: #0a8cff;
+  --green: #18b67a;
+  --dark: #07111f;
+  --gray: #6f7785;
+  --light: #f5f7fb;
+  --line: #e5e8ef;
+  --container: 1440px;
+  --radius: 28px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+  color: var(--dark);
+  background: #fff;
+  line-height: 1.55;
+  overflow-x: hidden;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Accessible hidden element */
+.blind {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.only-pc,
+.only_pc,
+.only-web,
+.only_web {
+  display: block !important;
+}
+
+.only-mo,
+.only_mo {
+  display: none !important;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.skip {
+  position: absolute;
+  z-index: 9999;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skip a {
+  position: absolute;
+  left: 10px;
+  top: -50px;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+}
+
+.skip a:focus {
+  top: 10px;
+}
+
+.wrap {
+  min-height: 100vh;
+}
+
+.section {
+  position: relative;
+  padding: 120px 0;
+}
+
+.section-box {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.link-animate-box {
+  margin-top: 28px;
+}
+
+.link-animate-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 8px;
+}
+
+.link-animate-text:after {
+  content: "→";
+  transition: .3s;
+}
+
+.link-animate-text:hover:after {
+  transform: translateX(6px);
+}
+
+/* Focus Visible Accessibility */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--primary2);
+  outline-offset: 2px;
+}
+
+/* Global Animations */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+  transition-delay: calc(var(--i, 0) * .06s);
+}
+
+.is-visible [data-animate],
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive Media Queries (Mobile / Tablet <= 1180px down to 210px) */
+@media (max-width: 1180px) {
+  html {
+    font-size: 15.5px;
+  }
+
+  .only-pc,
+  .only_pc,
+  .only-web,
+  .only_web {
+    display: none !important;
+  }
+
+  .only-mo,
+  .only_mo {
+    display: block !important;
+  }
+
+  .container {
+    width: calc(100% - 2.5rem);
+  }
+
+  .section {
+    padding: clamp(3.5rem, 8vw, 5.25rem) 0;
+  }
+}
+
+@media (max-width: 850px) {
+  html {
+    font-size: clamp(13px, 3.8vw, 15px);
+  }
+
+  .container {
+    width: calc(100% - 2rem);
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    width: calc(100% - 2rem);
+  }
+
+  .section {
+    padding: clamp(2.75rem, 7vw, 3.5rem) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 1.5rem);
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: clamp(11.5px, 4vw, 13px);
+  }
+
+  .container {
+    width: calc(100% - 1rem);
+  }
+}
+
+@media (max-width: 280px) {
+  html {
+    font-size: 11px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+}
