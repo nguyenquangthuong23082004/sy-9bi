@@ -195,31 +195,29 @@
    5) 반응형
    -------------------------------------------------------------------------- */
 @media (max-width: 1199px) {
-  .sy-business-row { grid-template-columns: 1fr 340px; gap: 44px; }
+  .sy-business-row { grid-template-columns: 1fr 340px; gap: 40px; }
   .sy-business-row-visual .sy-company-placeholder { min-height: 300px; }
 }
 
-@media (max-width: 1180px) {
-  .sy-company-section[id] { scroll-margin-top: 90px; }
-}
-
-@media (max-width: 767px) {
-  .sy-business-map { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
-  .sy-business-map a { padding: 24px 22px; }
-
+@media (max-width: 991px) {
+  .sy-company-section[id] { scroll-margin-top: 80px; }
+  .sy-business-map { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
   .sy-business-row { grid-template-columns: 1fr; gap: 32px; }
-  /* 모바일에서는 항상 이미지가 위로 오도록 통일 */
   .sy-business-row--reverse .sy-business-row-body,
   .sy-business-row-body { order: 2; }
   .sy-business-row--reverse .sy-business-row-visual,
   .sy-business-row-visual { order: 1; }
-  .sy-business-row-visual .sy-company-placeholder { min-height: 220px; }
+  .sy-business-row-visual .sy-company-placeholder { min-height: 260px; }
+}
 
-  .sy-business-brands { margin-top: 26px; }
+@media (max-width: 767px) {
+  .sy-business-map a { padding: 22px 18px; }
+  .sy-business-brands { margin-top: 24px; }
   .sy-business-brands a,
-  .sy-business-brands-static { padding: 18px 2px; }
-  .sy-business-brands a { padding-right: 30px; }
+  .sy-business-brands-static { padding: 16px 2px; }
+  .sy-business-brands a { padding-right: 28px; }
 
-  .sy-business-closing { padding: 64px 0; }
-  .sy-business-closing-lead { margin-bottom: 26px; }
+  .sy-business-closing { padding: 56px 0; }
+  .sy-business-closing-lead { margin-bottom: 22px; font-size: 16px; }
+  .sy-business-quote p { font-size: clamp(20px, 5vw, 28px); padding: 0 10px; }
 }

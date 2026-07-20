@@ -45,9 +45,9 @@ $syFooterSlogan = !empty($syOgDes) ? $syOgDes : ('알레르기 환자의 여정�
 				<p>대표번호 <?= esc($syCustomPhone) ?> | 이메일 <?= esc($sySiteEmail) ?></p>
 				<p><?= $syCopyright ?></p>
 			</div>
-			<div class="footer-bottom-right" style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: -2px;">
-				<a href="<?= base_url('privacy') ?>" style="color: #e8eef6; font-weight: 700; font-size: 14px; text-decoration: none;">개인정보처리방침</a>
-				<div class="family">
+			<div class="footer-bottom-right" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+				<a href="<?= base_url('privacy') ?>" class="footer-privacy-link" style="color: #e8eef6; font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; height: 40px; line-height: 1;">개인정보처리방침</a>
+				<div class="family" style="display: inline-flex; align-items: center;">
 					<label for="familySite" class="blind">Family Site</label>
 					<select id="familySite" aria-label="Family Site" onchange="if(this.value){location.href=this.value;}">
 						<option value="">Family Site</option>

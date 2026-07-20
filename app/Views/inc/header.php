@@ -147,7 +147,7 @@ $syHeaderLogoSrc  = (!empty($sySiteLogoHeader) && file_exists(FCPATH . 'uploads/
 	: base_url('images/logo_h.webp');
 $sySiteName       = sy_site_setting('site_name', '신영로파마');
 ?>
-<header id="header" class="header<?= $isHome ? ' is-transparent header-home' : '' ?>">
+<header id="header" class="header">
 	<div class="header-mask"></div>
 
 	<div class="header-bottom">
@@ -219,6 +219,36 @@ $sySiteName       = sy_site_setting('site_name', '신영로파마');
 			<button type="button" class="btn btn-gnb js-btn-gnb" aria-label="메뉴 열기/닫기" aria-expanded="false" aria-controls="header-nav">
 				<i class="icon-hamburger" aria-hidden="true"></i>
 			</button>
+		</div>
+	</div>
+
+	<!-- PC Full Sitemap Overlay -->
+	<div class="full-sitemap only-pc">
+		<div class="full-sitemap-inner">
+			<div class="sitemap-grid">
+				<?php foreach ($syNav as $navKey => $nav): ?>
+					<div class="sitemap-col">
+						<h3 class="sitemap-title">
+							<a href="<?= sy_nav_url($nav['url']) ?>"><?= esc($nav['label']) ?></a>
+						</h3>
+						<?php if (!empty($nav['groups'])): ?>
+							<ul class="sitemap-list">
+								<?php foreach ($nav['groups'] as $group): ?>
+									<?php foreach ($group as $item): ?>
+										<?php if (is_array($item) && isset($item['label'])): ?>
+											<li>
+												<a href="<?= sy_nav_url($item['url'] ?? '#') ?>">
+													<?= esc($item['label']) ?>
+												</a>
+											</li>
+										<?php endif; ?>
+									<?php endforeach; ?>
+								<?php endforeach; ?>
+							</ul>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</div>
 </header>

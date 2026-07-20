@@ -219,33 +219,36 @@
    7) 반응형
    -------------------------------------------------------------------------- */
 @media (max-width: 1199px) {
-  .sy-product-hero { grid-template-columns: 1fr 340px; gap: 44px; }
+  .sy-product-hero { grid-template-columns: 1fr 340px; gap: 40px; }
   .sy-product-hero-visual .sy-company-placeholder { min-height: 320px; }
   .sy-company-cols.sy-product-cols--2 { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .sy-product-hero { grid-template-columns: 1fr; gap: 32px; }
   .sy-product-hero-visual { order: -1; }
-  .sy-product-hero-visual .sy-company-placeholder { min-height: 240px; }
-  .sy-product-tags { margin-top: 24px; }
-  .sy-product-tags > li { font-size: 13px; padding: 7px 13px; }
+  .sy-product-hero-visual .sy-company-placeholder { min-height: 260px; }
+  .sy-product-more-list { grid-template-columns: 1fr; gap: 14px; }
+}
+
+@media (max-width: 767px) {
+  .sy-product-tags { margin-top: 20px; flex-wrap: wrap; gap: 6px; }
+  .sy-product-tags > li { font-size: 13px; padding: 6px 12px; }
 
   .sy-company-steps.sy-product-steps--2 { grid-template-columns: 1fr; }
 
-  .sy-product-subhead { margin: 36px 0 14px; }
-  .sy-product-taglist > li { font-size: 15px; padding: 9px 14px; }
+  .sy-product-subhead { margin: 32px 0 14px; }
+  .sy-product-taglist > li { font-size: 14px; padding: 8px 12px; }
 
-  .sy-product-info > div { grid-template-columns: 1fr; gap: 6px; padding: 18px 2px; }
+  .sy-product-info > div { grid-template-columns: 1fr; gap: 6px; padding: 16px 2px; }
 
-  .sy-product-notice { padding: 26px 22px; }
+  .sy-product-notice { padding: 22px 18px; }
   .sy-product-notice p { font-size: 15px; }
 
-  .sy-product-cta { padding: 56px 0; }
+  .sy-product-cta { padding: 48px 0; }
   .sy-product-cta-row { flex-direction: column; }
   .sy-product-btn { width: 100%; }
 
-  .sy-product-more { padding: 48px 0; }
-  .sy-product-more-list { grid-template-columns: 1fr; gap: 12px; }
-  .sy-product-more-list a { min-height: 72px; padding: 18px 22px; }
+  .sy-product-more { padding: 40px 0; }
+  .sy-product-more-list a { min-height: 64px; padding: 16px 20px; }
 }
