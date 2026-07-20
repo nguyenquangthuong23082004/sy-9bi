@@ -39,21 +39,23 @@ $syFooterSlogan = !empty($syOgDes) ? $syOgDes : ('알레르기 환자의 여정�
 				<a href="<?= base_url('#support') ?>">고객지원</a>
 			</nav>
 		</div>
-		<div class="footer-bottom">
+		<div class="footer-bottom" style="align-items: flex-start;">
 			<div>
 				<p><?= esc($syFullAddr) ?></p>
 				<p>대표번호 <?= esc($syCustomPhone) ?> | 이메일 <?= esc($sySiteEmail) ?></p>
 				<p><?= $syCopyright ?></p>
-				<p><a href="<?= base_url('privacy') ?>">개인정보처리방침</a></p>
 			</div>
-			<div class="family">
-				<label for="familySite" class="blind">Family Site</label>
-				<select id="familySite" aria-label="Family Site" onchange="if(this.value){location.href=this.value;}">
-					<option value="">Family Site</option>
-					<option value="<?= base_url('#mall') ?>">병원전문쇼핑몰</option>
-					<option value="<?= base_url('business') ?>">이비온</option>
-					<option value="<?= base_url('business') ?>">루베어</option>
-				</select>
+			<div class="footer-bottom-right" style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: -2px;">
+				<a href="<?= base_url('privacy') ?>" style="color: #e8eef6; font-weight: 700; font-size: 14px; text-decoration: none;">개인정보처리방침</a>
+				<div class="family">
+					<label for="familySite" class="blind">Family Site</label>
+					<select id="familySite" aria-label="Family Site" onchange="if(this.value){location.href=this.value;}">
+						<option value="">Family Site</option>
+						<option value="<?= base_url('#mall') ?>">병원전문쇼핑몰</option>
+						<option value="<?= base_url('business') ?>">이비온</option>
+						<option value="<?= base_url('business') ?>">루베어</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</div>

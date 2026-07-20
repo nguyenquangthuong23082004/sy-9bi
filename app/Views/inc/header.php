@@ -23,6 +23,10 @@ if (! function_exists('sy_site_nav')) {
 	 */
 	function sy_site_nav(): array
 	{
+		$phone = sy_site_setting('custom_phone', '02-900-0436');
+		$email = sy_site_setting('email', 'lofarma@lofarma.kr');
+		$addr  = sy_site_setting('addr1', '서울시 도봉구');
+
 		return [
 
 			'company' => [
@@ -41,7 +45,7 @@ if (! function_exists('sy_site_nav')) {
 						['label' => '비전',             'url' => 'company/vision',   'key' => 'vision'],
 					],
 					[
-						['label' => '오시는 길', 'url' => '#support', 'sub' => ['서울시 도봉구', '문의 02-900-0436']],
+						['label' => '오시는 길', 'url' => '#support', 'sub' => [$addr, '문의 ' . $phone]],
 					],
 				],
 			],
@@ -100,7 +104,7 @@ if (! function_exists('sy_site_nav')) {
 						['label' => 'FAQ',               'url' => 'medical/faq',     'key' => 'faq'],
 					],
 					[
-						['label' => '의료진 문의', 'url' => 'medical/support', 'sub' => ['02-900-0436', 'lofarma@lofarma.kr']],
+						['label' => '의료진 문의', 'url' => 'medical/support', 'sub' => [$phone, $email]],
 					],
 				],
 			],

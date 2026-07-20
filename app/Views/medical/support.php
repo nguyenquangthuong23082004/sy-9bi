@@ -11,14 +11,11 @@ $syOld = static fn (string $key, string $default = ''): string => (string) (old(
 <section class="sy-company-section" aria-labelledby="sy-support-title">
 	<div class="sy-company-inner">
 		<span class="sy-company-eyebrow">REQUEST</span>
-		<h2 id="sy-support-title" class="sy-company-lead">
+		<h2 id="sy-support-title" class="sy-company-lead" style="margin-bottom: 14px;">
 			제품 상담, 자료 요청, 샘플 문의가<br>
 			필요하신가요?
 		</h2>
-
-		<article class="sy-company-text sy-company-narrow">
-			<p>아래 양식을 남겨주시면 담당자가 확인 후 안내드립니다.</p>
-		</article>
+		<p class="sy-medical-intro-text">아래 양식을 남겨주시면 담당자가 확인 후 안내드립니다.</p>
 
 		<?php if (session()->getFlashdata('success')): ?>
 			<script>

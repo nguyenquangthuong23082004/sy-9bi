@@ -2,15 +2,16 @@
 <html lang="ko">
 <head>
     <?php 
-    $siteName     = sy_site_setting('site_name', '신영로파마');
-    $site_title   = sy_site_setting('browser_title') ?: $siteName;
-    $metaDesc     = sy_site_setting('og_des') ?: sy_site_setting('meta_tag');
-    $metaKeywords = sy_site_setting('meta_keyword');
-
-    $favicoFile   = sy_site_setting('favico');
-    $favicon      = (!empty($favicoFile) && file_exists(FCPATH . 'uploads/setting/' . $favicoFile))
+    $siteName   = sy_site_setting('site_name', '(주)신영로파마');
+    $site_title = sy_site_setting('browser_title') ?: $siteName;
+    $favicoFile = sy_site_setting('favico');
+    $favicon    = (!empty($favicoFile) && file_exists(FCPATH . 'uploads/setting/' . $favicoFile))
         ? base_url('uploads/setting/' . $favicoFile)
         : base_url('favicon.ico');
+    $logoFile   = sy_site_setting('logos');
+    $logoSrc    = (!empty($logoFile) && file_exists(FCPATH . 'uploads/setting/' . $logoFile))
+        ? base_url('uploads/setting/' . $logoFile)
+        : base_url('images/logo_h.webp');
     ?>
     <title><?= esc($site_title) ?> - 관리자 로그인</title>
     <meta charset="UTF-8">
@@ -26,301 +27,229 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-            background: #07111f;
+            font-family: 'Inter', 'Apple SD Gothic Neo', 'Pretendard', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #f0f4f8;
             position: relative;
             overflow: hidden;
         }
 
-        /* Animated background */
+        /* Soft gradient background */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 20% 20%, rgba(0, 82, 163, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 80% 80%, rgba(0, 140, 255, 0.10) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 70%);
-            pointer-events: none;
+                linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 40%, #e3f2fd 70%, #f5f0ff 100%);
             z-index: 0;
         }
 
-        /* Grid lines */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Floating orbs */
-        .orb {
+        /* Decorative blobs */
+        .blob {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.12;
+            filter: blur(100px);
+            opacity: 0.35;
             pointer-events: none;
             z-index: 0;
-            animation: float 12s ease-in-out infinite;
         }
-        .orb-1 { width: 400px; height: 400px; background: #1a6fd4; top: -100px; left: -100px; animation-delay: 0s; }
-        .orb-2 { width: 300px; height: 300px; background: #0099cc; bottom: -80px; right: -80px; animation-delay: -4s; }
-        .orb-3 { width: 200px; height: 200px; background: #3b82f6; top: 50%; left: 60%; animation-delay: -8s; }
+        .blob-1 { width: 500px; height: 500px; background: #bdd7ff; top: -150px; left: -150px; }
+        .blob-2 { width: 400px; height: 400px; background: #c8f0e0; bottom: -120px; right: -120px; }
+        .blob-3 { width: 300px; height: 300px; background: #d4c8ff; top: 40%; left: 55%; }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(20px, -20px) scale(1.05); }
-            66% { transform: translate(-15px, 15px) scale(0.97); }
-        }
-
-        .login-wrapper {
+        /* Wrapper */
+        .login-page {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 440px;
-            padding: 24px 16px;
-        }
-
-        /* Logo area */
-        .brand-area {
-            text-align: center;
-            margin-bottom: 36px;
-        }
-
-        .brand-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 14px;
-        }
-
-        .brand-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #1a6fd4, #0099dd);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: #fff;
-            box-shadow: 0 8px 24px rgba(26,111,212,0.4);
-            flex-shrink: 0;
-        }
-
-        .brand-name {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: -0.3px;
-        }
-
-        .brand-name span {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: rgba(255,255,255,0.45);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .brand-area p {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.38);
-            letter-spacing: 0.5px;
+            max-width: 420px;
+            padding: 20px 16px;
         }
 
         /* Card */
         .login-card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
             border-radius: 24px;
-            padding: 40px 40px 36px;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
             box-shadow:
-                0 32px 64px rgba(0,0,0,0.4),
-                inset 0 1px 0 rgba(255,255,255,0.08);
+                0 4px 6px rgba(0,0,0,0.04),
+                0 20px 60px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
 
-        .card-heading {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 28px;
+        /* Card top accent strip */
+        .card-stripe {
+            height: 4px;
+            background: linear-gradient(90deg, #1a6fd4 0%, #00b4d8 50%, #0077b6 100%);
+        }
+
+        /* Card inner */
+        .card-inner {
+            padding: 36px 40px 32px;
+        }
+
+        /* Brand */
+        .brand {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            justify-content: center;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f2f5;
         }
 
-        .card-heading::before {
-            content: '';
+        .brand-logo-img {
+            max-height: 48px;
+            width: auto;
             display: block;
-            width: 4px;
-            height: 18px;
-            background: linear-gradient(180deg, #1a6fd4, #0099dd);
-            border-radius: 2px;
+        }
+
+        /* Heading */
+        .login-heading {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1f36;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .login-desc {
+            font-size: 0.83rem;
+            color: #8898aa;
+            margin-bottom: 28px;
         }
 
         /* Alert */
         .alert-error {
-            background: rgba(239, 68, 68, 0.12);
-            border: 1px solid rgba(239, 68, 68, 0.25);
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-left: 3px solid #e53e3e;
             border-radius: 10px;
-            padding: 12px 16px;
-            color: #fca5a5;
-            font-size: 0.85rem;
+            padding: 11px 14px;
+            color: #c53030;
+            font-size: 0.83rem;
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 20px;
         }
 
-        /* Form fields */
-        .field-group {
-            margin-bottom: 18px;
-        }
+        /* Fields */
+        .field-group { margin-bottom: 16px; }
 
         .field-label {
             display: block;
             font-size: 0.78rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+            font-weight: 600;
+            color: #525f7f;
+            margin-bottom: 7px;
+            letter-spacing: 0.3px;
         }
 
-        .field-wrap {
-            position: relative;
-        }
+        .field-wrap { position: relative; }
 
         .field-icon {
             position: absolute;
-            left: 16px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255,255,255,0.3);
-            font-size: 1rem;
+            color: #adb5bd;
+            font-size: 0.95rem;
             pointer-events: none;
             transition: color 0.2s;
         }
 
         .field-input {
             width: 100%;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 13px 16px 13px 44px;
-            color: #fff;
-            font-size: 0.92rem;
+            border: 1.5px solid #e4e9f0;
+            border-radius: 10px;
+            background: #fafbfc;
+            padding: 11px 14px 11px 40px;
+            font-size: 0.9rem;
             font-family: inherit;
+            color: #1a1f36;
             outline: none;
-            transition: all 0.25s;
+            transition: all 0.2s;
         }
 
-        .field-input::placeholder { color: rgba(255,255,255,0.22); }
+        .field-input::placeholder { color: #c0cadd; }
 
         .field-input:focus {
-            background: rgba(26,111,212,0.12);
-            border-color: rgba(26,111,212,0.6);
-            box-shadow: 0 0 0 3px rgba(26,111,212,0.15);
+            border-color: #1a6fd4;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(26,111,212,0.1);
         }
 
-        .field-input:focus + .field-icon,
-        .field-wrap:focus-within .field-icon {
-            color: #3b82f6;
-        }
+        .field-wrap:focus-within .field-icon { color: #1a6fd4; }
 
-        /* Checkbox */
-        .save-id-row {
+        /* Save ID */
+        .save-row {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 28px;
-            margin-top: 4px;
+            gap: 7px;
+            margin-bottom: 22px;
         }
 
-        .save-id-row input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+        .save-row input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
             accent-color: #1a6fd4;
             cursor: pointer;
-            border-radius: 4px;
         }
 
-        .save-id-row label {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.4);
+        .save-row label {
+            font-size: 0.81rem;
+            color: #8898aa;
             cursor: pointer;
             user-select: none;
         }
 
-        /* Button */
+        /* Login button */
         .btn-login {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: linear-gradient(135deg, #1a6fd4 0%, #0891b2 100%);
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             font-weight: 600;
             font-family: inherit;
-            letter-spacing: 0.3px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: all 0.25s;
-            box-shadow: 0 8px 24px rgba(26,111,212,0.35);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.25s;
+            transition: all 0.22s;
+            box-shadow: 0 6px 20px rgba(26,111,212,0.3);
+            letter-spacing: 0.2px;
         }
 
         .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(26,111,212,0.45);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 28px rgba(26,111,212,0.38);
         }
 
-        .btn-login:hover::before { opacity: 1; }
         .btn-login:active { transform: translateY(0); }
 
         /* Footer */
-        .login-footer {
+        .card-footer-text {
             text-align: center;
-            margin-top: 28px;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.2);
-            letter-spacing: 0.5px;
+            padding: 16px;
+            background: #fafbfc;
+            border-top: 1px solid #f0f2f5;
+            font-size: 0.73rem;
+            color: #b0bec5;
+            letter-spacing: 0.3px;
         }
 
-        /* Loading overlay */
+        /* Loading */
         .loading-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(7,17,31,0.75);
+            background: rgba(255,255,255,0.7);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -329,9 +258,8 @@
         .loading-overlay.active { display: flex; }
 
         .spinner {
-            width: 44px;
-            height: 44px;
-            border: 3px solid rgba(255,255,255,0.1);
+            width: 42px; height: 42px;
+            border: 3px solid rgba(26,111,212,0.15);
             border-top-color: #1a6fd4;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -340,78 +268,77 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         @media (max-width: 480px) {
-            .login-card { padding: 32px 24px 28px; border-radius: 20px; }
+            .card-inner { padding: 28px 24px 24px; }
         }
     </style>
 </head>
 <body>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
 
 <div id="ajax_loader" class="loading-overlay">
     <div class="spinner"></div>
 </div>
 
-<div class="login-wrapper">
-    <!-- Brand -->
-    <div class="brand-area">
-        <div class="brand-logo">
-            <div class="brand-icon"><i class="bi bi-shield-check"></i></div>
-            <div class="brand-name">
-                <?= esc($site_title) ?>
-                <span>Admin Console</span>
-            </div>
-        </div>
-        <p>관리자 전용 보안 로그인</p>
-    </div>
-
-    <!-- Card -->
+<div class="login-page">
     <div class="login-card">
-        <div class="card-heading">로그인</div>
-
-        <form action="<?= base_url('AdmMaster/loginProcess') ?>" method="post" name="loginForm" autocomplete="off">
-            <?= csrf_field() ?>
-
-            <?php if (session()->getFlashdata('error')): ?>
-                <div class="alert-error">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    <?= session()->getFlashdata('error') ?>
-                </div>
-            <?php endif; ?>
-
-            <div class="field-group">
-                <label class="field-label" for="user_id">아이디</label>
-                <div class="field-wrap">
-                    <input type="text" name="user_id" id="user_id" class="field-input"
-                        placeholder="아이디를 입력하세요" onkeyup="press_it()" autofocus />
-                    <i class="bi bi-person field-icon"></i>
-                </div>
+        <div class="card-inner">
+            <!-- Brand block -->
+            <div class="brand">
+                <?php if ($logoSrc): ?>
+                    <img src="<?= esc($logoSrc, 'attr') ?>" alt="<?= esc($siteName) ?>" class="brand-logo-img">
+                <?php endif; ?>
             </div>
 
-            <div class="field-group">
-                <label class="field-label" for="user_pw">비밀번호</label>
-                <div class="field-wrap">
-                    <input type="password" name="user_pw" id="user_pw" class="field-input"
-                        placeholder="비밀번호를 입력하세요" onkeyup="press_it()" />
-                    <i class="bi bi-lock field-icon"></i>
+            <!-- Heading -->
+            <div class="login-heading">관리자 로그인</div>
+            <div class="login-desc">관리자 전용 보안 로그인 페이지입니다.</div>
+
+            <!-- Form -->
+            <form action="<?= base_url('AdmMaster/loginProcess') ?>" method="post" name="loginForm" autocomplete="off">
+                <?= csrf_field() ?>
+
+                <?php if (session()->getFlashdata('error')): ?>
+                    <div class="alert-error">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <?= session()->getFlashdata('error') ?>
+                    </div>
+                <?php endif; ?>
+
+                <div class="field-group">
+                    <label class="field-label" for="user_id">아이디</label>
+                    <div class="field-wrap">
+                        <i class="bi bi-person field-icon"></i>
+                        <input type="text" name="user_id" id="user_id" class="field-input"
+                            placeholder="아이디를 입력하세요" onkeyup="press_it()" autofocus />
+                    </div>
                 </div>
-            </div>
 
-            <div class="save-id-row">
-                <input type="checkbox" name="saveId" id="saveId" value="Y">
-                <label for="saveId">아이디 저장</label>
-            </div>
+                <div class="field-group">
+                    <label class="field-label" for="user_pw">비밀번호</label>
+                    <div class="field-wrap">
+                        <i class="bi bi-lock field-icon"></i>
+                        <input type="password" name="user_pw" id="user_pw" class="field-input"
+                            placeholder="비밀번호를 입력하세요" onkeyup="press_it()" />
+                    </div>
+                </div>
 
-            <button type="button" onclick="loginSendit()" class="btn-login">
-                <i class="bi bi-box-arrow-in-right"></i> 로그인
-            </button>
-        </form>
-    </div>
+                <div class="save-row">
+                    <input type="checkbox" name="saveId" id="saveId" value="Y">
+                    <label for="saveId">아이디 저장</label>
+                </div>
 
-    <div class="login-footer">
-        &copy; <?= date('Y') ?> <?= esc($siteName) ?>. All rights reserved.
+                <button type="button" onclick="loginSendit()" class="btn-login">
+                    <i class="bi bi-box-arrow-in-right"></i> 로그인
+                </button>
+            </form>
+        </div>
+
+        <div class="card-footer-text">
+            &copy; <?= date('Y') ?> <?= esc($siteName) ?>. All rights reserved.
+        </div>
     </div>
 </div>
 

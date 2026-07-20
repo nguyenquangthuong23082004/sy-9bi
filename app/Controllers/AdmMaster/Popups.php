@@ -115,11 +115,11 @@ class Popups extends BaseController
 
     public function updateStatus()
     {
-        $ids = $this->request->getPost('ids');
+        $id = $this->request->getPost('idx') ?: $this->request->getPost('ids');
         $status = $this->request->getPost('status');
-        if (!empty($ids)) {
+        if (!empty($id)) {
             $popupModel = new PopupModel();
-            $popupModel->update($ids, ['status' => $status]);
+            $popupModel->update($id, ['status' => $status]);
         }
         return $this->response->setJSON(['status' => 'OK']);
     }

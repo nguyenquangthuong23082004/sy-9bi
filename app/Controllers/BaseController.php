@@ -73,14 +73,15 @@ abstract class BaseController extends Controller
             $now = date('Y-m-d H:i');
 
             $sql = "SELECT * FROM tbl_popup
-                    WHERE P_TYPES = ?
+                    WHERE (P_TYPES = ? OR P_TYPES IS NULL OR P_TYPES = '')
                       AND status != 'C'
+                      AND status != 'N'
                       AND (
                             status = 'B'
                             OR (
-                                status = 'A'
-                                AND CONCAT(P_STARTDAY,' ',LPAD(P_START_HH,2,'0'),':',LPAD(P_START_MM,2,'0')) <= ?
-                                AND CONCAT(P_ENDDAY,' ',LPAD(P_END_HH,2,'0'),':',LPAD(P_END_MM,2,'0')) >= ?
+                                (status = 'A' OR status IS NULL OR status = '')
+                                AND (P_STARTDAY IS NULL OR P_STARTDAY = '' OR CONCAT(P_STARTDAY,' ',LPAD(IFNULL(P_START_HH,'00'),2,'0'),':',LPAD(IFNULL(P_START_MM,'00'),2,'0')) <= ?)
+                                AND (P_ENDDAY IS NULL OR P_ENDDAY = '' OR CONCAT(P_ENDDAY,' ',LPAD(IFNULL(P_END_HH,'23'),2,'0'),':',LPAD(IFNULL(P_END_MM,'59'),2,'0')) >= ?)
                             )
                       )
                     ORDER BY idx ASC";
