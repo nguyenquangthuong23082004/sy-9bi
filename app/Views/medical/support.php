@@ -101,9 +101,16 @@ $syOld = static fn (string $key, string $default = ''): string => (string) (old(
 			</div>
 
 			<p class="sy-medical-form-note">
-				입력하신 정보는 문의 응대 목적으로만 이용되며,
-				자세한 내용은 <a href="<?= base_url('privacy') ?>">개인정보처리방침</a>을 확인해 주세요.
+				입력하신 정보는 문의 응대 목적으로만 이용되며, 자세한 내용은 <strong>개인정보처리방침</strong>을 확인해 주세요.
 			</p>
+
+			<div class="sy-medical-privacy-agree">
+				<label class="sy-medical-agree-label">
+					<input type="checkbox" name="privacy_agree" id="privacy_agree" value="Y" required>
+					<span>개인정보 수집 및 이용 동의 (필수)</span>
+				</label>
+				<button type="button" class="btn-privacy-popup-link" onclick="openPrivacyModal()">[내용보기]</button>
+			</div>
 
 			<div class="sy-medical-form-submit">
 				<button type="submit" class="sy-medical-btn sy-medical-btn--primary">신청하기</button>
@@ -111,6 +118,51 @@ $syOld = static fn (string $key, string $default = ''): string => (string) (old(
 		</form>
 	</div>
 </section>
+
+<!-- 개인정보처리방침 팝업 모달 (Admin /AdmMaster/bbs/policy 동적 매핑) -->
+<?php
+$syBbsModel = new \App\Models\BbsModel();
+$syPrivacyDb = $syBbsModel->where('code', 'policy')->where('subject', '개인정보처리방침')->first();
+$syPrivacyHtml = !empty($syPrivacyDb['contents']) ? $syPrivacyDb['contents'] : null;
+?>
+<div id="syPrivacyModal" class="sy-privacy-modal-overlay" onclick="if(event.target===this) closePrivacyModal();">
+	<div class="sy-privacy-modal-card">
+		<div class="sy-privacy-modal-head">
+			<h3>개인정보처리방침</h3>
+			<button type="button" class="sy-privacy-modal-close" onclick="closePrivacyModal()" aria-label="닫기">&times;</button>
+		</div>
+		<div class="sy-privacy-modal-body">
+			<?php if ($syPrivacyHtml): ?>
+				<?= $syPrivacyHtml ?>
+			<?php else: ?>
+				<p><strong>1. 개인정보의 수집 및 이용 목적</strong><br>
+				(주)신영로파마는 의료진 지원 서비스 제공, 문의사항 답변 및 심층 상담 안내를 위해 개인정보를 수집하고 이용합니다.</p>
+				
+				<p><strong>2. 수집하는 개인정보 항목</strong><br>
+				- 필수항목: 성함, 이메일, 연락처, 소속 병원/기관명, 방문/상담 희망여부<br>
+				- 선택항목: 상세 문의 내용 및 첨부파일</p>
+
+				<p><strong>3. 개인정보의 보유 및 이용 기간</strong><br>
+				수집된 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다.<br>
+				단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 관련 법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.</p>
+			<?php endif; ?>
+		</div>
+		<div class="sy-privacy-modal-foot">
+			<button type="button" class="sy-medical-btn sy-medical-btn--primary" onclick="closePrivacyModal()" style="min-width: 140px; height: 44px;">확인</button>
+		</div>
+	</div>
+</div>
+
+<script>
+function openPrivacyModal() {
+	document.getElementById('syPrivacyModal').classList.add('is-open');
+	document.body.style.overflow = 'hidden';
+}
+function closePrivacyModal() {
+	document.getElementById('syPrivacyModal').classList.remove('is-open');
+	document.body.style.overflow = '';
+}
+</script>
 
 <!-- ===== 담당 연락처 ===== -->
 <section class="sy-company-section sy-company-section--light" aria-labelledby="sy-support-contact">

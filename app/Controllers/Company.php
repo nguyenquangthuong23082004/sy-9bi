@@ -22,6 +22,9 @@ class Company extends BaseController
 
     public function history()
     {
+        $historyModel = new \App\Models\HistoryModel();
+        $historyList  = $historyModel->getHistoryList();
+
         return view('company/history', [
             'sectionKey'      => 'company',
             'pageKey'         => 'history',
@@ -29,6 +32,7 @@ class Company extends BaseController
             'pageDesc'        => '2011년 설립 이후 알레르기 분야에 집중해온 신영로파마의 발자취입니다.',
             'metaTitle'       => '회사 스토리·연혁 | 신영로파마',
             'metaDescription' => '2011년 설립 이래 알레르기 분야에 집중해온 신영로파마의 회사 스토리와 연혁을 소개합니다. Lofarma S.p.A 파트너십부터 의약품·의료기기·스킨케어로의 확장까지.',
+            'syHistory'       => $historyList,
         ]);
     }
 

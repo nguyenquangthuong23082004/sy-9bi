@@ -183,8 +183,9 @@
                 $isPopups = $isActive('AdmMaster/popups');
                 $isProfile = $isActive('AdmMaster/profile');
                 $isFaq = $isPath('AdmMaster/bbs/faq');
+                $isHistory = $isPath('AdmMaster/bbs/history');
                 $isPolicy = $isPath('AdmMaster/bbs/policy');
-                $isBoardParent = $isInquiry1 || $isFaq;
+                $isBoardParent = $isInquiry1 || $isFaq || $isHistory;
                 ?>
                 <div class="nav flex-column" id="sidebarAccordion">
                     <!-- 게시판 관리 Section -->
@@ -201,6 +202,8 @@
                                      href="<?= base_url('AdmMaster/inquiry/1') ?>">문의관리</a>
                                  <a class="nav-link <?= $isFaq ? 'active' : '' ?>"
                                      href="<?= base_url('AdmMaster/bbs/faq') ?>">FAQ관리</a>
+                                 <a class="nav-link <?= $isHistory ? 'active' : '' ?>"
+                                     href="<?= base_url('AdmMaster/bbs/history') ?>">연혁 관리</a>
                              </div>
                         </div>
                     </div>

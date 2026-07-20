@@ -472,7 +472,7 @@ select:focus-visible {
   word-break: keep-all;
 }
 .sy-company-text p:last-child { margin-bottom: 0; }
-.sy-company-narrow { max-width: 52em; margin-left: auto; margin-right: auto; text-align: left; }
+.sy-company-narrow { max-width: 52em; margin-left: 0; margin-right: auto; text-align: left; }
 
 .sy-company-linkrow { margin: 24px 0 0; }
 .sy-company-linkrow a {
@@ -573,53 +573,124 @@ select:focus-visible {
 }
 .sy-company-keypoints span { font-size: 15px; color: var(--sy-company-muted); word-break: keep-all; }
 
-.sy-company-timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+/* --------------------------------------------------------------------------
+   8) 스토리·연혁 (1년 왼쪽 1년 오른쪽 교차 타임라인)
+   -------------------------------------------------------------------------- */
+.sy-company-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
 .sy-company-timeline:before {
   content: "";
   position: absolute;
-  left: 200px;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background: var(--line);
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
+  bottom: 16px;
+  width: 2px;
+  background: var(--primary);
 }
 .sy-company-timeline > li {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 60px;
-  padding: 0 0 52px;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  padding: 0 0 28px;
   position: relative;
 }
 .sy-company-timeline > li:last-child { padding-bottom: 0; }
-.sy-company-timeline-year {
-  font-size: clamp(26px, 3vw, 36px);
-  font-weight: 850;
-  letter-spacing: -.03em;
-  color: var(--sy-company-deep);
-  line-height: 1.1;
-}
-.sy-company-timeline-body { position: relative; padding-left: 24px; }
-.sy-company-timeline-body:before {
+.sy-company-timeline > li:before {
   content: "";
   position: absolute;
-  left: -44px;
-  top: 12px;
-  width: 11px;
-  height: 11px;
+  left: 50%;
+  top: 16px;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff;
-  border: 3px solid var(--sy-company-deep);
+  border: 4px solid var(--primary);
+  box-shadow: 0 0 0 3px #fff;
+  z-index: 3;
+  box-sizing: border-box;
 }
+
+/* 1, 3, 5년차 (Left Side) */
+.sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year {
+  grid-column: 1;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 850;
+  letter-spacing: -.03em;
+  color: var(--primary);
+  margin: 0;
+  height: 32px;
+}
+.sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year span {
+  white-space: nowrap;
+}
+.sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year:after {
+  content: "";
+  width: 50px;
+  height: 0;
+  border-top: 1px dashed #c8d2df;
+  margin-left: 14px;
+}
+.sy-company-timeline > li:nth-child(odd) .sy-company-timeline-body {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 64px;
+  margin-top: 6px;
+}
+
+/* 2, 4, 6년차 (Right Side) */
+.sy-company-timeline > li:nth-child(even) .sy-company-timeline-year {
+  grid-column: 2;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 850;
+  letter-spacing: -.03em;
+  color: var(--primary);
+  margin: 0;
+  height: 32px;
+}
+.sy-company-timeline > li:nth-child(even) .sy-company-timeline-year span {
+  white-space: nowrap;
+  order: 2;
+}
+.sy-company-timeline > li:nth-child(even) .sy-company-timeline-year:before {
+  content: "";
+  width: 50px;
+  height: 0;
+  border-top: 1px dashed #c8d2df;
+  margin-right: 14px;
+  order: 1;
+}
+.sy-company-timeline > li:nth-child(even) .sy-company-timeline-body {
+  grid-column: 2;
+  text-align: left;
+  padding-left: 64px;
+  margin-top: 6px;
+}
+
 .sy-company-timeline-body ul { list-style: none; margin: 0; padding: 0; }
 .sy-company-timeline-body li {
   position: relative;
-  padding-left: 16px;
   font-size: 17px;
   line-height: 1.8;
   color: var(--sy-company-text);
   margin-bottom: 6px;
   word-break: keep-all;
+  padding-left: 0;
 }
+.sy-company-timeline-body li:before { display: none !important; }
 .sy-company-timeline-body li:before {
   content: "";
   position: absolute;
@@ -901,9 +972,9 @@ select:focus-visible {
   .sy-vision-hero { grid-template-columns: 1fr 380px; gap: 48px; }
   .sy-company-steps { grid-template-columns: repeat(2, 1fr); gap: 40px 60px; }
   .sy-company-steps > li:not(:last-child):after { display: none; }
-  .sy-company-timeline:before { left: 150px; }
+  .sy-company-timeline:before { left: 150px; transform: translateX(-50%); }
   .sy-company-timeline > li { grid-template-columns: 150px 1fr; gap: 40px; }
-  .sy-company-timeline-body:before { left: -34px; }
+  .sy-company-timeline-body:before { left: -40px; transform: translateX(-50%); }
 }
 
 @media (max-width: 1180px) {
@@ -991,10 +1062,45 @@ select:focus-visible {
   .sy-company-keypoints { grid-template-columns: 1fr; }
   .sy-company-keypoints > li { padding: 20px 16px; }
 
-  .sy-company-timeline:before { left: 5px; }
-  .sy-company-timeline > li { grid-template-columns: 1fr; gap: 10px; padding: 0 0 32px 28px; }
-  .sy-company-timeline-body { padding-left: 0; }
-  .sy-company-timeline-body:before { left: -28px; top: 6px; }
+  .sy-company-timeline:before {
+    left: 16px !important;
+    transform: none !important;
+    top: 10px;
+    bottom: 10px;
+  }
+  .sy-company-timeline > li {
+    display: block !important;
+    padding: 0 0 28px 36px !important;
+  }
+  .sy-company-timeline > li:before {
+    left: 16px !important;
+    top: 12px !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year,
+  .sy-company-timeline > li:nth-child(even) .sy-company-timeline-year {
+    grid-column: auto !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    font-size: 20px !important;
+    height: auto !important;
+    margin: 0 0 6px 0 !important;
+  }
+  .sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year:after,
+  .sy-company-timeline > li:nth-child(even) .sy-company-timeline-year:before {
+    display: none !important;
+  }
+  .sy-company-timeline > li:nth-child(odd) .sy-company-timeline-year span,
+  .sy-company-timeline > li:nth-child(even) .sy-company-timeline-year span {
+    order: 1 !important;
+  }
+  .sy-company-timeline > li:nth-child(odd) .sy-company-timeline-body,
+  .sy-company-timeline > li:nth-child(even) .sy-company-timeline-body {
+    grid-column: auto !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin-top: 4px !important;
+  }
 
   .sy-company-partner { grid-template-columns: 1fr; padding: 24px 16px; gap: 20px; }
   .sy-company-partner-x { transform: rotate(90deg); }

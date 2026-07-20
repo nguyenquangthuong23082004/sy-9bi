@@ -77,6 +77,11 @@ $routes->group('AdmMaster', ['namespace' => 'App\Controllers\AdmMaster', 'filter
     $routes->post('line_card/save', 'LineCard::save');
 
     // Bbs
+    $routes->get('bbs/history', 'History::index');
+    $routes->get('bbs/history/form', 'History::form');
+    $routes->get('bbs/history/form/(:num)', 'History::form/$1');
+    $routes->post('bbs/history/save', 'History::save');
+    $routes->get('bbs/history/delete/(:num)', 'History::delete/$1');
     $routes->get('bbs/policy', 'Policy::form');
     $routes->post('bbs/policy/save', 'Policy::save');
     $routes->get('bbs/(:segment)', 'Bbs::list/$1');

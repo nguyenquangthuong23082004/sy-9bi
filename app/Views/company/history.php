@@ -56,37 +56,19 @@
 		<span class="sy-company-eyebrow">HISTORY</span>
 		<h2 id="sy-history-timeline" class="sy-company-h2">연혁</h2>
 
-		<?php
-		// 확인된 사실만 기재합니다. (임의의 인증·수상·매출·해외 진출 실적 추가 금지)
-		$syHistory = [
-			['year' => '2011', 'items' => [
-				'주식회사 신영로파마 설립',
-				'Lofarma S.p.A 한국 파트너십 체결',
-				'라이스정 국내 공급 개시',
-			]],
-			['year' => '2012', 'items' => [
-				'알레르기 피부단자시험 시약 항원 라인업 확대',
-			]],
-			['year' => '2013', 'items' => [
-				'EARVENT 운영 및 공급',
-			]],
-			['year' => '2025', 'items' => [
-				'ruvair 브랜드 전개',
-			]],
-			['year' => '2026', 'items' => [
-				'ibion 브랜드 전개',
-			]],
-		];
-		?>
-
 		<ol class="sy-company-timeline">
 			<?php foreach ($syHistory as $syRow): ?>
+				<?php 
+				$itemsList = is_array($syRow['items']) ? $syRow['items'] : explode("\n", $syRow['items']);
+				?>
 				<li>
-					<h3 class="sy-company-timeline-year"><?= esc($syRow['year']) ?></h3>
+					<h3 class="sy-company-timeline-year"><span><?= esc($syRow['year']) ?>년 ~</span></h3>
 					<div class="sy-company-timeline-body">
 						<ul>
-							<?php foreach ($syRow['items'] as $syItem): ?>
-								<li><?= esc($syItem) ?></li>
+							<?php foreach ($itemsList as $syItem): ?>
+								<?php if (trim($syItem) !== ''): ?>
+									<li><?= esc(trim($syItem)) ?></li>
+								<?php endif; ?>
 							<?php endforeach; ?>
 						</ul>
 					</div>
