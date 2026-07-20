@@ -1,0 +1,225 @@
+@charset "utf-8";
+/* ==========================================================================
+   business.css
+   신영로파마 사업영역 서브페이지 전용 스타일
+   - 토큰 / 헤더 / 푸터 / 서브 비주얼 / 로컬 내비 / 본문 타이포는
+     company.css 를 그대로 재사용합니다. (아래 @import)
+   - 사업영역 전용 컴포넌트만 `sy-business-` 접두사를 사용합니다.
+   ========================================================================== */
+@import url("../company/company.css");
+
+/* --------------------------------------------------------------------------
+   1) 영역 요약 (인트로 하단 A / B / C 바로가기)
+   -------------------------------------------------------------------------- */
+.sy-business-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+}
+.sy-business-map a {
+  display: block;
+  height: 100%;
+  padding: 32px 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--sy-company-deep);
+  transition: .25s var(--ease);
+}
+.sy-business-map a:hover {
+  background: var(--light);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(7, 17, 31, .08);
+}
+.sy-business-map-num {
+  display: block;
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  color: var(--sy-company-deep);
+  margin-bottom: 14px;
+}
+.sy-business-map strong {
+  display: block;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  margin-bottom: 6px;
+}
+.sy-business-map-desc {
+  font-size: 15px;
+  color: var(--sy-company-muted);
+  word-break: keep-all;
+}
+
+/* --------------------------------------------------------------------------
+   2) 사업영역 본문 행 (텍스트 + 이미지 좌우 교차)
+   -------------------------------------------------------------------------- */
+.sy-business-row {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 70px;
+  align-items: center;
+}
+.sy-business-row--reverse .sy-business-row-body { order: 2; }
+.sy-business-row--reverse .sy-business-row-visual { order: 1; }
+.sy-business-row-visual .sy-company-placeholder { min-height: 380px; }
+
+/* 앵커 이동 시 고정 헤더에 제목이 가리지 않도록 여백 확보 */
+.sy-company-section[id] { scroll-margin-top: 110px; }
+
+.sy-business-tag {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--sy-company-teal);
+  margin-bottom: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   3) 브랜드 / 제품 리스트
+   -------------------------------------------------------------------------- */
+.sy-business-brands {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.sy-business-brands > li { border-bottom: 1px solid var(--line); }
+.sy-business-brands a,
+.sy-business-brands-static {
+  display: block;
+  padding: 22px 4px;
+  transition: .2s var(--ease);
+}
+.sy-business-brands a { position: relative; padding-right: 34px; }
+.sy-business-brands a:after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--sy-company-deep);
+  border-right: 2px solid var(--sy-company-deep);
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform .2s var(--ease);
+}
+.sy-business-brands a:hover { padding-left: 10px; }
+.sy-business-brands a:hover:after { transform: translateY(-50%) rotate(45deg) translate(3px, -3px); }
+
+.sy-business-brands strong {
+  display: block;
+  font-size: clamp(16px, 1.8vw, 19px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  margin-bottom: 5px;
+  word-break: keep-all;
+}
+.sy-business-brands strong span { font-size: 15px; font-weight: 600; color: var(--sy-company-muted); }
+.sy-business-brands > li span {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--sy-company-muted);
+  word-break: keep-all;
+}
+/* 링크가 없는 브랜드(페이지 준비 전) */
+.sy-business-brands-static { cursor: default; }
+
+/* 링크 준비 전 CTA */
+.sy-business-linkrow-off {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 24px;
+  border: 1px dashed #b9c4d3;
+  color: #8b95a3;
+  font-weight: 700;
+}
+.sy-business-linkrow-off em {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: #6a7686;
+}
+
+/* --------------------------------------------------------------------------
+   4) 페이지 클로징
+   -------------------------------------------------------------------------- */
+.sy-business-closing {
+  background: var(--sy-company-navy);
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+}
+.sy-business-closing-lead {
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: -.03em;
+  color: #c6d0dc;
+  margin: 0 0 36px;
+  word-break: keep-all;
+}
+.sy-business-quote { margin: 0; }
+.sy-business-quote p {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(22px, 3.4vw, 38px);
+  font-weight: 850;
+  line-height: 1.45;
+  letter-spacing: -.04em;
+  margin: 0;
+  padding: 0 18px;
+  word-break: keep-all;
+}
+/* 장식용 따옴표 */
+.sy-business-quote p:before,
+.sy-business-quote p:after {
+  content: "\201C";
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1;
+  color: var(--primary2);
+  vertical-align: -.12em;
+}
+.sy-business-quote p:after { content: "\201D"; }
+
+/* --------------------------------------------------------------------------
+   5) 반응형
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .sy-business-row { grid-template-columns: 1fr 340px; gap: 44px; }
+  .sy-business-row-visual .sy-company-placeholder { min-height: 300px; }
+}
+
+@media (max-width: 1180px) {
+  .sy-company-section[id] { scroll-margin-top: 90px; }
+}
+
+@media (max-width: 767px) {
+  .sy-business-map { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+  .sy-business-map a { padding: 24px 22px; }
+
+  .sy-business-row { grid-template-columns: 1fr; gap: 32px; }
+  /* 모바일에서는 항상 이미지가 위로 오도록 통일 */
+  .sy-business-row--reverse .sy-business-row-body,
+  .sy-business-row-body { order: 2; }
+  .sy-business-row--reverse .sy-business-row-visual,
+  .sy-business-row-visual { order: 1; }
+  .sy-business-row-visual .sy-company-placeholder { min-height: 220px; }
+
+  .sy-business-brands { margin-top: 26px; }
+  .sy-business-brands a,
+  .sy-business-brands-static { padding: 18px 2px; }
+  .sy-business-brands a { padding-right: 30px; }
+
+  .sy-business-closing { padding: 64px 0; }
+  .sy-business-closing-lead { margin-bottom: 26px; }
+}

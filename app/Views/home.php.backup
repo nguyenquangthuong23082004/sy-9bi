@@ -1,0 +1,930 @@
+<?= $this->extend('inc/head') ?>
+
+<?= $this->section('content') ?>
+<!-- Main Content -->
+<main>
+    <!-- ════ Main Visual Wrapper (GSAP ScrollTrigger Scope) ════ -->
+    <div class="main-visual-wrapper" id="main-visual-wrapper">
+
+        <!-- Section 1: Hero White -->
+        <section class="hero-white-section" id="hero-white">
+            <div class="hero-white-container">
+                <div class="hero-white-text-container slide-down-el text-center">
+                    <!-- <span class="hero-subtitle" style="font-size: 20px; font-weight: 500; display: block; margin-bottom: 12px; color: var(--color-text-dark);">장기렌터카 판매,</span> -->
+                    <h1 class="hero-white-title" style="margin-bottom: 0;">
+                        <a>장기렌터카 판매,<span class="highlight"><br>이제 직접</span> 할 수 있습니다!</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="hero-white-image-wrapper">
+                <video class="hero-white-video hero-video-web" autoplay loop muted playsinline>
+                    <source src="<?= base_url('videos/hero-video-web.mp4') ?>" type="video/mp4">
+                </video>
+                <video class="hero-white-video hero-video-mo" autoplay loop muted playsinline>
+                    <source src="<?= base_url('videos/hero-video-mo.mp4') ?>" type="video/mp4">
+                </video>
+                <div class="hero-white-bg-overlay"></div>
+            </div>
+        </section>
+
+        <!-- Section 2: Hero Dark -->
+        <section class="hero-dark-section" id="hero-dark">
+            <div class="hero-dark-media-wrapper">
+                <video class="hero-dark-video hero-video-web" autoplay loop muted playsinline>
+                    <source src="<?= base_url('videos/hero-video-web.mp4') ?>" type="video/mp4">
+                </video>
+                <video class="hero-dark-video hero-video-mo" autoplay loop muted playsinline>
+                    <source src="<?= base_url('videos/hero-video-mo.mp4') ?>" type="video/mp4">
+                </video>
+                <div class="hero-dark-bg-overlay"></div>
+            </div>
+            <div class="hero-dark-container">
+                <h2 class="hero-dark-title">
+                    수수료 없는 <br class="only_mo"> 영업지원과 최저가 출고<br>
+                    초보도 가능한 <br class="only_mo"> 영업교육 제공!
+                </h2>
+
+                <!-- Floating Black Action Bar under text -->
+                <div class="floating-action-bar">
+                    <!-- Left Kakao Link -->
+                    <a href="https://open.kakao.com/me/ascmh" class="bar-item bar-kakao" target="_blank" title="카카오톡 문의하기">
+                        <img src="<?= base_url('images/kakao_gray.png') ?>" alt="카카오톡 아이콘" class="bar-icon-kakao">
+                        <span>카카오톡 문의하기</span>
+                    </a>
+
+                    <!-- Center Logo Image -->
+                    <img src="<?= base_url('images/logo_mini.png') ?>" alt="AUTO.ST. 로고" class="bar-logo-img">
+
+                    <!-- Right Apply Button -->
+                    <button class="bar-item bar-apply" onclick="openModal()" title="제휴 신청하기">
+                        <span>제휴 문의하기</span>
+                        <img src="<?= base_url('images/inquiry_icon.png') ?>" alt="제휴 문의하기 아이콘" class="bar-icon-inquiry">
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </div><!-- /.main-visual-wrapper -->
+
+    <!-- About Section (오토스타일은?) -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-text-block slide-down-el">
+                <span class="section-tag">오토스타일은?</span>
+                <h2 class="section-title">영업강요는 NO!<br><span class="highlight">교육 제공은 YES!</span></h2>
+                <p class="section-desc">
+                    롯데렌터카의 전속세일즈파트너인 <br class="only_mo"> 오토스타 <br class="only_web"> 일은 합리적으로 차량 판매를 제안할 수 <br class="only_mo"> 있는 <br class="only_web"> 방법을 알려드리며 누구나 차량 판매를 진 <br class="only_mo"> 행 <br class="only_web"> 할 수 있도록 돕습니다!
+                </p>
+            </div>
+            <div class="about-graphic-block">
+                <div class="circle-bg slide-down-el"></div>
+                <div class="img-app-wrapper slide-down-el">
+                    <img src="<?= base_url('images/logo_app.png') ?>" alt="오토스타일 모바일 앱" class="img-app">
+                </div>
+                <div class="img-graph-wrapper slide-down-el">
+                    <img src="<?= base_url('images/graph.png') ?>" alt="성장 그래프" class="img-graph">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section (제휴 프로그램 소개) -->
+    <section class="programs-section" id="programs">
+        <div class="programs-container">
+            <div class="section-header-center slide-down-el">
+                <span class="section-tag">제휴 프로그램 소개</span>
+                <h2 class="section-title"><span class="highlight">N잡</span>도 가능, 지인 차량은 <span class="highlight">최저가</span>로!</h2>
+            </div>
+            <div class="programs-grid-wrapper">
+                <div class="programs-grid" id="programs-swiper">
+                    <!-- Card 1: 제휴 파트너 -->
+                    <article class="program-card slide-down-el">
+                        <div class="card-img-wrapper">
+                            <div class="card-circle-bg circle-radius"></div>
+                            <img src="<?= base_url('images/program_partner.png') ?>" alt="제휴 파트너 일러스트" class="card-img img-partner">
+                        </div>
+                        <h3 class="card-title">제휴 파트너</h3>
+                        <p class="card-desc">
+                            롯데렌터카 비즈카 제휴 영업사원으로 활동 <br class="only_mo"> 합니다. 회사의 지원 하에 견적 · 심사 · 고객 <br class="only_mo"> 관리를 ‘직접’ 진행합니다. 전문적인 영업을 <br class="only_mo"> 배워보고 싶을 때 적합합니다.
+                        </p>
+                    </article>
+
+                    <!-- Card 2: 알선 파트너 -->
+                    <article class="program-card slide-down-el">
+                        <div class="card-img-wrapper">
+                            <div class="card-circle-bg rect-radius"></div>
+                            <img src="<?= base_url('images/program_recommender.png') ?>" alt="알선 파트너 일러스트" class="card-img img-recommender">
+                        </div>
+                        <h3 class="card-title">알선 파트너</h3>
+                        <p class="card-desc">
+                            고객 알선과 소개 영업만 진행 <br class="only_mo"> 합니다. 고객 상담은 전문 영업 사원에게 <br class="only_mo"> 위탁하며, 판매 수수료를 쉐어 받는 모델 <br class="only_mo"> 입니다. 부업으로 쉽게 접근해볼 수 <br class="only_mo"> 있습니다.
+                        </p>
+                    </article>
+
+                    <!-- Card 3: 본인 차량 셀프 계약 -->
+                    <article class="program-card slide-down-el">
+                        <div class="card-img-wrapper">
+                            <div class="card-circle-bg leaf-radius"></div>
+                            <img src="<?= base_url('images/program_self.png') ?>" alt="본인 차량 셀프 계약 일러스트" class="card-img img-self">
+                        </div>
+                        <h3 class="card-title">본인 차량 셀프 계약</h3>
+                        <p class="card-desc">
+                            본인 · 가족 · 지인 차량은 수수료가 <br class="only_mo"> 없는 최저가로 직접 설계할 수 <br class="only_mo"> 있습니다. 수익 확대가 아닌, 최저가 진행을 <br class="only_mo"> 위한 세일즈파트너 제휴도 가능 <br class="only_mo"> 합니다.
+                        </p>
+                    </article>
+                </div>
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination only-mo" id="programs-pagination">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Section (판매자 중심 정책) -->
+    <section class="policy-section" id="policy">
+        <div class="policy-container">
+            <div class="policy-text-block slide-down-el">
+                <span class="section-tag light">판매자 중심의 수수료 정책</span>
+                <h2 class="section-title white">
+                    공제없는 수수료 체계,<br>
+                    투명한 정산과 영업지원
+                </h2>
+                <p class="section-desc white-muted">
+                    오토스타일은 영업지원을 이유로 영업사원의 수 <br class="only_mo"> 수료를<br class="only_web">
+                    공제하지 않습니다. 장기렌터카 판매에 <br class="only_mo"> 따른 수수료<br class="only_web">
+                    내용을 투명하게 공유하며, 100% <br class="only_mo"> 지급을 보장합니다.
+                </p>
+            </div>
+
+            <div class="policy-graphic-block">
+                <div class="circle-blend-bg slide-from-top-el"></div>
+                <img src="<?= base_url('images/policy_mobile.png') ?>" alt="오토스타일 모바일 화면" class="img-policy-mobile slide-from-top-el">
+
+                <div class="badge-completed slide-from-top-el">
+                    <div class="badge-icon-circle">
+                        <img src="<?= base_url('images/policy_check.png') ?>" alt="체크 아이콘" class="img-badge-check">
+                    </div>
+                    <span>정산<br class="only_mo">완료</span>
+                </div>
+
+                <div class="img-policy-money-wrapper slide-from-top-el">
+                    <img src="<?= base_url('images/policy_money.png') ?>" alt="수익 아이콘" class="img-policy-money">
+                </div>
+
+                <img src="<?= base_url('images/policy_logo.png') ?>" alt="롯데렌터카 Biz car" class="img-policy-logo slide-from-top-el">
+
+                <div class="img-policy-calc-wrapper slide-from-top-el">
+                    <img src="<?= base_url('images/policy_calculator.png') ?>" alt="견적 계산기" class="img-policy-calc">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section (세일즈파트너 특장점) -->
+    <section class="advantages-section" id="advantages">
+        <div class="advantages-container">
+            <div class="section-header-center slide-down-el">
+                <span class="section-tag">세일즈파트너 장점</span>
+                <h2 class="section-title">업계 1등, <span class="highlight">최고의 전문가</span>가 <br> 지원합니다.</h2>
+            </div>
+            <div class="advantages-grid-wrapper">
+                <div class="advantages-grid" id="advantages-swiper">
+                    <!-- Advantage 1 -->
+                    <div class="advantage-col slide-down-el">
+                        <div class="adv-image-wrapper">
+                            <img src="<?= base_url('images/advantage_support.png') ?>" alt="전문적 영업지원 일러스트" class="adv-img">
+                        </div>
+                        <h3 class="adv-title">전문적 영업지원</h3>
+                        <p class="adv-desc">
+                            견적과 심사 등 모든 업무를 ‘휴일없이’ 지원합니다. 고객만 있으면 누구나 판매를 빠르고 쉽게 시작해볼 수 있습니다.
+                        </p>
+                    </div>
+
+                    <!-- Advantage 2 -->
+                    <div class="advantage-col slide-down-el">
+                        <div class="adv-image-wrapper">
+                            <img src="<?= base_url('images/advantage_education.png') ?>" alt="정기적 교육 지원 일러스트" class="adv-img">
+                        </div>
+                        <h3 class="adv-title">정기적 교육제공</h3>
+                        <p class="adv-desc">
+                            월 1회 오프라인 소집 교육을 제공하며, 온라인을 통한 영상 교육 자료를 제공합니다. 주/부업으로 육성을 위한 장기적 교육을 지원합니다.
+                        </p>
+                    </div>
+
+                    <!-- Advantage 3 -->
+                    <div class="advantage-col slide-down-el">
+                        <div class="adv-image-wrapper">
+                            <img src="<?= base_url('images/advantage_promotion.png') ?>" alt="프로모션 지원 일러스트" class="adv-img">
+                        </div>
+                        <h3 class="adv-title">프로모션 지원</h3>
+                        <p class="adv-desc">
+                            판매 경험 확보와 판매 경쟁력 확보를 위해 수수료 외에 별도 프로모션을 제공합니다. 보다 경쟁력 있는 가격으로의 판매를 진행하실 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+                <!-- Pagination Dots -->
+                <div class="swiper-pagination only-mo" id="advantages-pagination">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section (세일즈파트너 사례) -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-container">
+            <!-- <div class="section-header-center slide-down-el">
+                <span class="section-tag">세일즈파트너 사례</span>
+                <h2 class="section-title">장기렌터카 판매, <span class="highlight">이제 직접</span> 할 수 있습니다!</h2>
+            </div> -->
+
+            <div class="testimonials-swiper-wrapper">
+                <div class="testimonials-list" id="testimonials-swiper">
+                    <!-- Story 1 -->
+                    <div class="testimonial-card active">
+                        <div class="testimonial-content">
+                            <div class="speech-bubble">
+                                <h3 class="story-heading">장기렌터카 문의가<br class="only_mo">많았는데, <br class="only_web"><span class="highlight">이제 직접<br class="only_mo">해결해요!</span></h3>
+                                <p class="story-text">
+                                    중고차 영업 사원으로 활동하고 있는데, 장기렌터카를<br class="only_mo">물어보는 고객이 꽤 많더라구요. 예전에는 지인에게 넘겨<br class="only_mo">줬었는데, 지금은 롯데렌터카를 직접 판매하고<br class="only_mo">있습니다. 고객을 놓치지 않아서 좋아요!
+                                </p>
+                                <span class="story-author">중고차 판매사원 차세일 님</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-graphic">
+                            <div class="story-circle-bg"></div>
+                            <img src="<?= base_url('images/story_car_key.png') ?>" alt="차세일 님 프로필 일러스트" class="story-img story-img-car-key">
+                            <button class="testimonials-nav-btn testimonials-prev only_mo" aria-label="이전"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M16.0605 31.0605L1.06055 16.0605L16.0605 1.06055" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                            <button class="testimonials-nav-btn testimonials-next only_mo" aria-label="다음"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M1.06055 1.06055L16.0605 16.0605L1.06055 31.0605" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                        </div>
+                    </div>
+
+                    <!-- Story 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="speech-bubble">
+                                <h3 class="story-heading">보험 상담 중에,<br>사고율이 높은 분들께<br><span class="highlight">장기렌터카 제안</span>해요!</h3>
+                                <p class="story-text">
+                                    영업을 하다보면 고객의 상황을 자주 알게 되는데, 차량<br class="only_mo">노후화로 인한 고민이 있는 분들이나 절세가 필요한 분<br class="only_mo">들께 장기렌터카를 제안하고 있어요. 특히 자동차 보험<br class="only_mo">이 갑자기 오른 분들께 많이 추천하고 있습니다.
+                                </p>
+                                <span class="story-author">보험설계사 김보험 님</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-graphic">
+                            <div class="story-circle-bg"></div>
+                            <img src="<?= base_url('images/story_insurance.png') ?>" alt="김보험 님 프로필 일러스트" class="story-img story-img-insurance">
+                            <button class="testimonials-nav-btn testimonials-prev only_mo" aria-label="이전"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M16.0605 31.0605L1.06055 16.0605L16.0605 1.06055" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                            <button class="testimonials-nav-btn testimonials-next only_mo" aria-label="다음"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M1.06055 1.06055L16.0605 16.0605L1.06055 31.0605" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                        </div>
+                    </div>
+
+                    <!-- Story 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="speech-bubble">
+                                <h3 class="story-heading">출퇴근용 차량이<br>필요해서, <span class="highlight">직접 최저가</span>로 뽑았어요!</h3>
+                                <p class="story-text">
+                                    출퇴근을 위한 차량을 직접 수수료없는 최저가로 출고합<br class="only_mo">니다. 용품점을 하다보니 신차 딜러 분들이 주요 고객<br class="only_mo">인데, 장기렌터카에 대한 문의는 제가 해결해주고<br class="only_mo">있습니다!
+                                </p>
+                                <span class="story-author">틴팅샵 대표 박마스터 님</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-graphic">
+                            <div class="story-circle-bg"></div>
+                            <img src="<?= base_url('images/story_tinting.png') ?>" alt="박마스터 님 프로필 일러스트" class="story-img story-img-tinting">
+                            <button class="testimonials-nav-btn testimonials-prev only_mo" aria-label="이전"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M16.0605 31.0605L1.06055 16.0605L16.0605 1.06055" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                            <button class="testimonials-nav-btn testimonials-next only_mo" aria-label="다음"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="33" viewBox="0 0 18 33" fill="none">
+                                    <path d="M1.06055 1.06055L16.0605 16.0605L1.06055 31.0605" stroke="black" stroke-width="1.5" stroke-linecap="square" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End testimonials-list -->
+
+            </div>
+            <!-- End testimonials-swiper-wrapper -->
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-header-center slide-down-el">
+            <span class="section-tag">장기렌터카 판매, 궁금해요!</span>
+            <h2 class="section-title">자주 묻는 질문을<br class="mobile-break"> 소개해드려요.</h2>
+            <p class="section-desc">세일즈파트너 진행과 관련하여,<br>궁금한 내용을 클릭하여 확인해보세요</p>
+        </div>
+
+        <div class="faq-content-wrapper">
+            <div class="faq-accordion-container">
+                <?php if (!empty($faqs)): ?>
+                    <?php foreach ($faqs as $index => $faq): ?>
+                        <div class="accordion-item slide-down-el">
+                            <button class="accordion-header" onclick="toggleAccordion(this)" aria-expanded="false" title="답변 펼치기">
+                                <span class="q-label">Q.</span>
+                                <span class="q-text"><?= esc($faq['subject']) ?></span>
+                                <span class="accordion-icon"></span>
+                            </button>
+                            <div class="accordion-collapse">
+                                <div class="accordion-body">
+                                    <?= $faq['contents'] ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-center text-muted">등록된 질문이 없습니다.</p>
+                <?php endif; ?>
+            </div>
+
+            <div class="faq-mascot-absolute">
+                <img src="<?= base_url('images/faq_graphic.png') ?>" alt="질문 아이콘" class="img-faq-graphic">
+                <img src="<?= base_url('images/faq_mascot.png') ?>" alt="오토스타일 마스코트" class="img-faq-mascot">
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    // ══════════════════════════════════════════════════════════════════════
+    // GSAP Main Visual — Zoom-Reveal Background Video Pinned Timeline
+    // ══════════════════════════════════════════════════════════════════════
+    (function() {
+        if (typeof gsap === 'undefined') return;
+
+        const mainWrapper = document.getElementById('main-visual-wrapper');
+        const heroWhite = document.getElementById('hero-white');
+        const heroDark = document.getElementById('hero-dark');
+        const heroWhiteTitle = heroWhite ? heroWhite.querySelector('.hero-white-title') : null;
+        const imageWrapper = heroWhite ? heroWhite.querySelector('.hero-white-image-wrapper') : null;
+        const whiteOverlay = heroWhite ? heroWhite.querySelector('.hero-white-bg-overlay') : null;
+        const darkTitle = heroDark ? heroDark.querySelector('.hero-dark-title') : null;
+        const floatingBar = heroDark ? heroDark.querySelector('.floating-action-bar') : null;
+
+        if (!mainWrapper || !heroWhite || !heroDark || !imageWrapper) return;
+
+        const mm = gsap.matchMedia();
+
+        /**
+         * Setup Unified Zoom-Reveal Animation for Desktop and Mobile
+         * @param {boolean} isDesktop
+         */
+        function initZoomReveal(isDesktop) {
+
+
+            // 1. Capture initial styles dynamically from DOM (Single Source of Truth from CSS)
+            const style = window.getComputedStyle(imageWrapper);
+            const initialCardStyles = {
+                width: style.width,
+                height: style.height,
+                top: style.top,
+                bottom: style.bottom,
+                borderRadius: style.borderRadius || '30px',
+                boxShadow: style.boxShadow || 'none'
+            };
+
+            // 2. Set initial GSAP states
+            gsap.set(darkTitle, {
+                opacity: 0,
+                y: 50,
+                transition: 'none'
+            });
+            gsap.set(whiteOverlay, {
+                opacity: 0
+            });
+
+            if (floatingBar) {
+                gsap.set(floatingBar, {
+                    opacity: 0,
+                    y: 50,
+                    xPercent: -50
+                });
+            }
+
+            let visualState = "white"; // "white" or "dark"
+            let transitionTimeline = null;
+            let isAnimating = false;
+
+            function playTransitionToDark() {
+                if (isAnimating || visualState === "dark") return;
+                isAnimating = true;
+                visualState = "dark";
+
+                if (transitionTimeline) transitionTimeline.kill();
+                transitionTimeline = gsap.timeline({
+                    onComplete: () => {
+                        isAnimating = false;
+                    }
+                });
+
+                // Fade out white title, zoom image, fade in dark overlay
+                transitionTimeline.to(heroWhiteTitle, {
+                    opacity: 0,
+                    y: -50,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                }, 0);
+
+                transitionTimeline.to(imageWrapper, {
+                    width: '100vw',
+                    height: '100vh',
+                    top: '0px',
+                    bottom: 'auto',
+                    borderRadius: '0px',
+                    boxShadow: 'none',
+                    duration: 0.6,
+                    ease: 'power2.out'
+                }, 0);
+
+                transitionTimeline.to(whiteOverlay, {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: 'power2.out'
+                }, 0);
+
+                // Fade in dark contents
+                transitionTimeline.to(darkTitle, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    delay: 0.1
+                });
+
+                if (floatingBar) {
+                    transitionTimeline.to(floatingBar, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    }, '+=0.1');
+                }
+            }
+
+            function playTransitionToWhite() {
+                if (isAnimating || visualState === "white") return;
+                isAnimating = true;
+                visualState = "white";
+
+                if (transitionTimeline) transitionTimeline.kill();
+                transitionTimeline = gsap.timeline({
+                    onComplete: () => {
+                        isAnimating = false;
+                    }
+                });
+
+                // Fade out dark contents simultaneously
+                if (floatingBar) {
+                    transitionTimeline.to(floatingBar, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 0.3,
+                        ease: 'power2.in'
+                    }, 0);
+                }
+
+                transitionTimeline.to(darkTitle, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.3,
+                    ease: 'power2.in'
+                }, 0);
+
+                // Restore original visual states
+                transitionTimeline.to(imageWrapper, {
+                    width: initialCardStyles.width,
+                    height: initialCardStyles.height,
+                    top: initialCardStyles.top,
+                    bottom: initialCardStyles.bottom,
+                    borderRadius: initialCardStyles.borderRadius,
+                    boxShadow: initialCardStyles.boxShadow,
+                    duration: 0.6,
+                    ease: 'power2.inOut'
+                }, 0.2);
+
+                transitionTimeline.to(whiteOverlay, {
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: 'power2.inOut'
+                }, '<');
+
+                transitionTimeline.to(heroWhiteTitle, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'power2.inOut'
+                }, '<');
+            }
+
+            // Listen to mouse wheel events
+            const handleWheel = (e) => {
+                if (isAnimating) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const scrollY = window.scrollY;
+
+                if (scrollY === 0) {
+                    if (e.deltaY > 0 && visualState === "white") {
+                        e.preventDefault();
+                        playTransitionToDark();
+                    } else if (e.deltaY < 0 && visualState === "dark") {
+                        e.preventDefault();
+                        playTransitionToWhite();
+                    }
+                }
+            };
+
+            // Listen to scroll events to handle manual scrollbars or anchor links
+            const handleScroll = () => {
+                const scrollY = window.scrollY;
+                if (scrollY > 0 && visualState === "white") {
+                    visualState = "dark";
+                    gsap.set(heroWhiteTitle, {
+                        opacity: 0,
+                        y: -50
+                    });
+                    gsap.set(whiteOverlay, {
+                        opacity: 1
+                    });
+                    gsap.set(imageWrapper, {
+                        width: '100vw',
+                        height: '100vh',
+                        top: '0px',
+                        bottom: 'auto',
+                        borderRadius: '0px',
+                        boxShadow: 'none'
+                    });
+                    gsap.set(darkTitle, {
+                        opacity: 1,
+                        y: 0
+                    });
+                    if (floatingBar) gsap.set(floatingBar, {
+                        opacity: 1,
+                        y: 0,
+                        xPercent: -50
+                    });
+                }
+            };
+
+            // Listen to touch events for mobile/tablet screens and laptop touchscreens
+            let touchStartY = 0;
+            let isTouchActive = false;
+
+            const handleTouchStart = (e) => {
+                if (window.scrollY === 0) {
+                    touchStartY = e.touches[0].clientY;
+                    isTouchActive = true;
+                }
+            };
+
+            const handleTouchMove = (e) => {
+                if (!isTouchActive) return;
+
+                if (isAnimating) {
+                    e.preventDefault();
+                    return;
+                }
+
+            if (window.scrollY === 0) {
+                    const touchEndY = e.touches[0].clientY;
+                    const diffY = touchStartY - touchEndY;
+
+                    if (visualState === "white") {
+                        if (diffY > 5) {
+                            e.preventDefault(); // Stop native browser scrolling instantly
+                            if (diffY > 30) {
+                                isTouchActive = false; // Disable further trigger on same swipe gesture
+                                playTransitionToDark();
+                            }
+                        }
+                    } else if (visualState === "dark") {
+                        if (diffY < -5) {
+                            e.preventDefault(); // Stop native browser scrolling/bouncing
+                            if (diffY < -30) {
+                                isTouchActive = false; // Disable further trigger on same swipe gesture
+                                playTransitionToWhite();
+                            }
+                        }
+                    }
+                }
+            };
+
+            const handleTouchEnd = () => {
+                isTouchActive = false;
+            };
+
+            window.addEventListener('wheel', handleWheel, {
+                passive: false
+            });
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('touchstart', handleTouchStart, {
+                passive: true
+            });
+            window.addEventListener('touchmove', handleTouchMove, {
+                passive: false
+            });
+            window.addEventListener('touchend', handleTouchEnd, {
+                passive: true
+            });
+            window.addEventListener('touchcancel', handleTouchEnd, {
+                passive: true
+            });
+
+            return () => {
+                if (transitionTimeline) transitionTimeline.kill();
+                window.removeEventListener('wheel', handleWheel);
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('touchstart', handleTouchStart);
+                window.removeEventListener('touchmove', handleTouchMove);
+                window.removeEventListener('touchend', handleTouchEnd);
+                window.removeEventListener('touchcancel', handleTouchEnd);
+                gsap.set([darkTitle, floatingBar, whiteOverlay, imageWrapper, heroWhiteTitle], {
+                    clearProps: "all"
+                });
+            };
+        }
+
+        // Media Queries Registration
+        mm.add("(min-width: 768px)", () => initZoomReveal(true));
+        mm.add("(max-width: 767px)", () => initZoomReveal(false));
+
+    })();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // ══════════════════════════════════════════════════════════════════════
+        // GSAP Testimonials — Desktop Page-Slide Pinned ScrollTrigger
+        // ══════════════════════════════════════════════════════════════════════
+        (function() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 768px)", () => {
+                const section = document.getElementById('testimonials');
+                const cards = gsap.utils.toArray('.testimonials-section .testimonial-card');
+
+                if (!section || cards.length === 0) return;
+
+                // Reset any inline styles
+                gsap.set(cards, {
+                    clearProps: "all"
+                });
+
+                // Set up initial state of cards for desktop
+                gsap.set(cards, {
+                    autoAlpha: 0,
+                    y: 0,
+                    xPercent: -50,
+                    yPercent: -50,
+                    left: '50%',
+                    top: '50%',
+                    position: 'absolute',
+                    pointerEvents: 'none'
+                });
+
+                // Card 0 starts visible and active
+                gsap.set(cards[0], {
+                    autoAlpha: 1,
+                    y: 0,
+                    pointerEvents: 'auto'
+                });
+
+                let currentIndex = 0;
+                let isAnimating = false;
+                let trigger;
+
+                const getCardScrollPos = (index) => {
+                    if (!trigger) return 0;
+                    const start = trigger.start;
+                    const pinDuration = trigger.end - trigger.start;
+                    return start + (pinDuration * (index / (cards.length - 1)));
+                };
+
+                const gotoCard = (index) => {
+                    if (index === currentIndex) return;
+                    if (isAnimating) return;
+
+                    // Restrict transition to exactly 1 card step at a time (prevent skipping cards)
+                    const targetIndex = index > currentIndex ? currentIndex + 1 : currentIndex - 1;
+                    if (targetIndex < 0 || targetIndex >= cards.length || targetIndex === currentIndex) return;
+
+                    isAnimating = true;
+                    const prevCard = cards[currentIndex];
+                    const nextCard = cards[targetIndex];
+
+                    gsap.killTweensOf(cards);
+
+                    // Smoothly force/animate the window scroll position to the target card's offset
+                    const targetScroll = getCardScrollPos(targetIndex);
+                    const scrollObj = {
+                        y: window.scrollY
+                    };
+                    gsap.to(scrollObj, {
+                        y: targetScroll,
+                        duration: 0.35,
+                        ease: "power2.out",
+                        onUpdate: () => {
+                            window.scrollTo(0, scrollObj.y);
+                        }
+                    });
+
+                    // Blink/flash transition
+                    gsap.timeline({
+                            onComplete: () => {
+                                // 200ms pause rhythm cooldown before allowing the next transition
+                                setTimeout(() => {
+                                    isAnimating = false;
+                                }, 200);
+                            }
+                        })
+                        .to(prevCard, {
+                            autoAlpha: 0,
+                            pointerEvents: 'none',
+                            duration: 0.12
+                        })
+                        .to(nextCard, {
+                            autoAlpha: 1,
+                            pointerEvents: 'auto',
+                            duration: 0.18
+                        });
+
+                    currentIndex = targetIndex;
+                };
+
+                trigger = ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top top',
+                    end: '+=100%',
+                    pin: true,
+                    scrub: false,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const index = Math.round(progress * (cards.length - 1));
+                        gotoCard(index);
+                    },
+                    snap: {
+                        snapTo: 1 / (cards.length - 1),
+                        duration: {
+                            min: 0.15,
+                            max: 0.3
+                        },
+                        delay: 0,
+                        ease: "power2.out"
+                    },
+                    anticipatePin: 1
+                });
+
+                return () => {
+                    // Cleanup on resize/leave desktop
+                    gsap.killTweensOf(cards);
+                    gsap.set(cards, {
+                        clearProps: "all"
+                    });
+                    currentIndex = 0;
+                };
+            });
+        })();
+        // Programs Swiper
+        const swiper = document.getElementById('programs-swiper');
+        const dots = document.querySelectorAll('#programs-pagination .dot');
+
+        if (swiper && dots.length > 0) {
+            const updateActiveDot = () => {
+                const scrollLeft = swiper.scrollLeft;
+                const card = swiper.querySelector('.program-card');
+                if (!card) return;
+
+                const cardWidth = card.getBoundingClientRect().width; // exactly 1 card width (no gap)
+                const index = Math.round(scrollLeft / cardWidth);
+
+                dots.forEach((dot, idx) => {
+                    if (idx === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            };
+
+            // Listen to scroll events on the swiper container
+            swiper.addEventListener('scroll', updateActiveDot);
+
+            // Add click events to dots to allow manual navigation
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    const card = swiper.querySelector('.program-card');
+                    if (!card) return;
+                    const cardWidth = card.offsetWidth;
+                    swiper.scrollTo({
+                        left: idx * cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Advantages Swiper
+        const advSwiper = document.getElementById('advantages-swiper');
+        const advDots = document.querySelectorAll('#advantages-pagination .dot');
+
+        if (advSwiper && advDots.length > 0) {
+            const updateActiveDot = () => {
+                const scrollLeft = advSwiper.scrollLeft;
+                const card = advSwiper.querySelector('.advantage-col');
+                if (!card) return;
+
+                const cardWidth = card.offsetWidth + 20; // card width + gap (20px)
+                const index = Math.round(scrollLeft / cardWidth);
+
+                advDots.forEach((dot, idx) => {
+                    if (idx === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            };
+
+            // Listen to scroll events on the swiper container
+            advSwiper.addEventListener('scroll', updateActiveDot);
+
+            // Add click events to dots to allow manual navigation
+            advDots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    const card = advSwiper.querySelector('.advantage-col');
+                    if (!card) return;
+                    const cardWidth = card.getBoundingClientRect().width + 20;
+                    advSwiper.scrollTo({
+                        left: idx * cardWidth,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Testimonials Swiper (Mobile only)
+        const testimonialsSwiper = document.getElementById('testimonials-swiper');
+        if (testimonialsSwiper) {
+            const cards = testimonialsSwiper.querySelectorAll('.testimonial-card');
+            const totalCards = cards.length;
+
+            const scrollByCard = (direction) => {
+                const currentScroll = testimonialsSwiper.scrollLeft;
+                let currentIndex = 0;
+                let minDiff = Infinity;
+                cards.forEach((card, index) => {
+                    const diff = Math.abs(card.offsetLeft - currentScroll);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        currentIndex = index;
+                    }
+                });
+
+                let targetIndex = currentIndex + direction;
+                if (targetIndex < 0) {
+                    targetIndex = totalCards - 1;
+                } else if (targetIndex >= totalCards) {
+                    targetIndex = 0;
+                }
+
+                const targetOffset = cards[targetIndex].offsetLeft;
+                testimonialsSwiper.scrollTo({
+                    left: targetOffset,
+                    behavior: 'smooth'
+                });
+            };
+
+            document.querySelectorAll('.testimonials-prev').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollByCard(-1);
+                });
+            });
+            document.querySelectorAll('.testimonials-next').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollByCard(1);
+                });
+            });
+        }
+    });
+</script>
+
+<?= $this->endSection() ?>

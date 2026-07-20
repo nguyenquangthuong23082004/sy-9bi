@@ -1,0 +1,376 @@
+@charset "utf-8";
+/* ==========================================================================
+   medical.css
+   신영로파마 의료진 지원 서브페이지 전용 스타일
+   - 토큰 / 헤더 / 푸터 / 서브 비주얼 / 로컬 내비 / 본문 타이포는
+     company.css 를 그대로 재사용합니다. (아래 @import)
+   - 의료진 지원 전용 컴포넌트만 `sy-medical-` 접두사를 사용합니다.
+   ========================================================================== */
+@import url("../company/company.css");
+
+/* --------------------------------------------------------------------------
+   1) 빠른 메뉴
+   -------------------------------------------------------------------------- */
+.sy-medical-quick {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style: none;
+  margin: 44px 0 0;
+  padding: 0;
+}
+.sy-medical-quick a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 32px 28px;
+  background: #fff;
+  border: 1px solid var(--line);
+  transition: .25s var(--ease);
+}
+.sy-medical-quick a:hover {
+  border-color: var(--sy-company-deep);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(7, 17, 31, .08);
+}
+.sy-medical-quick .sy-company-icon { margin-bottom: 22px; }
+.sy-medical-quick strong {
+  display: block;
+  font-size: clamp(16px, 1.8vw, 19px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  margin-bottom: 8px;
+  word-break: keep-all;
+}
+.sy-medical-quick span {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--sy-company-muted);
+  word-break: keep-all;
+}
+
+/* --------------------------------------------------------------------------
+   2) 안내 문구 (규제 관련 고지)
+   -------------------------------------------------------------------------- */
+.sy-medical-notice {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--sy-company-teal);
+  background: var(--light);
+  padding: 34px 38px;
+}
+.sy-medical-notice-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  margin: 0 0 14px;
+}
+.sy-medical-notice-title .sy-company-icon {
+  width: 22px;
+  height: 22px;
+  stroke: var(--sy-company-teal);
+  flex: 0 0 auto;
+}
+.sy-medical-notice p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--sy-company-text);
+  word-break: keep-all;
+}
+.sy-medical-notice p strong { color: var(--sy-company-deep); font-weight: 800; }
+
+/* --------------------------------------------------------------------------
+   3) 신청 폼
+   -------------------------------------------------------------------------- */
+.sy-medical-alert {
+  margin: 32px 0 0;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid;
+  word-break: keep-all;
+}
+.sy-medical-alert--ok { border-color: var(--green); background: #eefaf5; color: #0d7a52; }
+.sy-medical-alert--error { border-color: #d94b4b; background: #fdf0f0; color: #b62c2c; }
+
+.sy-medical-form { margin-top: 44px; }
+.sy-medical-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 30px;
+}
+.sy-medical-field { display: flex; flex-direction: column; }
+.sy-medical-field--full { grid-column: 1 / -1; }
+.sy-medical-field label {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--sy-company-navy);
+  margin-bottom: 10px;
+}
+.sy-medical-req { color: #d94b4b; margin-left: 2px; }
+
+.sy-medical-field input,
+.sy-medical-field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--sy-company-navy);
+  font-size: 16px;
+  border-radius: 0;
+  transition: border-color .2s var(--ease);
+}
+.sy-medical-field textarea { min-height: 150px; resize: vertical; line-height: 1.7; }
+.sy-medical-field input::placeholder,
+.sy-medical-field textarea::placeholder { color: #9aa5b4; }
+.sy-medical-field input:focus,
+.sy-medical-field textarea:focus { outline: none; border-color: var(--sy-company-deep); }
+.sy-medical-field input:focus-visible,
+.sy-medical-field textarea:focus-visible { outline: 3px solid var(--primary2); outline-offset: 2px; }
+
+.sy-medical-fieldset { margin: 34px 0 0; padding: 0; border: 0; }
+.sy-medical-fieldset legend {
+  padding: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--sy-company-navy);
+  margin-bottom: 14px;
+}
+.sy-medical-radios { display: flex; flex-wrap: wrap; gap: 10px; }
+.sy-medical-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 16px;
+  color: var(--sy-company-text);
+  cursor: pointer;
+  transition: .2s var(--ease);
+  word-break: keep-all;
+}
+.sy-medical-choice:hover { border-color: var(--sy-company-deep); }
+.sy-medical-choice input { accent-color: var(--sy-company-deep); width: 18px; height: 18px; margin: 0; }
+.sy-medical-choice:has(input:checked) {
+  border-color: var(--sy-company-deep);
+  background: var(--light);
+  color: var(--sy-company-navy);
+  font-weight: 700;
+}
+.sy-medical-choice:focus-within { outline: 3px solid var(--primary2); outline-offset: 2px; }
+
+.sy-medical-form .sy-medical-field + .sy-medical-field,
+.sy-medical-fieldset + .sy-medical-field { margin-top: 34px; }
+
+.sy-medical-form-note {
+  margin: 22px 0 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--sy-company-muted);
+  word-break: keep-all;
+}
+.sy-medical-form-note a { color: var(--sy-company-deep); font-weight: 700; text-decoration: underline; }
+
+.sy-medical-form-submit { margin-top: 34px; }
+.sy-medical-form-submit .sy-medical-btn { min-width: 220px; }
+
+/* --------------------------------------------------------------------------
+   4) 버튼
+   -------------------------------------------------------------------------- */
+.sy-medical-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 32px;
+  border: 1px solid var(--sy-company-deep);
+  background: #fff;
+  color: var(--sy-company-deep);
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+  cursor: pointer;
+  transition: .25s var(--ease);
+  word-break: keep-all;
+}
+.sy-medical-btn:hover { background: var(--sy-company-deep); color: #fff; }
+.sy-medical-btn--primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.sy-medical-btn--primary:hover { background: var(--primary2); border-color: var(--primary2); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   5) 담당 연락처
+   -------------------------------------------------------------------------- */
+.sy-medical-info { margin: 44px 0 0; border-top: 2px solid var(--sy-company-deep); }
+.sy-medical-info > div {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.sy-medical-info dt {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--sy-company-navy);
+}
+.sy-medical-info dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--sy-company-text);
+  word-break: keep-all;
+}
+.sy-medical-info dd a { color: var(--sy-company-deep); font-weight: 700; text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   6) FAQ 아코디언 (details/summary — JS 없이 동작)
+   -------------------------------------------------------------------------- */
+.sy-medical-faq {
+  list-style: none;
+  margin: 44px 0 0;
+  padding: 0;
+  border-top: 2px solid var(--sy-company-deep);
+}
+.sy-medical-faq > li { border-bottom: 1px solid var(--line); }
+
+.sy-medical-faq summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px 4px;
+  cursor: pointer;
+  list-style: none;
+}
+.sy-medical-faq summary::-webkit-details-marker { display: none; }
+.sy-medical-faq summary:focus-visible { outline: 3px solid var(--primary2); outline-offset: -3px; }
+.sy-medical-faq summary:hover .sy-medical-faq-title { color: var(--sy-company-deep); }
+
+.sy-medical-faq-q {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sy-company-deep);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 850;
+}
+.sy-medical-faq-title {
+  flex: 1;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 750;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  line-height: 1.5;
+  word-break: keep-all;
+  transition: color .2s var(--ease);
+}
+/* 열림/닫힘 표시 (+ / −) */
+.sy-medical-faq-icon {
+  flex: 0 0 auto;
+  position: relative;
+  width: 18px;
+  height: 18px;
+}
+.sy-medical-faq-icon:before,
+.sy-medical-faq-icon:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: var(--sy-company-deep);
+  transform: translate(-50%, -50%);
+  transition: opacity .2s var(--ease);
+}
+.sy-medical-faq-icon:before { width: 16px; height: 2px; }
+.sy-medical-faq-icon:after { width: 2px; height: 16px; }
+.sy-medical-faq details[open] .sy-medical-faq-icon:after { opacity: 0; }
+
+.sy-medical-faq-body {
+  padding: 0 4px 30px 54px;
+  border-top: 1px dashed var(--line);
+  padding-top: 24px;
+  margin-top: -4px;
+}
+.sy-medical-faq-body p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--sy-company-text);
+  margin: 0 0 14px;
+  word-break: keep-all;
+}
+.sy-medical-faq-body p:last-child { margin-bottom: 0; }
+.sy-medical-faq-body a { color: var(--sy-company-deep); font-weight: 700; text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   7) CTA
+   -------------------------------------------------------------------------- */
+.sy-medical-cta {
+  background: var(--sy-company-navy);
+  color: #fff;
+  padding: 76px 0;
+  text-align: center;
+}
+.sy-medical-cta-title {
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 850;
+  letter-spacing: -.03em;
+  margin: 0 0 30px;
+  word-break: keep-all;
+}
+.sy-medical-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.sy-medical-cta .sy-medical-btn {
+  background: transparent;
+  border-color: rgba(255, 255, 255, .5);
+  color: #fff;
+}
+.sy-medical-cta .sy-medical-btn:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
+.sy-medical-cta .sy-medical-btn--primary { background: var(--primary); border-color: var(--primary); }
+.sy-medical-cta .sy-medical-btn--primary:hover { background: var(--primary2); border-color: var(--primary2); }
+
+/* --------------------------------------------------------------------------
+   8) 반응형
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .sy-medical-quick { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .sy-medical-quick { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+  .sy-medical-quick a { padding: 24px 22px; }
+  .sy-medical-quick .sy-company-icon { margin-bottom: 16px; }
+
+  .sy-medical-notice { padding: 26px 22px; }
+  .sy-medical-notice p { font-size: 15px; }
+
+  .sy-medical-form { margin-top: 32px; }
+  .sy-medical-form-grid { grid-template-columns: 1fr; gap: 20px; }
+  .sy-medical-radios { flex-direction: column; align-items: stretch; }
+  .sy-medical-choice { width: 100%; }
+  .sy-medical-form-submit .sy-medical-btn { width: 100%; }
+
+  .sy-medical-info > div { grid-template-columns: 1fr; gap: 6px; padding: 18px 2px; }
+
+  .sy-medical-faq { margin-top: 32px; }
+  .sy-medical-faq summary { padding: 20px 2px; gap: 12px; }
+  .sy-medical-faq-q { width: 28px; height: 28px; font-size: 14px; }
+  .sy-medical-faq-body { padding: 20px 2px 24px 40px; }
+  .sy-medical-faq-body p { font-size: 15px; }
+
+  .sy-medical-cta { padding: 56px 0; }
+  .sy-medical-cta-row { flex-direction: column; }
+  .sy-medical-cta .sy-medical-btn { width: 100%; }
+}

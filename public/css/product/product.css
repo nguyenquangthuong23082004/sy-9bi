@@ -1,0 +1,251 @@
+@charset "utf-8";
+/* ==========================================================================
+   product.css
+   신영로파마 제품 서브페이지 전용 스타일
+   - 토큰 / 헤더 / 푸터 / 서브 비주얼 / 로컬 내비 / 본문 타이포는
+     company.css 를 그대로 재사용합니다. (아래 @import)
+   - 제품 전용 컴포넌트만 `sy-product-` 접두사를 사용합니다.
+   ========================================================================== */
+@import url("../company/company.css");
+
+/* --------------------------------------------------------------------------
+   1) 히어로 (카피 + 제품 이미지)
+   -------------------------------------------------------------------------- */
+.sy-product-hero {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 70px;
+  align-items: center;
+}
+.sy-product-hero .sy-company-lead { margin-bottom: 28px; }
+.sy-product-hero .sy-company-text p strong { color: var(--sy-company-deep); font-weight: 800; }
+.sy-product-hero-visual .sy-company-placeholder { min-height: 420px; }
+
+/* 제품 속성 태그 */
+.sy-product-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+}
+.sy-product-tags > li {
+  padding: 8px 16px;
+  border: 1px solid var(--sy-company-deep);
+  color: var(--sy-company-deep);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2) company.css 그리드 컴포넌트의 제품용 변형
+   -------------------------------------------------------------------------- */
+.sy-company-cols.sy-product-cols--2 { grid-template-columns: repeat(2, 1fr); margin-top: 44px; }
+.sy-company-cols.sy-product-cols--2 .sy-company-h3 { margin-bottom: 10px; }
+
+.sy-company-steps.sy-product-steps--2 { grid-template-columns: repeat(2, 1fr); margin-top: 44px; }
+.sy-company-steps.sy-product-steps--2 > li:not(:last-child):after { display: none; }
+
+.sy-company-keypoints.sy-product-keypoints--4 { margin-top: 44px; }
+
+/* 본문 중간 소제목 */
+.sy-product-subhead { margin: 48px 0 16px; }
+
+/* 적용 대상 등 나열형 태그 */
+.sy-product-taglist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sy-product-taglist > li {
+  padding: 10px 18px;
+  background: var(--light);
+  border-left: 3px solid var(--sy-company-teal);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sy-company-navy);
+  letter-spacing: -.02em;
+  word-break: keep-all;
+}
+
+/* --------------------------------------------------------------------------
+   3) 정보 정의 리스트 (발주 및 문의)
+   -------------------------------------------------------------------------- */
+.sy-product-info {
+  margin: 44px 0 0;
+  border-top: 2px solid var(--sy-company-deep);
+}
+.sy-product-info > div {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.sy-product-info dt {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--sy-company-navy);
+}
+.sy-product-info dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--sy-company-text);
+  word-break: keep-all;
+}
+.sy-product-info dd a { color: var(--sy-company-deep); font-weight: 700; text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   4) 안내 문구 (규제 관련 고지)
+   -------------------------------------------------------------------------- */
+.sy-product-notice {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--sy-company-teal);
+  background: var(--light);
+  padding: 34px 38px;
+}
+.sy-product-notice-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  margin: 0 0 14px;
+}
+.sy-product-notice-title .sy-company-icon {
+  width: 22px;
+  height: 22px;
+  stroke: var(--sy-company-teal);
+  flex: 0 0 auto;
+}
+.sy-product-notice p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--sy-company-text);
+  word-break: keep-all;
+}
+.sy-product-notice p strong { color: var(--sy-company-deep); font-weight: 800; }
+
+/* --------------------------------------------------------------------------
+   5) CTA
+   -------------------------------------------------------------------------- */
+.sy-product-cta {
+  background: var(--sy-company-navy);
+  color: #fff;
+  padding: 76px 0;
+  text-align: center;
+}
+.sy-product-cta-title {
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 850;
+  letter-spacing: -.03em;
+  margin: 0 0 30px;
+  word-break: keep-all;
+}
+.sy-product-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.sy-product-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 32px;
+  border: 1px solid rgba(255, 255, 255, .5);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -.02em;
+  transition: .25s var(--ease);
+  word-break: keep-all;
+}
+.sy-product-btn:hover { background: rgba(255, 255, 255, .12); border-color: #fff; }
+.sy-product-btn--primary { background: var(--primary); border-color: var(--primary); }
+.sy-product-btn--primary:hover { background: var(--primary2); border-color: var(--primary2); }
+
+/* --------------------------------------------------------------------------
+   6) 다른 제품 보기
+   -------------------------------------------------------------------------- */
+.sy-product-more { padding: 72px 0; border-top: 1px solid var(--line); }
+.sy-product-more-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sy-product-more-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 96px;
+  padding: 24px 30px;
+  border: 1px solid var(--line);
+  transition: .25s var(--ease);
+}
+.sy-product-more-list a:hover { border-color: var(--sy-company-deep); background: var(--light); }
+.sy-product-more-list strong {
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--sy-company-navy);
+  word-break: keep-all;
+}
+.sy-product-more-list span {
+  flex: 0 0 auto;
+  font-size: 20px;
+  color: var(--sy-company-deep);
+  transition: transform .25s var(--ease);
+}
+.sy-product-more-list a:hover span { transform: translateX(6px); }
+
+/* --------------------------------------------------------------------------
+   7) 반응형
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+  .sy-product-hero { grid-template-columns: 1fr 340px; gap: 44px; }
+  .sy-product-hero-visual .sy-company-placeholder { min-height: 320px; }
+  .sy-company-cols.sy-product-cols--2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 767px) {
+  .sy-product-hero { grid-template-columns: 1fr; gap: 32px; }
+  .sy-product-hero-visual { order: -1; }
+  .sy-product-hero-visual .sy-company-placeholder { min-height: 240px; }
+  .sy-product-tags { margin-top: 24px; }
+  .sy-product-tags > li { font-size: 13px; padding: 7px 13px; }
+
+  .sy-company-steps.sy-product-steps--2 { grid-template-columns: 1fr; }
+
+  .sy-product-subhead { margin: 36px 0 14px; }
+  .sy-product-taglist > li { font-size: 15px; padding: 9px 14px; }
+
+  .sy-product-info > div { grid-template-columns: 1fr; gap: 6px; padding: 18px 2px; }
+
+  .sy-product-notice { padding: 26px 22px; }
+  .sy-product-notice p { font-size: 15px; }
+
+  .sy-product-cta { padding: 56px 0; }
+  .sy-product-cta-row { flex-direction: column; }
+  .sy-product-btn { width: 100%; }
+
+  .sy-product-more { padding: 48px 0; }
+  .sy-product-more-list { grid-template-columns: 1fr; gap: 12px; }
+  .sy-product-more-list a { min-height: 72px; padding: 18px 22px; }
+}
