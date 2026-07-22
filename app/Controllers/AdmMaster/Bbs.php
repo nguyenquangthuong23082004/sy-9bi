@@ -84,6 +84,10 @@ class Bbs extends BaseController
 
     public function list($code)
     {
+        if ($code === 'banner') {
+            return redirect()->to(base_url('AdmMaster/banners'));
+        }
+
         $bbsModel = new BbsModel();
         $config = $this->getBoardConfig($code);
 

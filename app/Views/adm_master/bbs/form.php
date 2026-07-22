@@ -2,7 +2,11 @@
 
 <?= $this->section('header_buttons') ?>
     <div class="d-flex gap-2">
-        <a href="<?= base_url('AdmMaster/bbs/'.$code) ?>" class="btn btn-secondary btn-sm">
+        <?php if ($code == 'banner'): ?>
+            <a href="<?= base_url('AdmMaster/banners') ?>" class="btn btn-secondary btn-sm">
+        <?php else: ?>
+            <a href="<?= base_url('AdmMaster/bbs/'.$code) ?>" class="btn btn-secondary btn-sm">
+        <?php endif; ?>
             <i class="bi bi-list-ul"></i> 리스트
         </a>
         <?php if (!empty($item['bbs_idx'])): ?>
@@ -310,7 +314,11 @@
 
                 <!-- 하단 버튼 섹션 -->
                 <div class="col-12 border-top pt-4 mt-4 d-flex justify-content-center gap-3">
-                    <a href="<?= base_url('AdmMaster/bbs/'.$code) ?>" class="btn btn-secondary px-4 py-2">
+                    <?php if ($code == 'banner'): ?>
+                        <a href="<?= base_url('AdmMaster/banners') ?>" class="btn btn-secondary px-4 py-2">
+                    <?php else: ?>
+                        <a href="<?= base_url('AdmMaster/bbs/'.$code) ?>" class="btn btn-secondary px-4 py-2">
+                    <?php endif; ?>
                         <i class="bi bi-x-circle me-1"></i> 취소
                     </a>
                     <button type="button" onclick="send_it();" class="btn btn-primary px-5 py-2 fw-bold">
@@ -400,7 +408,11 @@ function del_chk(idx) {
             success: function() {
                 alert_("정상적으로 삭제되었습니다.");
                 setTimeout(function() {
+                    <?php if ($code == 'banner'): ?>
+                    location.href = "<?= base_url('AdmMaster/banners') ?>";
+                    <?php else: ?>
                     location.href = "<?= base_url('AdmMaster/bbs/'.$code) ?>";
+                    <?php endif; ?>
                 }, 1000);
             }
         });
