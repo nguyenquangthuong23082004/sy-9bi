@@ -768,3 +768,12 @@
     padding: 0 1rem;
   }
 }
+
+@media (max-width: 325px) {
+  .btn-gnb {
+    width: unset;
+    height: unset;
+    background: unset;
+    border: unset;
+  }
+}
