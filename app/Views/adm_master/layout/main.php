@@ -2,28 +2,28 @@
 <html lang="ko">
 
 <head>
-    <?php 
-    $siteName     = sy_site_setting('site_name', '신영로파마');
-    $site_title   = sy_site_setting('browser_title') ?: $siteName;
-    $metaDesc     = sy_site_setting('og_des') ?: sy_site_setting('meta_tag');
+    <?php
+    $siteName = sy_site_setting('site_name', '신영로파마');
+    $site_title = sy_site_setting('browser_title') ?: $siteName;
+    $metaDesc = sy_site_setting('og_des') ?: sy_site_setting('meta_tag');
     $metaKeywords = sy_site_setting('meta_keyword');
 
-    $favicoFile   = sy_site_setting('favico');
-    $favicon      = (!empty($favicoFile) && file_exists(FCPATH . 'uploads/setting/' . $favicoFile))
+    $favicoFile = sy_site_setting('favico');
+    $favicon = (!empty($favicoFile) && file_exists(FCPATH . 'uploads/setting/' . $favicoFile))
         ? base_url('uploads/setting/' . $favicoFile)
         : base_url('favicon.ico');
 
-    $ogTitle      = sy_site_setting('og_title') ?: ($title ?? 'Admin Panel');
-    $ogDesc       = sy_site_setting('og_des') ?: $metaDesc;
-    $ogUrl        = sy_site_setting('og_url') ?: current_url();
-    $ogSite       = sy_site_setting('og_site') ?: $siteName;
+    $ogTitle = sy_site_setting('og_title') ?: ($title ?? 'Admin Panel');
+    $ogDesc = sy_site_setting('og_des') ?: $metaDesc;
+    $ogUrl = sy_site_setting('og_url') ?: current_url();
+    $ogSite = sy_site_setting('og_site') ?: $siteName;
 
-    $ogImgFile    = sy_site_setting('og_img');
-    $ogImage      = (!empty($ogImgFile) && file_exists(FCPATH . 'uploads/setting/' . $ogImgFile))
+    $ogImgFile = sy_site_setting('og_img');
+    $ogImage = (!empty($ogImgFile) && file_exists(FCPATH . 'uploads/setting/' . $ogImgFile))
         ? base_url('uploads/setting/' . $ogImgFile)
         : null;
 
-    $schemaJson   = sy_site_setting('schema_jsonld');
+    $schemaJson = sy_site_setting('schema_jsonld');
     ?>
     <title><?= esc($title ?? 'Admin Panel') ?> - <?= esc($site_title) ?></title>
     <meta charset="UTF-8">
@@ -53,8 +53,8 @@
 
     <?php if (!empty($schemaJson)): ?>
         <script type="application/ld+json">
-        <?= $schemaJson ?>
-        </script>
+                                                <?= $schemaJson ?>
+                                                </script>
     <?php endif; ?>
 
     <!-- Legacy CSS -->
@@ -78,6 +78,18 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.min.js"></script>
 
     <link rel="stylesheet" href="<?= base_url('adm_assets/_common/css/style_mazar.css') ?>" type="text/css" />
+    <style>
+        .note-editor.note-frame .note-toolbar {
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #dee2e6 !important;
+            padding: 6px 8px !important;
+            border-radius: 6px 6px 0 0 !important;
+        }
+
+        .note-editor {
+            border-radius: 0.375rem;
+        }
+    </style>
 
     <script>
         // Legacy PopUp functions
@@ -142,7 +154,8 @@
         <aside class="sidebar shadow" id="sidebar">
             <div class="sidebar-brand border-bottom mb-3 px-3">
                 <a href="<?= base_url('AdmMaster') ?>" class="d-flex align-items-center justify-content-center">
-                    <img src="<?= !empty($_settings['logos']) ? base_url('uploads/setting/' . $_settings['logos']) : base_url('images/header_logo.png') ?>" alt="AUTOSTYLE" style="max-height: 38px; width: auto; display: block;">
+                    <img src="<?= !empty($_settings['logos']) ? base_url('uploads/setting/' . $_settings['logos']) : base_url('images/header_logo.png') ?>"
+                        alt="AUTOSTYLE" style="max-height: 38px; width: auto; display: block;">
                 </a>
             </div>
             <div class="py-0">
@@ -191,20 +204,20 @@
                     <!-- 게시판 관리 Section -->
                     <div class="nav-item">
                         <a class="nav-link dropdown-toggle <?= $isBoardParent ? 'active' : '' ?>" href="#menuBoard"
-                             data-bs-toggle="collapse" role="button"
-                             aria-expanded="<?= $isBoardParent ? 'true' : 'false' ?>" aria-controls="menuBoard">
+                            data-bs-toggle="collapse" role="button"
+                            aria-expanded="<?= $isBoardParent ? 'true' : 'false' ?>" aria-controls="menuBoard">
                             <i class="bi bi-chat-dots"></i> 게시판 관리
                         </a>
                         <div class="collapse <?= $isBoardParent ? 'show' : '' ?> submenu" id="menuBoard"
-                             data-bs-parent="#sidebarAccordion">
-                             <div class="nav flex-column">
-                                 <a class="nav-link <?= $isInquiry1 ? 'active' : '' ?>"
-                                     href="<?= base_url('AdmMaster/inquiry/1') ?>">문의관리</a>
-                                 <a class="nav-link <?= $isFaq ? 'active' : '' ?>"
-                                     href="<?= base_url('AdmMaster/bbs/faq') ?>">FAQ관리</a>
-                                 <a class="nav-link <?= $isHistory ? 'active' : '' ?>"
-                                     href="<?= base_url('AdmMaster/bbs/history') ?>">연혁 관리</a>
-                             </div>
+                            data-bs-parent="#sidebarAccordion">
+                            <div class="nav flex-column">
+                                <a class="nav-link <?= $isInquiry1 ? 'active' : '' ?>"
+                                    href="<?= base_url('AdmMaster/inquiry/1') ?>">문의관리</a>
+                                <a class="nav-link <?= $isFaq ? 'active' : '' ?>"
+                                    href="<?= base_url('AdmMaster/bbs/faq') ?>">FAQ관리</a>
+                                <a class="nav-link <?= $isHistory ? 'active' : '' ?>"
+                                    href="<?= base_url('AdmMaster/bbs/history') ?>">연혁 관리</a>
+                            </div>
                         </div>
                     </div>
 
@@ -217,14 +230,16 @@
 
                     <!-- 배너관리 -->
                     <div class="nav-item">
-                        <a class="nav-link <?= $isBanners ? 'active' : '' ?>" href="<?= base_url('AdmMaster/banners') ?>">
+                        <a class="nav-link <?= $isBanners ? 'active' : '' ?>"
+                            href="<?= base_url('AdmMaster/banners') ?>">
                             <i class="bi bi-images"></i> 배너관리
                         </a>
                     </div>
 
                     <!-- 약관/방침 관리 -->
                     <div class="nav-item">
-                        <a class="nav-link <?= $isPolicy ? 'active' : '' ?>" href="<?= base_url('AdmMaster/bbs/policy') ?>">
+                        <a class="nav-link <?= $isPolicy ? 'active' : '' ?>"
+                            href="<?= base_url('AdmMaster/bbs/policy') ?>">
                             <i class="bi bi-file-earmark-text"></i> 약관/방침 관리
                         </a>
                     </div>
