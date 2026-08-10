@@ -608,6 +608,11 @@
 									</p>
 
 									<!-- Contact Info Details -->
+									<?php
+									$syCustomPhone = sy_site_setting('custom_phone', '02-900-0436');
+									$sySiteEmail   = sy_site_setting('email', 'lofarma@lofarma.kr');
+									$syPhoneHref   = trim(explode('~', $syCustomPhone)[0]);
+									?>
 									<div class="contact-info-list" data-animate style="--i: 4">
 										<div class="contact-info-item">
 											<div class="contact-info-icon">
@@ -621,7 +626,7 @@
 											<div class="contact-info-text">
 												<span class="contact-info-label">대표전화</span>
 												<strong class="contact-info-value"><a
-														href="tel:02-2272-7678">02-2272-7678~9</a></strong>
+														href="tel:<?= esc($syPhoneHref) ?>"><?= esc($syCustomPhone) ?></a></strong>
 											</div>
 										</div>
 
@@ -638,7 +643,7 @@
 											<div class="contact-info-text">
 												<span class="contact-info-label">이메일</span>
 												<strong class="contact-info-value"><a
-														href="mailto:lofarma@lofarma.kr">lofarma@lofarma.kr</a></strong>
+														href="mailto:<?= esc($sySiteEmail) ?>"><?= esc($sySiteEmail) ?></a></strong>
 											</div>
 										</div>
 									</div>
