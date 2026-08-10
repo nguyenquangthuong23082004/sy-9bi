@@ -548,10 +548,21 @@
   margin-bottom: 12px;
 }
 
-.text-blue { color: var(--primary); }
-.text-green { color: var(--green); }
-.text-light-blue { color: var(--primary2); }
-.text-orange { color: #d69a00; }
+.text-blue {
+  color: var(--primary);
+}
+
+.text-green {
+  color: var(--green);
+}
+
+.text-light-blue {
+  color: var(--primary2);
+}
+
+.text-orange {
+  color: #d69a00;
+}
 
 .business-card-title {
   font-size: 19px;
@@ -776,10 +787,21 @@
   line-height: 1.4;
 }
 
-.highlight-blue { color: var(--primary); }
-.highlight-green { color: var(--green); }
-.highlight-light-blue { color: var(--primary2); }
-.highlight-orange { color: #b25900; }
+.highlight-blue {
+  color: var(--primary);
+}
+
+.highlight-green {
+  color: var(--green);
+}
+
+.highlight-light-blue {
+  color: var(--primary2);
+}
+
+.highlight-orange {
+  color: #b25900;
+}
 
 .product-desc {
   font-size: 14px;
@@ -1123,6 +1145,7 @@
    Section Responsive Breakpoints (Mobile / Tablet <= 1180px -> 210px)
    ========================================================================== */
 @media (max-width: 1180px) {
+
   .section,
   .section-stats,
   .section-business,
@@ -1205,6 +1228,7 @@
 }
 
 @media (max-width: 680px) {
+
   .section,
   .section-stats,
   .section-business,
@@ -1249,8 +1273,94 @@
   .section-title {
     font-size: 28px;
   }
-  
+
   .contact-title {
     font-size: 22px;
+  }
+}
+
+/* Custom Key Visual Action Buttons */
+.kv-content-buttons {
+  margin-top: 35px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-kv-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  background-color: #1a73e8;
+  color: #ffffff !important;
+}
+
+.btn-kv-action:hover {
+  background-color: #1557b0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+}
+
+.btn-kv-action.btn-kv-secondary {
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff !important;
+  box-shadow: none;
+}
+
+.btn-kv-action.btn-kv-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* If the slide is black (light background, dark text) */
+.kv-slide.is-black .btn-kv-action {
+  background-color: #222222;
+  color: #ffffff !important;
+}
+
+.kv-slide.is-black .btn-kv-action:hover {
+  background-color: #444444;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.kv-slide.is-black .btn-kv-action.btn-kv-secondary {
+  background-color: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  color: #222222 !important;
+}
+
+.kv-slide.is-black .btn-kv-action.btn-kv-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 767px) {
+  .kv-content-buttons {
+    margin-top: 25px;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .btn-kv-action {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .kv-content-buttons {
+    display: none !important;
   }
 }

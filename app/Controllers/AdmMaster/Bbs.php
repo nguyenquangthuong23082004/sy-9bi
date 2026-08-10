@@ -11,7 +11,7 @@ class Bbs extends BaseController
     private function getBoardConfig($code)
     {
         $configModel = new BbsConfigModel();
-        
+
         // Auto-seed policy board config and list items if not exist in admin
         if ($code === 'policy' && !$configModel->getConfig('policy')) {
             $configModel->insert([
@@ -26,7 +26,7 @@ class Bbs extends BaseController
                 'is_notice' => 'N',
                 'skin' => 'faq'
             ]);
-            
+
             $bbsModel = new BbsModel();
             $policyCount = $bbsModel->where('code', 'policy')->countAllResults();
             if ($policyCount == 0) {
@@ -227,6 +227,8 @@ class Bbs extends BaseController
             'hit' => $this->request->getPost('hit') ?: 0,
             'r_date' => $this->request->getPost('r_date') ?: date('Y-m-d H:i:s'),
             'url' => $this->request->getPost('url') ?: '',
+            'btn_text' => $this->request->getPost('btn_text') ?: '',
+            'btn_medical_yn' => $this->request->getPost('btn_medical_yn') ?: 'N',
             'category' => $this->request->getPost('category') ?: '',
             's_date' => $this->request->getPost('s_date') ?: '',
             'e_date' => $this->request->getPost('e_date') ?: '',
