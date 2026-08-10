@@ -66,13 +66,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <!-- Summernote BS5 -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs5.min.css" rel="stylesheet">
-
     <!-- Legacy Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+
+    <!-- Summernote BS5 -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/lang/summernote-ko-KR.min.js"></script>
@@ -88,6 +88,11 @@
 
         .note-editor {
             border-radius: 0.375rem;
+        }
+
+        .note-editor .dropdown-menu {
+            max-height: 280px;
+            overflow-y: auto;
         }
     </style>
 
@@ -281,9 +286,6 @@
         charset="utf-8"></script>
     <script type="text/javascript" src="<?= base_url('adm_assets/_common/js/common.js') ?>" charset="utf-8"></script>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         function alert_(msg) {
             alert(msg);
@@ -293,6 +295,108 @@
             $('#sidebarToggle, #sidebarOverlay').on('click', function () {
                 $('#sidebar').toggleClass('show');
                 $('#sidebarOverlay').toggleClass('show');
+            });
+
+            // Summernote BS5 Native Dropdown Compatibility
+            $(document).on('click', '.note-editor [data-toggle="dropdown"]', function (e) {
+                var $this = $(this);
+                if (!$this.attr('data-bs-toggle')) {
+                    $this.attr('data-bs-toggle', 'dropdown').removeAttr('data-toggle');
+                    if (window.bootstrap && window.bootstrap.Dropdown) {
+                        var dropdown = bootstrap.Dropdown.getOrCreateInstance(this);
+                        dropdown.toggle();
+                    }
+                }
+            });
+
+            // Clean & Robust Multi-Line / Select All Font Size Formatting
+            $(document).on('click', '.note-fontsize .dropdown-item, .note-fontsize a', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var val = $(this).attr('data-value') || $(this).text().trim();
+                var numVal = parseInt(val, 10);
+                if (numVal && !isNaN(numVal)) {
+                    var sizeStr = numVal + 'px';
+                    var $editor = $(this).closest('.note-editor');
+                    var $editable = $editor.find('.note-editable');
+                    var $target = $editor.prev('textarea');
+                    if (!$target.length) {
+                        $target = $editor.parent().find('textarea');
+                    }
+
+                    // Restore Summernote's saved range
+                    if ($target.length && $.isFunction($target.summernote)) {
+                        try {
+                            $target.summernote('editor.restoreRange');
+                        } catch (err) {}
+                    }
+
+                    // Clear any inherited font-size styles from block parent elements (<p>, <div>, <h1>, etc.)
+                    $editable.find('p, div, h1, h2, h3, h4, h5, h6, li').each(function () {
+                        this.style.fontSize = '';
+                    });
+
+                    var sel = window.getSelection();
+                    
+                    if (sel && sel.rangeCount > 0 && !sel.isCollapsed) {
+                        try {
+                            var editableText = $editable.text().replace(/\s+/g, '');
+                            var selectedText = sel.toString().replace(/\s+/g, '');
+                            var isSelectAll = (editableText.length > 0 && selectedText.length >= editableText.length * 0.9);
+
+                            if (isSelectAll) {
+                                // Select All (Ctrl+A): strip old font-sizes and apply cleanly to all block children
+                                $editable.find('*').css('font-size', '');
+                                $editable.children().css('font-size', sizeStr);
+                                $editable.css('font-size', sizeStr);
+                            } else {
+                                // Partial or multi-line selection: extract range, strip nested font-sizes, and wrap in clean span
+                                var range = sel.getRangeAt(0);
+                                var contents = range.extractContents();
+                                var $wrapper = $('<div>').append(contents);
+
+                                // Clear nested font-size styles to prevent span clutter
+                                $wrapper.find('*').css('font-size', '');
+                                $wrapper.find('span').each(function () {
+                                    if (!this.style || !this.style.cssText || this.style.cssText.trim() === '') {
+                                        $(this).replaceWith($(this).contents());
+                                    }
+                                });
+
+                                var $span = $('<span>').css('font-size', sizeStr).append($wrapper.contents());
+                                range.insertNode($span[0]);
+
+                                // Highlight newly inserted node range
+                                sel.removeAllRanges();
+                                var newRange = document.createRange();
+                                newRange.selectNodeContents($span[0]);
+                                sel.addRange(newRange);
+                            }
+
+                            if ($target.length && $.isFunction($target.summernote)) {
+                                try {
+                                    $target.summernote('editor.saveRange');
+                                } catch (err) {}
+                            }
+                            $editable.trigger('summernote.change');
+                        } catch (err) {
+                            console.error('Font size error:', err);
+                        }
+                    } else if ($target.length && $.isFunction($target.summernote)) {
+                        $target.summernote('fontSize', numVal);
+                    }
+                }
+
+                // Close dropdown
+                $(this).closest('.dropdown-menu').removeClass('show');
+                if (window.bootstrap && window.bootstrap.Dropdown) {
+                    var toggleBtn = $(this).closest('.note-btn-group').find('[data-bs-toggle="dropdown"]')[0];
+                    if (toggleBtn) {
+                        var instance = bootstrap.Dropdown.getInstance(toggleBtn);
+                        if (instance) instance.hide();
+                    }
+                }
             });
         });
     </script>

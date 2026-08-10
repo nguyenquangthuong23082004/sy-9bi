@@ -158,12 +158,14 @@ $(function() {
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
-        ]
+        ],
+        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '36', '48', '72']
     });
 
     $(".datepicker").datepicker({
