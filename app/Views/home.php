@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <?= view('inc/head', [
@@ -8,19 +9,12 @@
 	'preconnect'      => ['https://images.unsplash.com', 'https://videos.pexels.com'],
 	'usePretendard'   => false,
 	'cssFiles'        => ['css/home.css'],
+	'headExtra'       => ''
 ]) ?>
-  <!-- 사용 이미지: Unsplash / Source Unsplash 무료 이미지 링크 기반, 의료·알레르기·의약품·스킨케어 내용에 맞춰 재배치 -->
 </head>
 <body>
-
-
-
   <div class="wrap">
-    <!-- [D] HEADER -->
     <?= view('inc/header', ['isHome' => true]) ?>
-    <!-- //[D] HEADER -->
-
-    <!-- [D] CONTENTS -->
     <main id="content" class="content page-home js-page-home">
       <div class="main-content">
         <div class="section key-visual">
@@ -75,657 +69,522 @@
           </div>
         </div>
 
-        
-		<!-- 주요현황 -->
-		<section id="info" class="section section-key-info">
-		  <div class="container">
-			<div class="section-box">
+		<!-- 2. 주요 현황 (OUR EXPERTISE) -->
+		<section id="info" class="section section-stats blob-section">
+			<div class="container">
+				<div class="stats-layout">
+					<!-- Left Side Title -->
+					<div class="stats-left">
+						<span class="eyebrow-tag" data-animate>
+							<span class="ko">주요현황</span>
+							<span class="en">OUR EXPERTISE</span>
+						</span>
+						<h2 class="section-title" data-animate style="--i: 1">
+							알레르기 한 분야에<br><span class="gradient-text">축적해온 전문성</span>
+						</h2>
+						<p class="section-desc" data-animate style="--i: 2">
+							신영로파마는 이탈리아 알레르기 전문기업 Lofarma S.p.A와의 협력을 바탕으로 국내 의료진에게 알레르기 진단 및 면역치료 관련 제품과 정보를 제공해 왔습니다.
+						</p>
+					</div>
 
-			  <div class="main-title-area">
-				<strong class="sub-title">
-				  <span class="text" data-animate="slideInUp">주요현황</span>
-				</strong>
+					<!-- Right Side Stats Grid -->
+					<div class="stats-right">
+						<div class="stats-grid">
+							<div class="stat-card" data-animate style="--i: 3">
+								<span class="stat-label">Lofarma S.p.A 창립</span>
+								<strong class="stat-value">
+									<span class="count" data-count="1945">0</span><span class="unit">년</span>
+								</strong>
+							</div>
 
-				<h2 class="title">
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:1">알레르기 환자의</span>
-				  </span>
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:2">여정 전체를</span>
-				  </span>
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:3">함께합니다.</span>
-				  </span>
-				</h2>
+							<div class="stat-card" data-animate style="--i: 4">
+								<span class="stat-label">신영로파마 설립</span>
+								<strong class="stat-value">
+									<span class="count" data-count="2011">0</span><span class="unit">년</span>
+								</strong>
+							</div>
 
-				<div class="link-animate-box" data-animate="fadeInUp" style="--i:4">
-				  <a class="link-animate-text" href="#medical">의료진 지원</a>
+							<div class="stat-card" data-animate style="--i: 5">
+								<span class="stat-label">전국 협력 의원·클리닉</span>
+								<strong class="stat-value">
+									<span class="count" data-count="3000">0</span><span class="unit">+</span>
+								</strong>
+							</div>
+						</div>
+					</div>
 				</div>
-			  </div>
-
-			  <div class="section-col-right">
-				<p class="key-info-desc" data-animate="fadeInUp" style="--i:2.5">
-				  신영로파마는 2011년 설립 이후 알레르기 한 분야에 집중해온 전문 기업입니다.<br class="only_web">
-				  진단과 치료를 넘어 증상 관리와 일상 케어까지 이어지는 제품과 정보를 제공합니다.
-				</p>
-
-				<ul class="statistic-list">
-				  <li class="statistic-item" data-animate="fadeInUp" style="--i:5">
-					<span class="statistic-title">Lofarma S.p.A 창립</span>
-					<strong class="statistic-detail">
-					  <span class="count" data-count="1945">0</span>
-					  <span class="unit">년</span>
-					</strong>
-				  </li>
-
-				  <li class="statistic-item" data-animate="fadeInUp" style="--i:5">
-					<span class="statistic-title">신영로파마 설립</span>
-					<strong class="statistic-detail">
-					  <span class="count" data-count="2011">0</span>
-					  <span class="unit">년</span>
-					</strong>
-				  </li>
-
-				  <li class="statistic-item" data-animate="fadeInUp" style="--i:6">
-					<span class="statistic-title">전국 협력 의원·클리닉</span>
-					<strong class="statistic-detail">
-					  <span class="count" data-count="2000">0</span>
-					  <span class="unit">+</span>
-					</strong>
-				  </li>
-
-				  <li class="statistic-item" data-animate="fadeInUp" style="--i:6">
-					<span class="statistic-title">알레르기 진단 항원 라인업</span>
-					<strong class="statistic-detail">
-					  <span class="count" data-count="100">0</span>
-					  <span class="unit">+</span>
-					</strong>
-				  </li>
-
-				 
-				</ul>
-			  </div>
-
 			</div>
-		  </div>
 		</section>
 
-
-		<!-- 제품소개 -->
-		<section id="products" class="section section-lab js-section-lab">
-		  <div class="container">
-			<div class="section-box">
-
-			  <div class="section-col-left">
-				<div class="main-title-area">
-				  <strong class="sub-title">
-					<span class="text" data-animate="slideInUp">제품소개</span>
-				  </strong>
-
-				  <h2 class="title">
-					<span class="text">
-					  <span class="text" data-animate="slideInUp" style="--i:1">알레르기 진료와</span>
+		<!-- 3. 사업영역 (Business Areas) -->
+		<section id="business" class="section section-business blob-section">
+			<div class="container">
+				<!-- Section Header -->
+				<div class="section-header-center">
+					<span class="eyebrow-tag" data-animate>
+						<span class="ko">사업영역</span>
+						<span class="en">BUSINESS AREAS</span>
 					</span>
-					<span class="text">
-					  <span class="text" data-animate="slideInUp" style="--i:2">관리 전반을 지원합니다</span>
+					<h2 class="section-title" data-animate style="--i: 1">진단부터 치료와 <span class="gradient-text">일상 관리까지</span></h2>
+					<p class="section-desc" data-animate style="--i: 2">
+						알레르기와 반복되는 증상은 원인을 찾고, 치료하고, 일상에서 관리하는 과정이 모두 필요합니다.<br>
+						신영로파마는 알레르기 진단과 면역치료에서 시작해 의료기기와 피부 증상별 케어까지 사업영역을 확장하고 있습니다.
+					</p>
+				</div>
+
+				<!-- 4 Columns Grid -->
+				<div class="business-grid">
+					<!-- Diagnosis -->
+					<div class="business-card" data-animate style="--i: 3">
+						<div class="business-icon icon-blue">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+						</div>
+						<div class="business-tag text-blue">DIAGNOSIS</div>
+						<h3 class="business-card-title">증상을 일으키는 원인을 찾습니다</h3>
+						<p class="business-card-desc">
+							피부 반응을 확인해 알레르기를 일으키는 원인 물질을 찾아냅니다.
+						</p>
+					</div>
+
+					<!-- Treatment -->
+					<div class="business-card" data-animate style="--i: 4">
+						<div class="business-icon icon-green">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+						</div>
+						<div class="business-tag text-green">TREATMENT</div>
+						<h3 class="business-card-title">반복되는 알레르기 반응을 원인부터 관리합니다</h3>
+						<p class="business-card-desc">
+							알레르기 원인 물질에 대한 과민반응을 낮춰 장기적인 증상 개선을 목표로 합니다.
+						</p>
+					</div>
+
+					<!-- Symptom Management -->
+					<div class="business-card" data-animate style="--i: 5">
+						<div class="business-icon icon-light-blue">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+						</div>
+						<div class="business-tag text-light-blue">SYMPTOM MANAGEMENT</div>
+						<h3 class="business-card-title">불편한 증상을 일상에서 꾸준히 관리합니다</h3>
+						<p class="business-card-desc">
+							EARVENT와 ibion은 반복되는 증상을 간편하게 관리할 수 있는 의료기기입니다.
+						</p>
+					</div>
+
+					<!-- Skin Symptom Care -->
+					<div class="business-card" data-animate style="--i: 6">
+						<div class="business-icon icon-orange">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+						</div>
+						<div class="business-tag text-orange">SKIN SYMPTOM CARE</div>
+						<h3 class="business-card-title">피부 증상에 맞는 기능을 선택합니다</h3>
+						<p class="business-card-desc">
+							루베어는 열감, 건조, 피부장벽 저하, 붉은기, 마찰 등 피부 증상별 케어 제품을 개발합니다.
+						</p>
+					</div>
+				</div>
+
+				<!-- CTA button -->
+				<div class="center-btn-container" data-animate style="--i: 7">
+					<a href="<?= base_url('product') ?>" class="btn btn-secondary">
+						전체 제품 보기
+						<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- 4. 제품 소개 (OUR PRODUCTS) -->
+		<section id="products" class="section section-products blob-section">
+			<div class="container">
+				<!-- Section Header -->
+				<div class="section-header-center">
+					<span class="eyebrow-tag" data-animate>
+						<span class="ko">제품소개</span>
+						<span class="en">OUR PRODUCTS</span>
 					</span>
-				  </h2>
-
-				  <p class="desc" data-animate="fadeInUp" style="--i:2">
-					라이스정, 알레르기 피부단자시험 시약, EARVENT를 중심으로<br class="only_web">
-					진단·치료·생활 관리를 연결합니다.
-				  </p>
-
-				  <div class="link-animate-box" data-animate="fadeInUp" style="--i:3">
-					<a class="link-animate-text" href="#medical">자료 요청하기</a>
-				  </div>
-				</div>
-			  </div>
-
-			  <div class="section-col-right">
-				<ul class="lab-list">
-
-				  <li class="lab-item js-lab-item">
-					<a class="lab-link" href="#products">
-					  <span class="lab-image">
-						<img
-						  src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=85"
-						  alt="라이스정"
-						>
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">라이스정</strong>
-						<span class="info-desc">설하면역치료 기반 치료 옵션</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">◎</i>
-						  <strong class="info-title">라이스정</strong>
-						  <p class="info-desc">
-							초기치료부터 유지치료까지 의료진의 판단에 따른 치료 여정을 지원합니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				  <li class="lab-item js-lab-item">
-					<a class="lab-link" href="#products">
-					  <span class="lab-image">
-						<img
-						  src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=900&q=85"
-						  alt="알레르기 피부단자시험 시약"
-						>
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">피부단자시험 시약</strong>
-						<span class="info-desc">Allergy Skin Prick Test</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">✦</i>
-						  <strong class="info-title">정확한 진단 지원</strong>
-						  <p class="info-desc">
-							다양한 항원 라인업으로 폭넓은 알레르기 원인 검사를 지원합니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				  <li class="lab-item lab-item-full js-lab-item">
-					<a class="lab-link" href="#products">
-					  <span class="lab-image">
-						<img src="/images/earvent.webp" alt="EARVENT">
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">EARVENT</strong>
-						<span class="info-desc">이관 기능 개선 의료용 고무풍선</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">◆</i>
-						  <strong class="info-title">EARVENT</strong>
-						  <p class="info-desc">
-							중이 환기와 이관 기능 훈련에 사용되는 관리 솔루션입니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				  <li class="lab-item js-lab-item">
-					<a class="lab-link" href="#business">
-					  <span class="lab-image">
-						<img src="/images/ibion.jpg" alt="ibion">
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">ibion</strong>
-						<span class="info-desc">의료기기 브랜드</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">◇</i>
-						  <strong class="info-title">이비온</strong>
-						  <p class="info-desc">
-							알레르기 환자의 증상 관리와 생활 편의를 돕는 의료기기 브랜드입니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				  <li class="lab-item js-lab-item">
-					<a class="lab-link" href="#business">
-					  <span class="lab-image">
-						<img
-						  src="/images/ruvair.jpg"
-						  alt="ruvair"
-						>
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">ruvair</strong>
-						<span class="info-desc">민감 피부 일상 케어</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">●</i>
-						  <strong class="info-title">루베어</strong>
-						  <p class="info-desc">
-							알레르기와 민감 피부에 대한 이해를 바탕으로 일상 속 피부 케어를 제안합니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				  <li class="lab-item js-lab-item">
-					<a class="lab-link" href="#medical">
-					  <span class="lab-image">
-						<img
-						  src="/images/data.webp" alt="의료진 자료"
-						>
-					  </span>
-
-					  <div class="lab-info">
-						<strong class="info-title">의료진 자료</strong>
-						<span class="info-desc">자료실 · 샘플 · 방문 신청</span>
-					  </div>
-
-					  <div class="lab-info-hover only-pc">
-						<div class="info">
-						  <i class="icon">♧</i>
-						  <strong class="info-title">진료 지원</strong>
-						  <p class="info-desc">
-							처방 정보, 항원 리스트, 학술자료, 상담 요청을 연결합니다.
-						  </p>
-						</div>
-					  </div>
-					</a>
-				  </li>
-
-				</ul>
-			  </div>
-
-			</div>
-		  </div>
-		</section>
-
-
-		<!-- 회사소개 -->
-		<section id="company" class="section section-intro-lab">
-		  <div class="container">
-
-			<div class="main-title-area">
-			  <div>
-				<strong class="sub-title">
-				  <span class="text" data-animate="slideInUp">회사소개</span>
-				</strong>
-
-				<h2 class="title">
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:1">알레르기 한 분야에</span>
-				  </span>
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:2">집중해온 전문 기업</span>
-				  </span>
-				</h2>
-			  </div>
-
-			  <div class="link-animate-box" data-animate="fadeInUp" style="--i:3">
-				<a class="link-animate-text" href="#support">문의하기</a>
-			  </div>
-			</div>
-
-			<div class="intro-lab-box-slide">
-
-			  <div class="swiper-intro-lab-text">
-				<div class="intro-text-slide is-active">
-				  <div class="intro-lab-content">
-					<strong class="title">대표 인사말</strong>
-					<p class="desc">
-					  신영로파마는 국내 진료 현장에 필요한 알레르기 진단 시약과 면역치료제를 안정적으로
-					  공급하는 것에서 출발했습니다. 앞으로도 의료진에게는 신뢰할 수 있는 파트너로,
-					  환자에게는 더 나은 일상을 돕는 브랜드로 남겠습니다.
+					<h2 class="section-title" data-animate style="--i: 1">어떤 문제를 해결하는 <span class="gradient-text">제품인지 한눈에</span></h2>
+					<p class="section-desc" data-animate style="--i: 2">
+						알레르기의 원인을 찾는 진단시약부터 면역치료제, 증상 관리용 의료기기, 피부 증상별 케어 제품까지 소개합니다.
 					</p>
-				  </div>
 				</div>
 
-				<div class="intro-text-slide">
-				  <div class="intro-lab-content">
-					<strong class="title">회사 스토리</strong>
-					<p class="desc">
-					  2011년 설립 이래 이탈리아 Lofarma S.p.A와의 협력을 바탕으로
-					  알레르기 진단 시약과 설하면역치료제를 국내 진료 현장에 공급해 왔습니다.
+				<!-- Products Grid (5 Columns on Desktop) -->
+				<div class="products-grid">
+					<!-- 1. 라이스정 -->
+					<div class="product-card" data-animate style="--i: 3">
+						<div class="product-image-container">
+							<img
+								class="product-image"
+								src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+								alt="라이스정"
+							/>
+						</div>
+						<div class="product-card-body">
+							<div class="product-badge-wrap">
+								<span class="product-badge badge-blue">설하면역치료제</span>
+							</div>
+							<h3 class="product-title">라이스정</h3>
+							<div class="product-highlight highlight-blue">반복되는 알레르기 증상을 원인부터 관리</div>
+							<p class="product-desc">
+								알레르기 원인 물질에 대한 과민반응을 낮춰 장기적인 증상 개선을 목표로 하는 설하면역치료제입니다.
+							</p>
+							<div class="product-action">
+								<a href="<?= base_url('product/lais') ?>" class="btn btn-primary btn-full">
+									제품 자세히 보기
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- 2. 알레르기 피부단자시험 시약 -->
+					<div class="product-card" data-animate style="--i: 4">
+						<div class="product-image-container">
+							<img
+								class="product-image"
+								src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80"
+								alt="알레르기 피부단자시험 시약"
+							/>
+						</div>
+						<div class="product-card-body">
+							<div class="product-badge-wrap">
+								<span class="product-badge badge-green">진단시약</span>
+							</div>
+							<h3 class="product-title">피부단자시험 시약</h3>
+							<div class="product-highlight highlight-green">내 알레르기의 원인을 정확하게 확인</div>
+							<p class="product-desc">
+								피부 반응을 확인해 증상을 일으키는 원인을 찾아내는 진단시약입니다.
+							</p>
+							<div class="product-action">
+								<a href="<?= base_url('product/skin-test') ?>" class="btn btn-success btn-full">
+									항원 리스트 확인
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- 3. EARVENT -->
+					<div class="product-card" data-animate style="--i: 5">
+						<div class="product-image-container">
+							<img
+								class="product-image"
+								src="<?= base_url('images/earvent.webp') ?>"
+								alt="EARVENT"
+								onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=600&q=80';"
+							/>
+						</div>
+						<div class="product-card-body">
+							<div class="product-badge-wrap">
+								<span class="product-badge badge-blue-outline">의료기기</span>
+							</div>
+							<h3 class="product-title">EARVENT</h3>
+							<div class="product-highlight highlight-blue">귀의 압력 균형과 중이 환기 관리</div>
+							<p class="product-desc">
+								코로 풍선을 부는 간단한 방법으로 이관 기능 훈련을 돕는 의료기기입니다.
+							</p>
+							<div class="product-action">
+								<a href="<?= base_url('product/earvent') ?>" class="btn btn-neutral btn-full">
+									제품 자세히 보기
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- 4. ibion -->
+					<div class="product-card" data-animate style="--i: 6">
+						<div class="product-image-container">
+							<img
+								class="product-image"
+								src="<?= base_url('images/ibion.jpg') ?>"
+								alt="ibion"
+								onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80';"
+							/>
+						</div>
+						<div class="product-card-body">
+							<div class="product-badge-wrap">
+								<span class="product-badge badge-blue-outline">의료기기 브랜드</span>
+							</div>
+							<h3 class="product-title">ibion</h3>
+							<div class="product-highlight highlight-light-blue">반복되는 증상을 일상에서 관리</div>
+							<p class="product-desc">
+								사용자가 다양한 증상을 보다 쉽고 지속적으로 관리할 수 있는 의료기기 브랜드입니다.
+							</p>
+							<div class="product-action">
+								<a href="<?= base_url('business#device') ?>" class="btn btn-neutral btn-full">
+									브랜드 보기
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- 5. ruvair -->
+					<div class="product-card" data-animate style="--i: 7">
+						<div class="product-image-container">
+							<img
+								class="product-image"
+								src="<?= base_url('images/ruvair.jpg') ?>"
+								alt="ruvair"
+								onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80';"
+							/>
+						</div>
+						<div class="product-card-body">
+							<div class="product-badge-wrap">
+								<span class="product-badge badge-orange-light">스킨케어</span>
+							</div>
+							<h3 class="product-title">ruvair</h3>
+							<div class="product-highlight highlight-orange">피부 증상에 맞춘 케어</div>
+							<p class="product-desc">
+								열감, 건조, 피부장벽 저하, 붉은기, 마찰 등 피부가 겪는 구체적인 증상에 맞춰 제품을 개발합니다.
+							</p>
+							<div class="product-action">
+								<a href="<?= base_url('business#skincare') ?>" class="btn btn-warning btn-full">
+									브랜드 보기
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 5. Lofarma 파트너십 (LOFARMA S.P.A PARTNERSHIP) -->
+		<section id="lofarma" class="section section-lofarma blob-section">
+			<div class="container">
+				<div class="split-layout">
+					<!-- Left Side Image -->
+					<div class="split-image-wrap" data-animate>
+						<div class="double-shadow-container">
+							<img
+								src="<?= base_url('images/s6_img1.webp') ?>"
+								alt="Lofarma S.p.A Partnership"
+								class="split-image"
+								onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80';"
+							/>
+						</div>
+					</div>
+
+					<!-- Right Side Text Content -->
+					<div class="split-text-wrap">
+						<span class="eyebrow-tag" data-animate style="--i: 1">
+							<span class="ko">파트너십</span>
+							<span class="en">LOFARMA S.P.A PARTNERSHIP</span>
+						</span>
+						<h2 class="section-title" data-animate style="--i: 2">
+							1945년부터 이어온<br><span class="gradient-text">알레르기 전문성</span>과 함께합니다
+						</h2>
+						<p class="split-desc-main" data-animate style="--i: 3">
+							Lofarma S.p.A는 알레르기 진단과 면역치료 분야에 집중해온 이탈리아의 알레르기 전문기업입니다.
+						</p>
+						<p class="split-desc-sub" data-animate style="--i: 4">
+							신영로파마는 Lofarma S.p.A와의 협력을 바탕으로 국내 진료 환경에 필요한 알레르기 진단시약과 면역치료제를 안정적으로 공급하고, 의료진에게 관련 제품 및 학술 정보를 제공하고 있습니다.
+						</p>
+						<div class="split-action" data-animate style="--i: 5">
+							<a href="<?= base_url('company/lofarma') ?>" class="btn btn-primary">
+								파트너십 자세히 보기
+								<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 6. 회사 소개 (ABOUT SHINYOUNG LOFARMA) -->
+		<section id="company" class="section section-company blob-section">
+			<div class="container">
+				<div class="split-layout reverse-desktop">
+					<!-- Left Side Text Content -->
+					<div class="split-text-wrap">
+						<span class="eyebrow-tag" data-animate style="--i: 1">
+							<span class="ko">회사소개</span>
+							<span class="en">ABOUT SHINYOUNG LOFARMA</span>
+						</span>
+						<h2 class="section-title" data-animate style="--i: 2">
+							의료진이 신뢰할 수 있는<br><span class="gradient-text">알레르기 전문 파트너</span>
+						</h2>
+						<p class="split-desc-main" data-animate style="--i: 3">
+							신영로파마는 국내 진료 현장에 필요한 알레르기 진단시약과 면역치료제를 안정적으로 공급하는 것에서 출발했습니다.
+						</p>
+						<p class="split-desc-sub" data-animate style="--i: 4">
+							앞으로도 알레르기 한 분야에 대한 전문성을 바탕으로 의료진에게는 신뢰할 수 있는 파트너가 되고, 환자에게는 더 나은 일상을 제공하는 기업으로 성장하겠습니다.
+						</p>
+						<div class="split-action" data-animate style="--i: 5">
+							<a href="<?= base_url('company/greeting') ?>" class="btn btn-primary">
+								회사 소개 보기
+								<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+							</a>
+						</div>
+					</div>
+
+					<!-- Right Side Image -->
+					<div class="split-image-wrap" data-animate>
+						<div class="double-shadow-container">
+							<img
+								src="<?= base_url('images/s4_img1.webp') ?>"
+								alt="회사소개 이미지"
+								class="split-image"
+								onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1200&q=80';"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 7. 의료진 지원 (PROFESSIONAL SUPPORT) -->
+		<section id="medical" class="section section-support blob-section">
+			<div class="container">
+				<!-- Section Header -->
+				<div class="section-header-center">
+					<span class="eyebrow-tag" data-animate>
+						<span class="ko">의료진 지원</span>
+						<span class="en">PROFESSIONAL SUPPORT</span>
+					</span>
+					<h2 class="section-title" data-animate style="--i: 1">제품 공급을 넘어 <span class="gradient-text">알레르기 진료 현장을 지원합니다</span></h2>
+					<p class="section-desc" data-animate style="--i: 2">
+						제품 자료와 항원 리스트, 샘플 신청, MR 방문 상담까지 의료진에게 필요한 서비스를 한 곳에서 제공합니다.
 					</p>
-				  </div>
 				</div>
 
-				<div class="intro-text-slide">
-				  <div class="intro-lab-content">
-					<strong class="title">비전</strong>
-					<p class="desc">
-					  정확한 진단, 원인 치료, 증상 관리, 일상 케어.
-					  신영로파마는 진료실 안과 밖을 잇는 알레르기 전문 기업으로 성장하겠습니다.
+				<!-- 3 Columns Grid -->
+				<div class="support-grid">
+					<!-- Card 1 -->
+					<div class="support-card" data-animate style="--i: 3">
+						<div class="support-card-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+						</div>
+						<h3 class="support-card-title">제품 및 학술자료</h3>
+						<p class="support-card-desc">
+							라이스정, 피부단자시험 시약 및 의료기기 관련 자료를 확인할 수 있습니다.
+						</p>
+						<div class="support-card-action">
+							<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+								자료 요청하기
+							</a>
+						</div>
+					</div>
+
+					<!-- Card 2 -->
+					<div class="support-card" data-animate style="--i: 4">
+						<div class="support-card-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+						</div>
+						<h3 class="support-card-title">항원 리스트</h3>
+						<p class="support-card-desc">
+							공급 가능한 흡입 항원과 식품 항원 정보를 확인할 수 있습니다.
+						</p>
+						<div class="support-card-action">
+							<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+								항원 문의하기
+							</a>
+						</div>
+					</div>
+
+					<!-- Card 3 -->
+					<div class="support-card" data-animate style="--i: 5">
+						<div class="support-card-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+						</div>
+						<h3 class="support-card-title">샘플·MR 방문 신청</h3>
+						<p class="support-card-desc">
+							병원과 진료과에 필요한 제품 상담 및 방문 요청을 접수합니다.
+						</p>
+						<div class="support-card-action">
+							<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+								방문 신청하기
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 8. 병원전문 쇼핑몰 (HOSPITAL PROFESSIONAL MALL) -->
+		<section id="mall" class="section section-mall">
+			<div class="mall-pattern-overlay"></div>
+			<div class="container">
+				<div class="mall-content-wrap">
+					<span class="eyebrow-tag border-white" data-animate>
+						<span class="ko">병원전문 쇼핑몰</span>
+						<span class="en">HOSPITAL PROFESSIONAL MALL</span>
+					</span>
+					<h2 class="section-title text-white" data-animate style="--i: 1">
+						의료기관 전용 제품을<br><span class="gradient-text-orange">편리하게 확인하고 주문하세요</span>
+					</h2>
+					<p class="mall-desc" data-animate style="--i: 2">
+						병원과 의료진을 위한 전용 제품 및 소모품을 병원전문 쇼핑몰에서 확인할 수 있습니다.
 					</p>
-				  </div>
+					<div class="mall-action" data-animate style="--i: 3">
+						<a href="<?= base_url('#mall') ?>" class="btn btn-success btn-large">
+							병원전문 쇼핑몰 바로가기
+							<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+						</a>
+					</div>
 				</div>
-			  </div>
-
-			  <div class="swiper-intro-lab-box">
-				<div class="intro-img-slide is-active">
-				  <span class="intro-lab-image">
-					<img
-					  src="/images/s4_img1.webp"
-					  alt="대표 인사말"
-					>
-				  </span>
-				</div>
-
-				<div class="intro-img-slide">
-				  <span class="intro-lab-image">
-					<img
-					  src="/images/s4_img2.webp"
-					  alt="회사 스토리"
-					>
-				  </span>
-				</div>
-
-				<div class="intro-img-slide">
-				  <span class="intro-lab-image">
-					<img
-					  src="/images/s4_img3.webp"
-					  alt="비전"
-					>
-				  </span>
-				</div>
-
-				<div class="group-btn">
-				  <button class="btn-intro-lab btn-intro-lab-prev" type="button" aria-label="이전"></button>
-				  <button class="btn-intro-lab btn-intro-lab-next" type="button" aria-label="다음"></button>
-				</div>
-			  </div>
-
 			</div>
-		  </div>
 		</section>
 
+		<!-- 9. 최종 문의 영역 (Contact) -->
+		<section id="support" class="section section-contact">
+			<div class="container">
+				<div class="contact-box" data-animate>
+					<div class="contact-layout">
+						<!-- Left Side Content -->
+						<div class="contact-left">
+							<span class="eyebrow-tag" data-animate style="--i: 1">
+								<span class="ko">고객지원</span>
+								<span class="en">QUICK INQUIRY</span>
+							</span>
+							<h2 class="contact-title" data-animate style="--i: 2">
+								알레르기 진료에 필요한<br><span class="gradient-text">제품과 정보를 빠르게</span> 연결해드립니다
+							</h2>
+							<p class="contact-desc" data-animate style="--i: 3">
+								제품 문의, 의료진 자료 요청, 샘플 신청 및 MR 방문 상담이 필요한 경우 신영로파마로 문의해 주세요.
+							</p>
+							
+							<!-- Contact Info Details -->
+							<div class="contact-info-list" data-animate style="--i: 4">
+								<div class="contact-info-item">
+									<div class="contact-info-icon">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+									</div>
+									<div class="contact-info-text">
+										<span class="contact-info-label">대표전화</span>
+										<strong class="contact-info-value"><a href="tel:02-2272-7678">02-2272-7678~9</a></strong>
+									</div>
+								</div>
 
-		<!-- 사업영역 -->
-		<section id="business" class="section section-main-brand js-section-main-brand">
-		  <div class="brand-wrap">
+								<div class="contact-info-item">
+									<div class="contact-info-icon">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+									</div>
+									<div class="contact-info-text">
+										<span class="contact-info-label">이메일</span>
+										<strong class="contact-info-value"><a href="mailto:lofarma@lofarma.kr">lofarma@lofarma.kr</a></strong>
+									</div>
+								</div>
+							</div>
+						</div>
 
-			<div class="main-title-area">
-			  <strong class="sub-title">
-				<span class="text" data-animate="slideInUp">사업영역</span>
-			  </strong>
-
-			  <h2 class="title">
-				<span class="text">
-				  <span class="text" data-animate="slideInUp" style="--i:1">하나의 전문성,</span>
-				</span>
-				<span class="text">
-				  <span class="text" data-animate="slideInUp" style="--i:2">세 가지 영역</span>
-				</span>
-			  </h2>
-
-			  <p class="desc" data-animate="fadeInUp" style="--i:3">
-				알레르기 환자의 하루는 진료실에서 끝나지 않습니다. 신영로파마는 의약품, 의료기기, <br class="only_web">
-				스킨케어를 통해 환자의 삶 전반을 고려한 포트폴리오를 운영합니다.
-			  </p>
-
-			  <div class="link-animate-box" data-animate="fadeInUp" style="--i:4">
-				<a href="#products" class="link-animate-text">제품 보기</a>
-			  </div>
-			</div>
-
-			<div class="brand-area">
-			  <div class="brand-viewport">
-				<div class="brand-track">
-
-				  <div class="brand-slide" data-num="01">
-					<div class="brand-img-product">
-					  <img
-						src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=85"
-						alt="의약품"
-					  >
+						<!-- Right Side Buttons -->
+						<div class="contact-right" data-animate style="--i: 5">
+							<div class="contact-buttons">
+								<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-large btn-full">
+									제품 문의하기
+								</a>
+								<a href="<?= base_url('medical/support') ?>" class="btn btn-secondary btn-large btn-full">
+									샘플 · 방문 신청
+								</a>
+							</div>
+						</div>
 					</div>
-					<div class="brand-img-logo">의약품</div>
-					<div class="brand-category">라이스정 · 피부단자시험 시약</div>
-				  </div>
-
-				  <div class="brand-slide" data-num="02">
-					<div class="brand-img-product">
-					  <img
-						src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=600&q=85"
-						alt="진단과 치료"
-					  >
-					</div>
-					<div class="brand-img-logo">진단과 치료</div>
-					<div class="brand-category">알레르기 원인 확인과 치료 판단 지원</div>
-				  </div>
-
-				  <div class="brand-slide" data-num="03">
-					<div class="brand-img-product">
-					  <img
-						src="https://source.unsplash.com/600x600/?clinic,medical-device"
-						alt="의료기기" onerror="this.onerror=null; this.src='/images/no-image.png';"
-					  >
-					</div>
-					<div class="brand-img-logo">의료기기</div>
-					<div class="brand-category">EARVENT · ibion</div>
-				  </div>
-
-				  <div class="brand-slide" data-num="04">
-					<div class="brand-img-product">
-					  <img
-						src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=85"
-						alt="스킨케어"
-					  >
-					</div>
-					<div class="brand-img-logo">스킨케어</div>
-					<div class="brand-category">ruvair 민감 피부 케어</div>
-				  </div>
-
-				  <div class="brand-slide" data-num="05">
-					<div class="brand-img-product">
-					  <img
-						src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=85"
-						alt="환자 여정"
-					  >
-					</div>
-					<div class="brand-img-logo">환자 여정</div>
-					<div class="brand-category">진료실 안과 밖을 잇는 케어</div>
-				  </div>
-
-				  <div class="brand-slide" data-num="06">
-					<div class="brand-img-product">
-					  <img
-						src="https://images.unsplash.com/photo-1511174511562-5f97f4f4e799?auto=format&fit=crop&w=600&q=85"
-						alt="의료진 지원" onerror="this.onerror=null; this.src='/images/no-image.png';"
-					  >
-					</div>
-					<div class="brand-img-logo">의료진 지원</div>
-					<div class="brand-category">자료실 · 샘플 · MR 방문 신청</div>
-				  </div>
-
 				</div>
-			  </div>
-
-			  <div class="brand-controls">
-				<button class="brand-btn brand-prev" type="button" aria-label="이전">←</button>
-				<button class="brand-btn brand-next" type="button" aria-label="다음">→</button>
-			  </div>
-
-			  <div class="brand-progress">
-				<span></span>
-			  </div>
 			</div>
-
-		  </div>
 		</section>
+		</div>
+	</main>
+	<!-- //[D] CONTENTS -->
 
-
-		<!-- Lofarma 파트너십 -->
-		<section id="lofarma" class="section section-business-philosophy">
-		  <div class="container">
-
-			<div class="philosophy-card">
-			  <img
-				src="/images/s6_img1.webp" alt="Lofarma 파트너십 이미지">
-
-			  <div class="philosophy-content">
-				<span class="eyebrow">Lofarma S.p.A Partnership</span>
-				<h2>
-				  1945년부터 이어온<br>
-				  알레르기 전문성
-				</h2>
-				<p>
-				  Lofarma S.p.A는 알레르기 진단과 면역치료 분야에 집중해온
-				  이탈리아의 알레르기 전문 기업입니다. 신영로파마는 Lofarma S.p.A와의
-				  협력을 바탕으로 국내 진료 현장에 필요한 제품과 정보를 제공합니다.
-				</p>
-				<a href="#medical" class="link-animate-text">의료진 지원</a>
-			  </div>
-			</div>
-
-			<div class="philosophy-list">
-			  <div class="philosophy-item">
-				<strong>2011</strong>
-				<p>주식회사 신영로파마 설립</p>
-			  </div>
-
-			  <div class="philosophy-item">
-				<strong>Lofarma</strong>
-				<p>이탈리아 알레르기 전문 기업과 파트너십</p>
-			  </div>
-
-			  <div class="philosophy-item">
-				<strong>라이스정</strong>
-				<p>설하면역치료 기반 치료 옵션 공급</p>
-			  </div>
-
-			  <div class="philosophy-item">
-				<strong>확장</strong>
-				<p>의료기기와 스킨케어까지 포트폴리오 확대</p>
-			  </div>
-			</div>
-
-		  </div>
-		</section>
-
-
-		<!-- 의료진 지원 -->
-		<section id="medical" class="section section-news">
-		  <div class="container">
-
-			<div class="news-head">
-			  <div class="main-title-area">
-				<strong class="sub-title">
-				  <span class="text" data-animate="slideInUp">의료진 지원</span>
-				</strong>
-
-				<h2 class="title">
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:1">진료에 필요한 자료를</span>
-				  </span>
-				  <span class="text">
-					<span class="text" data-animate="slideInUp" style="--i:2">한 곳에 모았습니다</span>
-				  </span>
-				</h2>
-
-				<p class="desc" data-animate="fadeInUp" style="--i:3">
-				  라이스정 관련 자료, 진단시약 정보, 의료기기 자료, 임상연구 현황,
-				  샘플 및 상담 요청까지 신영로파마는 전국의 알레르기 진료 현장을 가까이에서 지원합니다.
-				</p>
-			  </div>
-
-			  <a href="#support" class="link-animate-text">상담 요청</a>
-			</div>
-
-			<div class="news-list">
-
-			  <article class="news-card">
-				<a href="#medical">
-				  <div class="news-thumb">
-					<img
-					  src="/images/s7_img1.webp"
-					  alt="라이스정 자료"
-					>
-				  </div>
-
-				  <div class="news-body">
-					<span class="news-type">자료실</span>
-					<h3 class="news-title">라이스정 자료 및 의료진용 상세 정보</h3>
-					<span class="news-date">전문의약품 자료는 의료진 인증 구조 검토 권장</span>
-				  </div>
-				</a>
-			  </article>
-
-			  <article class="news-card">
-				<a href="#medical">
-				  <div class="news-thumb">
-					<img
-					  src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=85"
-					  alt="진단시약 자료"
-					>
-				  </div>
-
-				  <div class="news-body">
-					<span class="news-type">항원 리스트</span>
-					<h3 class="news-title">피부단자시험 시약 공급 가능 항원 리스트</h3>
-					<span class="news-date">흡입 항원 · 식품 항원 문의</span>
-				  </div>
-				</a>
-			  </article>
-
-			  <article class="news-card">
-				<a href="#medical">
-				  <div class="news-thumb">
-					<img
-					  src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=800&q=85"
-					  alt="샘플 MR 방문 신청"
-					>
-				  </div>
-
-				  <div class="news-body">
-					<span class="news-type">신청</span>
-					<h3 class="news-title">샘플·MR 방문 신청 및 제품 상담 접수</h3>
-					<span class="news-date">병원명 · 진료과 · 요청사항 입력</span>
-				  </div>
-				</a>
-			  </article>
-
-			</div>
-
-		  </div>
-		</section>
-
-
-        <section id="mall" class="section section-business-philosophy">
-          <div class="container"><div class="philosophy-card"><img src="/images/mall.webp" alt="병원전문 쇼핑몰"><div class="philosophy-content"><span class="eyebrow">Hospital Professional Mall</span><h2>병원전문 쇼핑몰은<br>기존 구조 그대로 유지합니다</h2><p>의료진과 병원 고객을 위한 전용 구매·문의 동선을 별도 메뉴로 유지하여 기존 이용자의 접근성을 보호합니다.</p><a href="#support" class="link-animate-text">쇼핑몰 문의</a></div></div></div>
-        </section>
-		
-		<section id="support" class="section section-message">
-		  <div class="container">
-			<div class="section-box message-center">
-			  <div>
-				<h2 class="message-title">
-				  알레르기 환자의 여정을<br>
-				  함께 설계합니다.
-				</h2>
-			  </div>
-
-			  <div>
-				<p class="message-desc">
-				  제품 문의, 의료진 자료 요청, 샘플·MR 방문 신청, 패밀리 사이트 문의를 빠르게 연결해드립니다.
-				</p>
-
-				<div class="message-links">
-				  <a href="mailto:lofarma@lofarma.kr" class="message-link">이메일 문의</a>
-				  <a href="tel:02-900-0436" class="message-link">02-900-0436</a>
-				  <a href="#products" class="message-link">제품 보기</a>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</section>
-
-      </div>
-    </main>
-    <!-- //[D] CONTENTS -->
-
-    <?= view('inc/footer') ?>
+	<?= view('inc/footer') ?>
   </div>
 
   <div id="js-layer-search" class="layer-search" aria-hidden="true"><button type="button" class="layer-close js-close-layer">×</button><div class="layer-panel"><h2>제품 통합 검색</h2><div class="search-row"><input type="search" placeholder="검색어를 입력하세요"><button type="button">검색</button></div><div class="keyword-list"><a href="#">라이스정</a><a href="#">피부단자시험</a><a href="#">EARVENT</a><a href="#">ibion</a><a href="#">ruvair</a></div></div></div>
@@ -764,32 +623,11 @@
       control.addEventListener('click',()=>{paused=!paused;control.classList.toggle('is-play',paused);control.setAttribute('aria-label',paused?'Play':'Pause'); if(!paused) kvStart=Date.now()-parseFloat(bar.style.width||0)/100*duration;});
       tick();
 
-      // Intro lab linked text/image slider
-      const introTexts=[...document.querySelectorAll('.intro-text-slide')];
-      const introImgs=[...document.querySelectorAll('.intro-img-slide')];
-      let introIndex=0;
-      function showIntro(i){introTexts[introIndex].classList.remove('is-active');introImgs[introIndex].classList.remove('is-active');introIndex=(i+introTexts.length)%introTexts.length;introTexts[introIndex].classList.add('is-active');introImgs[introIndex].classList.add('is-active');}
-      document.querySelector('.btn-intro-lab-prev').addEventListener('click',()=>showIntro(introIndex-1));
-      document.querySelector('.btn-intro-lab-next').addEventListener('click',()=>showIntro(introIndex+1));
-      setInterval(()=>showIntro(introIndex+1),4500);
-
-      // Brand carousel
-      const track=document.querySelector('.brand-track');
-      const brandSlides=[...document.querySelectorAll('.brand-slide')];
-      const brandProgress=document.querySelector('.brand-progress span');
-      let brandIndex=0;
-      function perView(){return innerWidth<=680?1:innerWidth<=1180?2:4}
-      function updateBrand(){const pv=perView();const max=Math.max(brandSlides.length-pv,0);brandIndex=Math.min(Math.max(brandIndex,0),max);const slideW=brandSlides[0].getBoundingClientRect().width+26;track.style.transform=`translateX(${-brandIndex*slideW}px)`;brandProgress.style.width=((brandIndex+pv)/brandSlides.length*100)+'%';}
-      document.querySelector('.brand-prev').addEventListener('click',()=>{brandIndex--;updateBrand();});
-      document.querySelector('.brand-next').addEventListener('click',()=>{brandIndex++; if(brandIndex>brandSlides.length-perView()) brandIndex=0; updateBrand();});
-      window.addEventListener('resize',updateBrand); updateBrand(); setInterval(()=>{brandIndex++; if(brandIndex>brandSlides.length-perView()) brandIndex=0; updateBrand();},3500);
-	//   window.addEventListener('resize',updateBrand); updateBrand();
-
       // Reveal animation and number count
       const counted=new WeakSet();
       function countUp(el){const target=parseFloat(el.dataset.count);const decimal=String(el.dataset.count).includes('.');let start=null;function step(ts){if(!start)start=ts;const p=Math.min((ts-start)/1200,1);const val=target*p;el.textContent=decimal?val.toFixed(1):Math.floor(val).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step)}
       const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');entry.target.querySelectorAll('[data-animate]').forEach(x=>x.classList.add('is-visible'));entry.target.querySelectorAll('.count').forEach(c=>{if(!counted.has(c)){counted.add(c);countUp(c)}})}})},{threshold:.18});
-      document.querySelectorAll('.section,.statistic-list').forEach(el=>io.observe(el));
+      document.querySelectorAll('.section').forEach(el=>io.observe(el));
     });
   </script>
 
