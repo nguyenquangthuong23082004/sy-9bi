@@ -1028,6 +1028,7 @@
 .contact-left {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .contact-title {
@@ -1101,6 +1102,7 @@
 .contact-right {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .contact-buttons {
@@ -1156,6 +1158,10 @@
   .section-mall,
   .section-contact {
     padding: 80px 0 !important;
+  }
+
+  .key-visual {
+    padding: 0 !important;
   }
 
   .stats-layout {
@@ -1241,6 +1247,14 @@
     padding: 60px 0 !important;
   }
 
+  .key-visual {
+    padding: 0 !important;
+  }
+
+  .swiper-key-visual .group-btn {
+    display: none !important;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1275,7 +1289,68 @@
   }
 
   .contact-title {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .contact-desc {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .contact-box {
+    padding: 30px 16px;
+  }
+
+  .btn-large {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .contact-info-list {
+    gap: 16px;
+  }
+
+  .contact-info-value {
+    font-size: 16px;
+  }
+
+  .business-card,
+  .support-card {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .contact-box {
+    padding: 24px 10px;
+  }
+
+  .btn-large {
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+
+  .contact-info-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-info-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .contact-info-value {
+    font-size: 13px;
+  }
+
+  .contact-info-item {
+    gap: 8px;
+  }
+
+  .business-card,
+  .support-card {
+    padding: 24px 12px;
   }
 }
 
@@ -1356,6 +1431,47 @@
   .btn-kv-action {
     padding: 10px 22px;
     font-size: 14px;
+  }
+
+  .key-visual-content {
+    left: 20px;
+    right: 20px;
+    max-width: calc(100% - 40px);
+  }
+
+  .key-visual-content .sub-title {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .key-visual-content .title {
+    font-size: clamp(28px, 8vw, 42px);
+    line-height: 1.1;
+  }
+
+  .key-visual-content .desc {
+    font-size: 14px;
+    margin-top: 14px;
+  }
+
+  .key-visual-function {
+    left: 20px;
+    bottom: 30px;
+    gap: 16px;
+  }
+
+  .line-progress {
+    width: 80px;
+  }
+
+  .btn-control {
+    width: 36px;
+    height: 36px;
+  }
+
+  .scroll-down {
+    right: 20px;
+    bottom: 30px;
   }
 }
 

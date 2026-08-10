@@ -153,7 +153,7 @@
 						<div class="section-header-center">
 							<span class="eyebrow-tag" data-animate>
 								<span class="ko">사업영역</span>
-								<span class="en">BUSINESS AREAS</span>
+								<span class="en">ONE EXPERTISE, COMPLETE CARE</span>
 							</span>
 							<h2 class="section-title" data-animate style="--i: 1">진단부터 치료와 <span
 									class="gradient-text">일상 관리까지</span></h2>
@@ -610,8 +610,8 @@
 									<!-- Contact Info Details -->
 									<?php
 									$syCustomPhone = sy_site_setting('custom_phone', '02-900-0436');
-									$sySiteEmail   = sy_site_setting('email', 'lofarma@lofarma.kr');
-									$syPhoneHref   = trim(explode('~', $syCustomPhone)[0]);
+									$sySiteEmail = sy_site_setting('email', 'lofarma@lofarma.kr');
+									$syPhoneHref = trim(explode('~', $syCustomPhone)[0]);
 									?>
 									<div class="contact-info-list" data-animate style="--i: 4">
 										<div class="contact-info-item">
