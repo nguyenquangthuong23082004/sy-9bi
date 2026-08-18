@@ -82,6 +82,8 @@
 }
 
 .sy-company-breadcrumb {
+  position: relative;
+  z-index: 51;
   margin-top: 34px;
 }
 

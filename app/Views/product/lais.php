@@ -110,7 +110,6 @@
 	<div class="sy-company-inner">
 		<h2 id="sy-lais-cta" class="sy-product-cta-title">더 자세한 정보가 필요하신가요?</h2>
 		<div class="sy-product-cta-row">
-			<a class="sy-product-btn sy-product-btn--primary" href="<?= base_url('#support') ?>">가까운 병원 문의</a>
 			<a class="sy-product-btn" href="<?= base_url('#medical') ?>">의료진용 상세 정보 보기</a>
 		</div>
 	</div>
