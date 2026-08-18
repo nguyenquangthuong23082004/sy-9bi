@@ -88,7 +88,7 @@ $syRuvairUrl = '';
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<img src="<?= base_url('images/business/medicine.webp') ?>" alt="의약품 이미지">
+			<img src="<?= base_url('images/business/device.webp') ?>" alt="의약품 이미지">
 		</figure>
 	</div>
 </section>
@@ -127,7 +127,7 @@ $syRuvairUrl = '';
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<img src="<?= base_url('images/business/device.webp') ?>" alt="의료기기 이미지">
+			<img src="<?= base_url('images/business/medicine.webp') ?>" alt="의료기기 이미지">
 		</figure>
 	</div>
 </section>
