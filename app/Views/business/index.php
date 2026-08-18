@@ -135,7 +135,8 @@ $syRuvairUrl = '';
 		<figure class="sy-company-figure sy-business-row-visual">
 			<div class="sy-company-placeholder">
 				<svg class="sy-company-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M9 20c0-3-3-4-3-9a6 6 0 1112 0c0 4-3 4-4 7" stroke-linecap="round" stroke-linejoin="round" />
+					<path d="M9 20c0-3-3-4-3-9a6 6 0 1112 0c0 4-3 4-4 7" stroke-linecap="round"
+						stroke-linejoin="round" />
 					<path d="M12 11a2 2 0 100-4 2 2 0 000 4z" />
 				</svg>
 				<span>의료기기 이미지<br>(교체 예정)</span>
@@ -152,16 +153,15 @@ $syRuvairUrl = '';
 			<h2 id="sy-business-skincare" class="sy-company-h2">스킨케어</h2>
 
 			<div class="sy-company-text">
-				<p>ruvair (루베어)는 알레르기와 민감 피부에 대한 이해를 바탕으로
-					일상 속 피부 케어를 제안하는 브랜드입니다.
-					단순한 저자극 이미지를 넘어, 실제 생활 속 피부 불편에 맞춘 케어 경험을 지향합니다.</p>
+				<p>ruvair(루베어)는 알레르기 전문 제약회사가 설계한 증상별 스킨케어 브랜드입니다. 단순한 저자극을 넘어, 갱년기 열감·피부소양증 등 실제 피부 불편 증상에 맞춘 케어 솔루션을
+					제안합니다.</p>
 			</div>
 
 			<ul class="sy-business-brands">
 				<li>
 					<div class="sy-business-brands-static">
 						<strong>ruvair <span>(루베어)</span></strong>
-						<span>알레르기·민감 피부를 위한 스킨케어 브랜드</span>
+						<span>알레르기 전문 제약회사가 설계한 증상별 스킨케어</span>
 					</div>
 				</li>
 			</ul>
@@ -173,7 +173,7 @@ $syRuvairUrl = '';
 						<span class="blind">새 창에서 열림</span>
 					</a>
 				<?php else: ?>
-					<span class="sy-business-linkrow-off" aria-disabled="true">ruvair 바로가기 <em>준비 중</em></span>
+					<span class="sy-business-linkrow-off" aria-disabled="true">웹사이트: <em>ruvair.kr</em></span>
 				<?php endif; ?>
 			</p>
 		</div>
