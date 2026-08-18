@@ -505,8 +505,13 @@
 									라이스정, 피부단자시험 시약 및 의료기기 관련 자료를 확인할 수 있습니다.
 								</p>
 								<div class="support-card-action">
-									<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+									<a href="<?= base_url('medical/support?req=lais') ?>" class="support-card-btn">
 										자료 요청하기
+										<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
 									</a>
 								</div>
 							</div>
@@ -529,8 +534,13 @@
 									공급 가능한 흡입 항원과 식품 항원 정보를 확인할 수 있습니다.
 								</p>
 								<div class="support-card-action">
-									<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+									<a href="<?= base_url('medical/support?req=skin-test') ?>" class="support-card-btn">
 										항원 문의하기
+										<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
 									</a>
 								</div>
 							</div>
@@ -551,8 +561,13 @@
 									병원과 진료과에 필요한 제품 상담 및 방문 요청을 접수합니다.
 								</p>
 								<div class="support-card-action">
-									<a href="<?= base_url('medical/support') ?>" class="btn btn-primary btn-full">
+									<a href="<?= base_url('medical/support') ?>" class="support-card-btn">
 										방문 신청하기
+										<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
 									</a>
 								</div>
 							</div>
