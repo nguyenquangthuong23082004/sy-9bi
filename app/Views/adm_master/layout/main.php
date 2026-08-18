@@ -249,6 +249,14 @@
                         </a>
                     </div>
 
+                    <!-- 제품 콘텐츠 관리 -->
+                    <div class="nav-item">
+                        <a class="nav-link <?= $isActive('AdmMaster/product') ? 'active' : '' ?>"
+                            href="<?= base_url('AdmMaster/product') ?>">
+                            <i class="bi bi-box-seam"></i> 제품 콘텐츠 관리
+                        </a>
+                    </div>
+
                     <!-- 관리자정보 -->
                     <div class="nav-item border-top mt-2 pt-2 border-light">
                         <a class="nav-link <?= $isProfile ? 'active' : '' ?>"

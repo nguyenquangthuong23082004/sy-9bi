@@ -164,6 +164,11 @@ $routes->group('AdmMaster', ['namespace' => 'App\Controllers\AdmMaster', 'filter
     $routes->get('works/delete/(:num)', 'Works::delete/$1');
     $routes->post('works/deleteGalleryImage', 'Works::deleteGalleryImage');
     $routes->post('works/updateOrder', 'Works::updateOrder');
+
+    // Product Content Management
+    $routes->get('product', 'ProductContent::index');
+    $routes->get('product/(:segment)', 'ProductContent::index/$1');
+    $routes->post('product/save/(:segment)', 'ProductContent::save/$1');
 });
 
 // Front contact submit route
