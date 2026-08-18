@@ -588,7 +588,7 @@
   margin-top: 60px;
 }
 
-.btn {
+.btn:not(.btn-gnb):not(.btn-language):not(.btn-control):not(.btn-search) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
