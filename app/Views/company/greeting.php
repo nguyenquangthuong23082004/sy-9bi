@@ -17,7 +17,7 @@
 				 * 대표이사 또는 기업 이미지.
 				 * public/images/company/greeting_ceo.jpg 파일을 추가하면 자동으로 노출됩니다.
 				 */
-				$syGreetingImage = 'images/company/greeting_ceo.jpg';
+				$syGreetingImage = 'images/company/ceo.webp';
 				$syGreetingImagePath = FCPATH . $syGreetingImage;
 				?>
 				<?php if (is_file($syGreetingImagePath)): ?>
