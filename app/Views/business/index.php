@@ -146,9 +146,12 @@ $syRuvairUrl = '';
 
 			<ul class="sy-business-brands">
 				<li>
-					<div class="sy-business-brands-static">
-						<strong>ruvair <span>(루베어)</span></strong>
-						<span>알레르기 전문 제약회사가 설계한 증상별 스킨케어</span>
+					<div class="sy-business-brands-static sy-business-brands-static--image">
+						<div class="sy-business-brand-copy">
+							<strong>ruvair <span>(루베어)</span></strong>
+							<span>알레르기 전문 제약회사가 설계한 증상별 스킨케어</span>
+						</div>
+						<img class="sy-business-brand-image" src="<?= base_url('images/ruvair_logo.png') ?>" alt="ruvair 로고">
 					</div>
 				</li>
 			</ul>

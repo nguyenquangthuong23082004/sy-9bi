@@ -175,6 +175,27 @@
   cursor: default;
 }
 
+.sy-business-brands-static--image {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 4px;
+}
+
+.sy-business-brand-copy {
+  min-width: 0;
+}
+
+.sy-business-brand-image {
+  display: block;
+  flex: 0 0 250px;
+  width: 250px;
+  height: 73px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
 /* 링크 준비 전 CTA */
 .sy-business-linkrow-off {
   display: inline-flex;
@@ -350,6 +371,18 @@
   .sy-business-brands a,
   .sy-business-brands-static {
     padding: 1rem 0.125rem;
+  }
+
+  .sy-business-brands-static--image {
+    gap: 1rem;
+    padding: 0.75rem 0.125rem;
+  }
+
+  .sy-business-brand-image {
+    flex-basis: min(15.625rem, 45vw);
+    width: min(15.625rem, 45vw);
+    max-width: 45%;
+    height: 4.5625rem;
   }
 
   .sy-business-brands a {
