@@ -116,7 +116,7 @@ if (!empty($sySubBanner)) {
 		<main id="content" class="sy-company-main">
 
 			<!-- 서브 비주얼 -->
-			<section class="sy-company-visual" aria-labelledby="sy-page-title"<?= $sySubImg ? ' style="background: linear-gradient(rgba(7, 17, 31, 0.6), rgba(7, 17, 31, 0.6)), url(\'' . esc($sySubImg, 'attr') . '\') center/cover no-repeat;"' : '' ?>>
+			<section class="sy-company-visual" aria-labelledby="sy-page-title"<?= $sySubImg ? ' style="background-image: linear-gradient(rgba(7, 17, 31, 0.6), rgba(7, 17, 31, 0.6)), url(\'' . esc($sySubImg, 'attr') . '\');"' : '' ?>>
 			<?php $sySubUrl = !empty($sySubBanner['url']) ? esc($sySubBanner['url'], 'attr') : ''; ?>
 			<?php if ($sySubUrl): ?>
 				<a href="<?= $sySubUrl ?>" style="position:absolute;inset:0;z-index:2;display:block;" aria-label="배너 링크"></a>

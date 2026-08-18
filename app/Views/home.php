@@ -48,7 +48,7 @@
 														<source media="(max-width: 767px)" srcset="<?= $mbImgMob ?>">
 													<?php endif; ?>
 													<img src="<?= $mbImgPc ?: $mbImgMob ?>" alt="<?= esc($mb['subject'] ?? '') ?>"
-														class="key-visual-img" style="width:100%; height:100%; object-fit:cover;">
+														class="key-visual-img" style="width:100%; height:100%; object-fit:fill;">
 												</picture>
 											<?php endif; ?>
 											<?php if (!empty($mbSub) || !empty($mbTitle) || !empty($mbDesc) || !empty($mb['btn_text']) || (!empty($mb['btn_medical_yn']) && $mb['btn_medical_yn'] === 'Y')): ?>
