@@ -1,5 +1,8 @@
+<?php
+$isHome = $isHome ?? false;
+?>
 <!-- Floating Action Buttons -->
-<div class="sy-floating-actions">
+<div class="sy-floating-actions <?= $isHome ? 'is-home' : '' ?>">
 	<!-- Q&A Button -->
 	<a href="<?= base_url('medical/support') ?>" class="floating-btn btn-qa" title="의료진 문의 / Q&A 바로가기">
 		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="floating-btn-icon">
@@ -25,6 +28,20 @@
 	gap: 12px;
 	z-index: 1000;
 }
+
+/* Home page logic: entire container fades in/out together */
+.sy-floating-actions.is-home {
+	opacity: 0;
+	transform: scale(0.8) translateY(20px);
+	pointer-events: none;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.sy-floating-actions.is-home.is-visible {
+	opacity: 1;
+	transform: scale(1) translateY(0);
+	pointer-events: auto;
+}
+
 .floating-btn {
 	width: 50px;
 	height: 50px;
@@ -58,15 +75,22 @@
 	background-color: #084c8f;
 	color: #ffffff;
 }
-.btn-top {
+
+/* Other pages logic: Q&A always visible, only Scroll to Top button fades in/out */
+.sy-floating-actions:not(.is-home) .btn-top {
 	opacity: 0;
 	transform: scale(0.8) translateY(10px);
 	pointer-events: none;
 }
-.btn-top.is-visible {
+.sy-floating-actions:not(.is-home) .btn-top.is-visible {
 	opacity: 1;
 	transform: scale(1) translateY(0);
 	pointer-events: auto;
+}
+
+.btn-top {
+	background-color: #ffffff;
+	color: #333333;
 }
 .btn-top:hover {
 	background-color: #f8f9fa;
@@ -123,18 +147,24 @@
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
+		var isHome = <?= json_encode($isHome) ?>;
 		var btnTop = document.querySelector('.js-btn-scroll-top');
-		function checkScrollTop() {
-			if (btnTop) {
-				if (window.scrollY > 300) {
-					btnTop.classList.add('is-visible');
-				} else {
-					btnTop.classList.remove('is-visible');
+		var container = document.querySelector('.sy-floating-actions');
+
+		function checkScroll() {
+			var scrolled = window.scrollY > 300;
+			if (isHome) {
+				if (container) {
+					container.classList.toggle('is-visible', scrolled);
+				}
+			} else {
+				if (btnTop) {
+					btnTop.classList.toggle('is-visible', scrolled);
 				}
 			}
 		}
-		window.addEventListener('scroll', checkScrollTop, { passive: true });
-		checkScrollTop();
+		window.addEventListener('scroll', checkScroll, { passive: true });
+		checkScroll();
 
 		if (btnTop) {
 			btnTop.addEventListener('click', function () {

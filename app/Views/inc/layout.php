@@ -209,7 +209,7 @@ if (!empty($sySubBanner)) {
 		<?= view('inc/footer') ?>
 	</div>
 
-	<?= view('inc/floating_buttons') ?>
+	<?= view('inc/floating_buttons', ['isHome' => $isHome ?? false]) ?>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {

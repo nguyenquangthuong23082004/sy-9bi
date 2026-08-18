@@ -727,7 +727,7 @@
 		});
 	</script>
 
-	<?= view('inc/floating_buttons') ?>
+	<?= view('inc/floating_buttons', ['isHome' => true]) ?>
 	<?= view('inc/popup') ?>
 </body>
 
