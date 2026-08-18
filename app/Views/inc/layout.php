@@ -207,8 +207,9 @@ if (!empty($sySubBanner)) {
 		</main>
 
 		<?= view('inc/footer') ?>
-
 	</div>
+
+	<?= view('inc/floating_buttons') ?>
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {

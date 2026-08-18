@@ -727,6 +727,7 @@
 		});
 	</script>
 
+	<?= view('inc/floating_buttons') ?>
 	<?= view('inc/popup') ?>
 </body>
 
