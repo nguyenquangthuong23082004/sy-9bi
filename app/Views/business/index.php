@@ -88,13 +88,7 @@ $syRuvairUrl = '';
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<div class="sy-company-placeholder">
-				<svg class="sy-company-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<rect x="3" y="8" width="18" height="8" rx="4" />
-					<path d="M12 8v8" />
-				</svg>
-				<span>의약품 이미지<br>(교체 예정)</span>
-			</div>
+			<img src="<?= base_url('images/business/medicine.webp') ?>" alt="의약품 이미지">
 		</figure>
 	</div>
 </section>
@@ -133,14 +127,7 @@ $syRuvairUrl = '';
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<div class="sy-company-placeholder">
-				<svg class="sy-company-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M9 20c0-3-3-4-3-9a6 6 0 1112 0c0 4-3 4-4 7" stroke-linecap="round"
-						stroke-linejoin="round" />
-					<path d="M12 11a2 2 0 100-4 2 2 0 000 4z" />
-				</svg>
-				<span>의료기기 이미지<br>(교체 예정)</span>
-			</div>
+			<img src="<?= base_url('images/business/device.webp') ?>" alt="의료기기 이미지">
 		</figure>
 	</div>
 </section>
@@ -179,12 +166,7 @@ $syRuvairUrl = '';
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<div class="sy-company-placeholder">
-				<svg class="sy-company-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<path d="M12 20s-7-4.4-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.6-7 9-7 9z" stroke-linejoin="round" />
-				</svg>
-				<span>스킨케어 이미지<br>(교체 예정)</span>
-			</div>
+			<img src="<?= base_url('images/business/skincare.webp') ?>" alt="스킨케어 이미지">
 		</figure>
 	</div>
 </section>
