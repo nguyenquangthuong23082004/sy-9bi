@@ -59,7 +59,7 @@
 		<?php
 		$targetTags = !empty($contents['use_target_list']) ? array_map('trim', explode(',', $contents['use_target_list'])) : [];
 		?>
-		<ul class="sy-product-taglist">
+		<ul class="sy-product-taglist sy-product-target-list">
 			<?php foreach ($targetTags as $t): ?>
 				<li><?= esc($t) ?></li>
 			<?php endforeach; ?>

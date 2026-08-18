@@ -108,6 +108,51 @@
   word-break: keep-all;
 }
 
+.sy-product-target-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.sy-product-target-list>li {
+  position: relative;
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  padding: 18px 18px 18px 42px;
+  border: 1px solid #dce7ee;
+  border-left: 0;
+  border-right: 1px solid #dce7ee;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(7, 17, 31, .05);
+  color: var(--sy-company-navy);
+  font-size: 16px;
+  line-height: 1.45;
+  transition: transform .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+
+.sy-product-target-list>li::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sy-company-teal);
+  box-shadow: 0 0 0 5px rgba(15, 111, 122, .12);
+  transform: translateY(-50%);
+}
+
+.sy-product-target-list>li:hover {
+  border-color: var(--sy-company-teal);
+  border-right-color: var(--sy-company-teal);
+  box-shadow: 0 12px 24px rgba(7, 17, 31, .09);
+  transform: translateY(-2px);
+}
+
 /* --------------------------------------------------------------------------
    3) 정보 정의 리스트 (발주 및 문의)
    -------------------------------------------------------------------------- */
@@ -376,6 +421,24 @@
   .sy-product-taglist>li {
     font-size: 0.875rem;
     padding: 0.5rem 0.75rem;
+  }
+
+  .sy-product-target-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.625rem;
+    margin-top: 1.25rem;
+  }
+
+  .sy-product-target-list>li {
+    min-height: 4.5rem;
+    padding: 0.875rem 0.75rem 0.875rem 2.5rem;
+    font-size: 0.875rem;
+  }
+
+  .sy-product-target-list>li::before {
+    left: 1rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
   }
 
   /* sy-product-info REM Overrides */
