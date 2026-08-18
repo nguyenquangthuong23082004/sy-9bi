@@ -264,6 +264,19 @@ class Bbs extends BaseController
                 if ($id && !empty($item['ufile' . $i])) {
                     @unlink(ROOTPATH . 'public/data/bbs/' . $item['ufile' . $i]);
                 }
+
+                if ($code === 'banner') {
+                    // Set appropriate max width: 1920px for PC banner (ufile6), 1080px for mobile (ufile5)
+                    $maxWidth = ($i === 6) ? 1920 : (($i === 5) ? 1080 : 1200);
+                    $processedName = $this->processImageToWebp($file, $maxWidth);
+                    if ($processedName) {
+                        $data['ufile' . $i] = $processedName;
+                        $originalName = pathinfo($file->getClientName(), PATHINFO_FILENAME) . '.webp';
+                        $data['rfile' . $i] = $originalName;
+                        continue;
+                    }
+                }
+
                 $newName = $file->getRandomName();
                 $file->move(ROOTPATH . 'public/data/bbs', $newName);
                 $data['ufile' . $i] = $newName;
@@ -360,5 +373,78 @@ class Bbs extends BaseController
             }
         }
         return $this->response->setJSON(['status' => 'OK']);
+    }
+
+    /**
+     * Resizes and converts uploaded image to WebP.
+     * Returns the webp filename or null on failure.
+     */
+    private function processImageToWebp($file, int $maxWidth): ?string
+    {
+        $tempPath = $file->getTempName();
+        $info = @getimagesize($tempPath);
+        if (!$info) {
+            return null;
+        }
+
+        $mime = $info['mime'];
+        switch ($mime) {
+            case 'image/jpeg':
+            case 'image/jpg':
+                $src = @imagecreatefromjpeg($tempPath);
+                break;
+            case 'image/png':
+                $src = @imagecreatefrompng($tempPath);
+                break;
+            case 'image/webp':
+                $src = @imagecreatefromwebp($tempPath);
+                break;
+            default:
+                return null;
+        }
+
+        if (!$src) {
+            return null;
+        }
+
+        $origWidth = imagesx($src);
+        $origHeight = imagesy($src);
+
+        if ($origWidth > $maxWidth) {
+            $scale = $maxWidth / $origWidth;
+            $targetWidth = $maxWidth;
+            $targetHeight = (int) ($origHeight * $scale);
+        } else {
+            $targetWidth = $origWidth;
+            $targetHeight = $origHeight;
+        }
+
+        $dst = imagecreatetruecolor($targetWidth, $targetHeight);
+
+        if ($mime === 'image/png' || $mime === 'image/webp') {
+            imagealphablending($dst, false);
+            imagesavealpha($dst, true);
+            $transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
+            imagefilledrectangle($dst, 0, 0, $targetWidth, $targetHeight, $transparent);
+        } else {
+            $white = imagecolorallocate($dst, 255, 255, 255);
+            imagefilledrectangle($dst, 0, 0, $targetWidth, $targetHeight, $white);
+        }
+
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $targetWidth, $targetHeight, $origWidth, $origHeight);
+
+        $newName = pathinfo($file->getRandomName(), PATHINFO_FILENAME) . '.webp';
+        $targetDir = ROOTPATH . 'public/data/bbs/';
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+
+        $destPath = $targetDir . $newName;
+        imagewebp($dst, $destPath, 90);
+
+        imagedestroy($src);
+        imagedestroy($dst);
+
+        return $newName;
     }
 }
