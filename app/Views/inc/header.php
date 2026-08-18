@@ -111,7 +111,7 @@ if (!function_exists('sy_site_nav')) {
 
 			'mall' => [
 				'label' => '병원전문 쇼핑몰',
-				'url' => '#mall',
+				'url' => 'https://lofarmashop.co.kr/login/login.php',
 			],
 		];
 	}
@@ -127,6 +127,11 @@ if (!function_exists('sy_nav_url')) {
 
 		if ($url[0] === '#') {
 			return $isHome ? $url : base_url() . $url;
+		}
+
+		// http://, https:// 또는 // 로 시작하는 외부 절대 경로는 그대로 반환합니다.
+		if (strpos($url, '://') !== false || strpos($url, '//') === 0) {
+			return $url;
 		}
 
 		return base_url($url);
