@@ -576,7 +576,8 @@
 								병원과 의료진을 위한 전용 제품 및 소모품을 병원전문 쇼핑몰에서 확인할 수 있습니다.
 							</p>
 							<div class="mall-action" data-animate style="--i: 3">
-								<a href="<?= base_url('#mall') ?>" class="btn btn-success btn-large">
+								<a href="https://lofarmashop.co.kr/login/login.php" target="_blank"
+									class="btn btn-success btn-large">
 									병원전문 쇼핑몰 바로가기
 									<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 										stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

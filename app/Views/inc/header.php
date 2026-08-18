@@ -112,6 +112,7 @@ if (!function_exists('sy_site_nav')) {
 			'mall' => [
 				'label' => '병원전문 쇼핑몰',
 				'url' => 'https://lofarmashop.co.kr/login/login.php',
+				'target' => '_blank',
 			],
 		];
 	}
@@ -175,7 +176,8 @@ $sySiteName = sy_site_setting('site_name', '신영로파마');
 						?>
 						<li class="gnb-item<?= $isCurrent ? ' is-current' : '' ?>" <?= !empty($nav['minHeight']) ? ' data-min-height="' . (int) $nav['minHeight'] . '"' : '' ?>>
 							<a href="<?= $topIsLink ? sy_nav_url($nav['url'], $isHome) : '#none' ?>"
-								class="gnb-link<?= $topIsLink ? '' : ' no-link' ?>"><?= esc($nav['label']) ?></a>
+								class="gnb-link<?= $topIsLink ? '' : ' no-link' ?>"
+								<?= !empty($nav['target']) ? 'target="' . esc($nav['target']) . '"' : '' ?>><?= esc($nav['label']) ?></a>
 
 							<?php if ($hasDepth): ?>
 								<div class="gnb-depth">
@@ -243,7 +245,7 @@ $sySiteName = sy_site_setting('site_name', '신영로파마');
 				<?php foreach ($syNav as $navKey => $nav): ?>
 					<div class="sitemap-col">
 						<h3 class="sitemap-title">
-							<a href="<?= sy_nav_url($nav['url']) ?>"><?= esc($nav['label']) ?></a>
+							<a href="<?= sy_nav_url($nav['url']) ?>" <?= !empty($nav['target']) ? 'target="' . esc($nav['target']) . '"' : '' ?>><?= esc($nav['label']) ?></a>
 						</h3>
 						<?php if (!empty($nav['groups'])): ?>
 							<ul class="sitemap-list">
