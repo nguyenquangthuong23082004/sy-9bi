@@ -25,13 +25,7 @@
 		</div>
 
 		<figure class="sy-company-figure sy-product-hero-visual">
-			<div class="sy-company-placeholder">
-				<svg class="sy-company-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-					<rect x="3" y="8" width="18" height="8" rx="4" />
-					<path d="M12 8v8" />
-				</svg>
-				<span>라이스정 제품 이미지<br>(교체 예정)</span>
-			</div>
+			<img src="<?= base_url('/images/product/lais_02.webp') ?>" alt="라이스정 제품 이미지">
 		</figure>
 	</div>
 </section>
