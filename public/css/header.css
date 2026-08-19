@@ -93,11 +93,11 @@
 
 .logo {
   margin: 0;
-  min-width: 190px;
+  min-width: 155px;
   display: flex;
   align-items: center;
   line-height: 1;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .logo-link {
@@ -110,9 +110,9 @@
 }
 
 .logo-mark {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
   background: linear-gradient(135deg, var(--primary), var(--green));
   display: inline-flex;
   align-items: center;
@@ -122,7 +122,7 @@
 
 .logo-img {
   display: block;
-  height: 46px;
+  height: 37px;
   width: auto;
 }
 
@@ -639,7 +639,7 @@
 
   .logo-img {
     display: block;
-    height: clamp(1.75rem, 7vw, 2.25rem);
+    height: clamp(1.4rem, 5.5vw, 1.8rem);
     width: auto;
     margin-top: 0;
   }
@@ -738,7 +738,7 @@
   }
 
   .logo-img {
-    height: clamp(1.625rem, 6.5vw, 2rem);
+    height: clamp(1.3rem, 5vw, 1.6rem);
   }
 
   .header-form-search,
@@ -753,7 +753,7 @@
   }
 
   .logo-img {
-    height: clamp(1.5rem, 6vw, 1.75rem);
+    height: clamp(1.2rem, 4.8vw, 1.4rem);
   }
 }
 

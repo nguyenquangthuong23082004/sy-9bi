@@ -5,10 +5,9 @@
 <?php
 /**
  * ruvair(루베어) 브랜드 사이트 주소.
- * 주소가 확정되면 아래 값만 채우면 CTA 가 외부 링크로 활성화됩니다.
- * (비워두면 '준비 중' 상태로 표시됩니다)
+ * (기본값: '#')
  */
-$syRuvairUrl = '';
+$syRuvairUrl = '#';
 ?>
 
 <!-- ===== 페이지 인트로 ===== -->
@@ -157,14 +156,10 @@ $syRuvairUrl = '';
 			</ul>
 
 			<p class="sy-company-linkrow">
-				<?php if ($syRuvairUrl !== ''): ?>
-					<a href="<?= esc($syRuvairUrl, 'attr') ?>" target="_blank" rel="noopener noreferrer">
-						ruvair 바로가기 <span aria-hidden="true">&#8599;</span>
-						<span class="blind">새 창에서 열림</span>
-					</a>
-				<?php else: ?>
-					<span class="sy-business-linkrow-off" aria-disabled="true">웹사이트: <em>ruvair.kr</em></span>
-				<?php endif; ?>
+				<a href="<?= !empty($syRuvairUrl) ? esc($syRuvairUrl, 'attr') : '#' ?>" target="_blank" rel="noopener noreferrer">
+					ruvair 바로가기 <span aria-hidden="true">&#8599;</span>
+					<span class="blind">새 창에서 열림</span>
+				</a>
 			</p>
 		</div>
 
