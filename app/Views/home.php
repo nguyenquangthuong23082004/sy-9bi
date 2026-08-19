@@ -6,7 +6,6 @@
 	<?= view('inc/head', [
 		'metaTitle' => '신영로파마 | 알레르기 전문 기업',
 		'metaDescription' => '신영로파마는 알레르기의 진단, 치료, 증상 관리, 일상 케어까지 환자의 여정 전체를 함께하는 알레르기 전문 기업입니다.',
-		'ogImage' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85',
 		'preconnect' => ['https://images.unsplash.com', 'https://videos.pexels.com'],
 		'usePretendard' => false,
 		'cssFiles' => ['css/home.css'],

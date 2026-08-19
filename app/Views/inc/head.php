@@ -82,6 +82,17 @@ $syAssetVer   = $assetVersion  ?? time();
 	<meta property="og:image" content="<?= esc($syOgImage, 'attr') ?>" />
 <?php endif; ?>
 
+<meta name="twitter:card" content="summary_large_image" />
+<?php if (!empty($syOgTitle)): ?>
+	<meta name="twitter:title" content="<?= esc($syOgTitle) ?>" />
+<?php endif; ?>
+<?php if (!empty($syOgDesc)): ?>
+	<meta name="twitter:description" content="<?= esc($syOgDesc) ?>" />
+<?php endif; ?>
+<?php if (!empty($syOgImage)): ?>
+	<meta name="twitter:image" content="<?= esc($syOgImage, 'attr') ?>" />
+<?php endif; ?>
+
 <?php foreach ($syPreconnect as $syHost): ?>
 	<link rel="preconnect" href="<?= esc($syHost, 'attr') ?>" />
 <?php endforeach; ?>
