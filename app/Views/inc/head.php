@@ -43,7 +43,7 @@ $syBaseCss    = [
 $syCss        = array_merge($syBaseCss, $cssFiles ?? []);
 $syPretendard = $usePretendard ?? true;
 $syPreconnect = $preconnect    ?? [];
-$syAssetVer   = $assetVersion  ?? '0fce3cd';
+$syAssetVer   = $assetVersion  ?? '1.0.0';
 ?>
 <meta charset="utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />

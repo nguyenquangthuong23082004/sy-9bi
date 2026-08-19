@@ -59,4 +59,16 @@ class Company extends BaseController
             'metaDescription' => '신영로파마는 정확한 진단, 원인 치료, 증상 관리, 일상 케어로 이어지는 알레르기 환자의 여정 전체를 설계하는 알레르기 전문 기업을 지향합니다.',
         ]);
     }
+
+    public function directions()
+    {
+        return view('company/directions', [
+            'sectionKey'      => 'company',
+            'pageKey'         => 'directions',
+            'pageTitle'       => '오시는 길',
+            'pageDesc'        => '신영로파마 본사 위치 및 찾아오시는 방법을 안내해 드립니다.',
+            'metaTitle'       => '오시는 길 | 신영로파마',
+            'metaDescription' => '주식회사 신영로파마 본사 오시는 길 안내. 지하철, 버스, 자가용 등 대중교통 및 주차 안내를 확인하실 수 있습니다.',
+        ]);
+    }
 }

@@ -23,16 +23,16 @@ if (!function_exists('sy_site_nav')) {
 	 */
 	function sy_site_nav(): array
 	{
-		$phone = sy_site_setting('custom_phone', '02-900-0436');
-		$email = sy_site_setting('email', 'lofarma@lofarma.kr');
-		$addr = sy_site_setting('addr1', '서울시 도봉구');
+		$phone = '02-2272-7678~9 / 02-2103-4070';
+		$email = 'lofarma@lofarma.kr';
+		$addr = '서울특별시 강서구 마곡중앙6로 42 사이언스타 1024호';
 
 		return [
 
 			'company' => [
 				'label' => '회사소개',
 				'url' => 'company/greeting',
-				'minHeight' => 270,
+				'minHeight' => 300,
 				'intro' => [
 					'title' => '회사소개',
 					'desc' => '알레르기 한 분야에 집중해온<br>신영로파마의 여정을 소개합니다.',
@@ -43,9 +43,10 @@ if (!function_exists('sy_site_nav')) {
 						['label' => '회사 스토리·연혁', 'url' => 'company/history', 'key' => 'history'],
 						['label' => 'Lofarma 파트너십', 'url' => 'company/lofarma', 'key' => 'lofarma'],
 						['label' => '비전', 'url' => 'company/vision', 'key' => 'vision'],
+						['label' => '오시는 길', 'url' => 'company/directions', 'key' => 'directions'],
 					],
 					[
-						['label' => '오시는 길', 'url' => '#support', 'sub' => [$addr, '문의 ' . $phone]],
+						['label' => '본사 안내', 'url' => 'company/directions', 'sub' => [$addr, '문의 ' . $phone]],
 					],
 				],
 			],
@@ -249,17 +250,24 @@ $sySiteName = sy_site_setting('site_name', '신영로파마');
 						</h3>
 						<?php if (!empty($nav['groups'])): ?>
 							<ul class="sitemap-list">
-								<?php foreach ($nav['groups'] as $group): ?>
-									<?php foreach ($group as $item): ?>
-										<?php if (is_array($item) && isset($item['label'])): ?>
+								<?php 
+								$syRenderedLabels = [];
+								foreach ($nav['groups'] as $group): 
+									foreach ($group as $item): 
+										if (is_array($item) && isset($item['label'])): 
+											if (in_array($item['label'], $syRenderedLabels, true)) continue;
+											$syRenderedLabels[] = $item['label'];
+								?>
 											<li>
 												<a href="<?= sy_nav_url($item['url'] ?? '#') ?>">
 													<?= esc($item['label']) ?>
 												</a>
 											</li>
-										<?php endif; ?>
-									<?php endforeach; ?>
-								<?php endforeach; ?>
+								<?php 
+										endif; 
+									endforeach; 
+								endforeach; 
+								?>
 							</ul>
 						<?php endif; ?>
 					</div>

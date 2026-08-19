@@ -41,6 +41,8 @@ $routes->get('company/greeting', 'Company::greeting');
 $routes->get('company/history', 'Company::history');
 $routes->get('company/lofarma', 'Company::lofarma');
 $routes->get('company/vision', 'Company::vision');
+$routes->get('company/directions', 'Company::directions');
+$routes->get('company/location', 'Company::directions');
 
 // Admin Routes (No filter)
 $routes->get('AdmMaster/login', 'AdmMaster\Auth::login');

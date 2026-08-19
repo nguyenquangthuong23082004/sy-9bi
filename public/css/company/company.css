@@ -1394,3 +1394,737 @@
     font-size: 1.25rem;
   }
 }
+
+/* ==========================================================================
+   Directions & Location (오시는 길)
+   ========================================================================== */
+.sy-directions-section {
+  padding-bottom: 72px;
+}
+
+.sy-directions-header {
+  margin-bottom: 40px;
+}
+
+.sy-directions-subtitle {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--sy-company-muted);
+  margin: 0;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* 1. 핵심 정보 카드 그리드 */
+.sy-directions-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.sy-directions-info-card {
+  background: #fff;
+  border: 1px solid #e5eaf2;
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(11, 42, 91, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.sy-directions-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(11, 42, 91, 0.09);
+  border-color: #cbd8ec;
+}
+
+.sy-directions-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eef5ff;
+  color: #1a62cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.sy-directions-card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.sy-directions-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sy-directions-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--sy-company-navy);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.sy-directions-card-text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--sy-company-text);
+  margin: 0 0 14px;
+  word-break: keep-all;
+}
+
+.sy-directions-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #f1f5fa;
+  border: 1px solid #dbe3ed;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2b3b52;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-top: auto;
+  transition: all 0.2s ease;
+}
+
+.sy-directions-copy-btn:hover {
+  background: var(--sy-company-deep);
+  border-color: var(--sy-company-deep);
+  color: #fff;
+}
+
+.sy-directions-copy-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sy-directions-contact-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.sy-directions-contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.sy-directions-contact-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #7b8a9e;
+  letter-spacing: 0.05em;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.sy-directions-contact-link {
+  color: #1a62cc;
+  font-weight: 700;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.sy-directions-contact-link:hover {
+  text-decoration: underline;
+}
+
+.sy-directions-contact-val {
+  color: var(--sy-company-text);
+  font-weight: 600;
+}
+
+.sy-directions-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a62cc;
+  background: #eef5ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* 2. 인터랙티브 지도 영역 */
+.sy-directions-map-wrapper {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(11, 42, 91, 0.07);
+}
+
+.sy-directions-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  background: #fafcff;
+  border-bottom: 1px solid #eaf0f8;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sy-directions-map-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sy-directions-map-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: syPulse 2s infinite;
+}
+
+@keyframes syPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.sy-directions-map-heading {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--sy-company-navy);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.sy-directions-map-addr-pill {
+  font-size: 13.5px;
+  color: var(--sy-company-muted);
+  background: #eef3fa;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.sy-directions-map-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sy-directions-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.sy-directions-map-btn--kakao {
+  background: #fae100;
+  color: #371d1e;
+}
+
+.sy-directions-map-btn--kakao:hover {
+  background: #ebd300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(250, 225, 0, 0.4);
+}
+
+.sy-directions-map-btn--naver {
+  background: #03c75a;
+  color: #fff;
+}
+
+.sy-directions-map-btn--naver:hover {
+  background: #02b14f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(3, 199, 90, 0.35);
+}
+
+.sy-naver-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  color: #03c75a;
+  font-size: 11px;
+  font-weight: 900;
+  border-radius: 3px;
+}
+
+.sy-directions-map-btn--google {
+  background: #fff;
+  color: #3c4043;
+  border-color: #dadce0;
+}
+
+.sy-directions-map-btn--google:hover {
+  background: #f8f9fa;
+  border-color: #bdc1c6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sy-directions-map-frame-box {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: #eaeff5;
+}
+
+.sy-directions-map-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.sy-directions-map-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sy-directions-badge-inner {
+  background: rgba(7, 17, 31, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+.sy-directions-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sy-directions-badge-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sy-directions-badge-inner strong {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.sy-directions-badge-inner span {
+  display: block;
+  font-size: 12.5px;
+  color: #cbd8ec;
+}
+
+/* 3. 교통편 상세 안내 */
+.sy-transit-section {
+  border-top: 1px solid #eef2f7;
+}
+
+.sy-transit-header {
+  margin-bottom: 40px;
+}
+
+.sy-transit-desc {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: var(--sy-company-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.sy-transit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.sy-transit-card {
+  background: #fff;
+  border: 1px solid #e8eef6;
+  border-radius: 18px;
+  padding: 32px 30px;
+  box-shadow: 0 4px 20px rgba(11, 42, 91, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sy-transit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(11, 42, 91, 0.08);
+}
+
+.sy-transit-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f0f4f9;
+}
+
+.sy-transit-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sy-transit-icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.sy-transit-icon-box--subway {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+.sy-transit-icon-box--bus {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.sy-transit-icon-box--car {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.sy-transit-icon-box--parking {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.sy-transit-card-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--sy-company-navy);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.sy-transit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sy-transit-item-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: var(--sy-company-navy);
+}
+
+.sy-transit-item-line strong {
+  font-weight: 800;
+}
+
+.sy-transit-exit {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4b5563;
+  background: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.sy-transit-item-desc {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--sy-company-text);
+  margin: 0;
+  padding-left: 4px;
+  word-break: keep-all;
+}
+
+/* Badges for transit */
+.sy-subway-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  line-height: 1.3;
+}
+
+.sy-subway-badge--line5 { background: #8936e0; }
+.sy-subway-badge--line9 { background: #bda06d; }
+.sy-subway-badge--airport { background: #0090d2; }
+
+.sy-bus-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.sy-bus-badge--blue { background: #2563eb; }
+.sy-bus-badge--green { background: #16a34a; }
+.sy-bus-badge--red { background: #dc2626; }
+
+.sy-bus-stop-badge,
+.sy-navi-badge,
+.sy-parking-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  background: #eef4fb;
+  color: #1e40af;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* 4. 하단 상담/문의 배너 */
+.sy-directions-banner {
+  background: linear-gradient(135deg, #07111f 0%, #0b2a5b 70%, #0f4c74 100%);
+  border-radius: 20px;
+  padding: 44px 48px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(7, 17, 31, 0.16);
+}
+
+.sy-directions-banner::after {
+  content: "";
+  position: absolute;
+  right: -50px;
+  bottom: -50px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143, 192, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.sy-directions-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.sy-directions-banner-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #8fc0ff;
+  margin-bottom: 10px;
+}
+
+.sy-directions-banner-title {
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: -0.03em;
+}
+
+.sy-directions-banner-desc {
+  font-size: 15px;
+  color: #d1e2f6;
+  margin: 0;
+  max-width: 36em;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.sy-directions-banner-btns {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.sy-directions-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  min-height: 48px;
+}
+
+.sy-directions-btn--primary {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+
+.sy-directions-btn--primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+}
+
+.sy-directions-btn--outline {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.sy-directions-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Toast */
+.sy-copy-toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: rgba(7, 17, 31, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 9999;
+}
+
+.sy-copy-toast svg {
+  color: #10b981;
+}
+
+.sy-copy-toast.is-show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1080px) {
+  .sy-directions-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .sy-transit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sy-directions-map-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sy-directions-map-actions {
+    width: 100%;
+  }
+
+  .sy-directions-map-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .sy-directions-map-frame-box {
+    height: 380px;
+  }
+
+  .sy-directions-banner {
+    padding: 32px 24px;
+  }
+
+  .sy-directions-banner-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sy-directions-banner-btns {
+    width: 100%;
+  }
+
+  .sy-directions-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .sy-directions-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sy-directions-map-badge {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .sy-directions-badge-inner {
+    width: 100%;
+  }
+}
