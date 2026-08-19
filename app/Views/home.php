@@ -51,34 +51,25 @@
 														class="key-visual-img">
 												</picture>
 											<?php endif; ?>
-											<?php if (!empty($mbSub) || !empty($mbTitle) || !empty($mbDesc) || !empty($mb['btn_text']) || (!empty($mb['btn_medical_yn']) && $mb['btn_medical_yn'] === 'Y')): ?>
-												<div class="key-visual-content">
-													<?php if (!empty($mbSub)): ?>
-														<span class="sub-title"><span class="text"><?= $mbSub ?></span></span>
-													<?php endif; ?>
-													<?php if (!empty($mbTitle)): ?>
-														<span class="title"><span class="text"><?= $mbTitle ?></span></span>
-													<?php endif; ?>
-													<?php if (!empty($mbDesc)): ?>
-														<p class="desc"><?= $mbDesc ?></p>
-													<?php endif; ?>
-													<?php if (!empty($mb['btn_text']) || (!empty($mb['btn_medical_yn']) && $mb['btn_medical_yn'] === 'Y')): ?>
-														<div class="kv-content-buttons" style="position: relative; z-index: 10;">
-															<?php if (!empty($mb['btn_text'])): ?>
-																<a href="<?= $mbUrl ?>" target="_blank" class="btn-kv-action">
-																	<?= esc($mb['btn_text']) ?>
-																</a>
-															<?php endif; ?>
-															<?php if (!empty($mb['btn_medical_yn']) && $mb['btn_medical_yn'] === 'Y'): ?>
-																<a href="<?= base_url('medical/support') ?>"
-																	class="btn-kv-action btn-kv-secondary">
-																	의료진 자료 요청
-																</a>
-															<?php endif; ?>
-														</div>
-													<?php endif; ?>
+											<div class="key-visual-content">
+												<?php if (!empty($mbSub)): ?>
+													<span class="sub-title"><span class="text"><?= $mbSub ?></span></span>
+												<?php endif; ?>
+												<?php if (!empty($mbTitle)): ?>
+													<span class="title"><span class="text"><?= $mbTitle ?></span></span>
+												<?php endif; ?>
+												<?php if (!empty($mbDesc)): ?>
+													<p class="desc"><?= $mbDesc ?></p>
+												<?php endif; ?>
+												<div class="kv-content-buttons" style="position: relative; z-index: 10;">
+													<a href="<?= !empty($mbUrl) ? $mbUrl : base_url('product') ?>" class="btn-kv-action">
+														<?= !empty($mb['btn_text']) ? esc($mb['btn_text']) : '제품 소개 보기' ?>
+													</a>
+													<a href="<?= base_url('medical/support') ?>" class="btn-kv-action btn-kv-secondary">
+														의료진 자료 요청
+													</a>
 												</div>
-											<?php endif; ?>
+											</div>
 										</div>
 									<?php endforeach; ?>
 								<?php endif; ?>
@@ -115,6 +106,16 @@
 									신영로파마는 이탈리아 알레르기 전문기업 Lofarma S.p.A와의 협력을 바탕으로 국내 의료진에게 알레르기 진단 및 면역치료 관련 제품과 정보를
 									제공해 왔습니다.
 								</p>
+								<div class="stats-action" data-animate style="--i: 3; margin-top: 32px;">
+									<a href="<?= base_url('medical/support') ?>" class="btn btn-primary">
+										의료진 지원 바로가기
+										<svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
+									</a>
+								</div>
 							</div>
 
 							<!-- Right Side Stats Grid -->
@@ -327,7 +328,7 @@
 										코로 풍선을 부는 간단한 방법으로 이관 기능 훈련을 돕는 의료기기입니다.
 									</p>
 									<div class="product-action">
-										<a href="<?= base_url('product/earvent') ?>" class="btn btn-neutral btn-full">
+										<a href="<?= base_url('product/earvent') ?>" class="btn btn-info btn-full">
 											제품 자세히 보기
 										</a>
 									</div>
@@ -350,7 +351,7 @@
 										사용자가 다양한 증상을 보다 쉽고 지속적으로 관리할 수 있는 의료기기 브랜드입니다.
 									</p>
 									<div class="product-action">
-										<a href="<?= base_url('business#device') ?>" class="btn btn-neutral btn-full">
+										<a href="<?= base_url('business#device') ?>" class="btn btn-info btn-full">
 											브랜드 보기
 										</a>
 									</div>
@@ -737,8 +738,31 @@
 			// Reveal animation and number count
 			const counted = new WeakSet();
 			function countUp(el) { const target = parseFloat(el.dataset.count); const decimal = String(el.dataset.count).includes('.'); let start = null; function step(ts) { if (!start) start = ts; const p = Math.min((ts - start) / 1200, 1); const val = target * p; el.textContent = decimal ? val.toFixed(1) : Math.floor(val).toLocaleString('ko-KR'); if (p < 1) requestAnimationFrame(step); } requestAnimationFrame(step) }
-			const io = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); entry.target.querySelectorAll('[data-animate]').forEach(x => x.classList.add('is-visible')); entry.target.querySelectorAll('.count').forEach(c => { if (!counted.has(c)) { counted.add(c); countUp(c) } }) } }) }, { threshold: .18 });
-			document.querySelectorAll('.section').forEach(el => io.observe(el));
+			const io = new IntersectionObserver(entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						if (entry.target.querySelectorAll) {
+							entry.target.querySelectorAll('[data-animate]').forEach(x => x.classList.add('is-visible'));
+							entry.target.querySelectorAll('.count').forEach(c => { if (!counted.has(c)) { counted.add(c); countUp(c); } });
+						}
+					}
+				});
+			}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+			document.querySelectorAll('.section, [data-animate]').forEach(el => io.observe(el));
+
+			// Immediate initial viewport check so elements never stay invisible
+			setTimeout(() => {
+				document.querySelectorAll('.section, [data-animate]').forEach(el => {
+					const rect = el.getBoundingClientRect();
+					if (rect.top < window.innerHeight && rect.bottom > 0) {
+						el.classList.add('is-visible');
+						if (el.querySelectorAll) {
+							el.querySelectorAll('[data-animate]').forEach(x => x.classList.add('is-visible'));
+						}
+					}
+				});
+			}, 50);
 		});
 	</script>
 

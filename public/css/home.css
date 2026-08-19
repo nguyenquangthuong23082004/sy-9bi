@@ -599,79 +599,121 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   font-size: 15px;
-  border: none;
-  background: none;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .btn-arrow {
   width: 18px;
   height: 18px;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .btn:hover .btn-arrow {
   transform: translateX(4px);
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-  border: 1px solid var(--primary);
+.btn-primary,
+.btn.btn-primary {
+  background-color: var(--primary, #0046ff) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--primary, #0046ff) !important;
+  box-shadow: none !important;
 }
 
-.btn-primary:hover {
-  background: #0036d0;
-  border-color: #0036d0;
-  box-shadow: 0 8px 20px rgba(0, 70, 255, 0.25);
+.btn-primary:hover,
+.btn.btn-primary:hover {
+  background-color: #0036d0 !important;
+  border-color: #0036d0 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
-.btn-secondary {
-  background: #fff;
-  color: var(--dark);
-  border: 1px solid var(--line);
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: #ffffff !important;
+  color: var(--dark, #07111f) !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: none !important;
 }
 
-.btn-secondary:hover {
-  background: var(--dark);
-  color: #fff;
-  border-color: var(--dark);
-  box-shadow: 0 8px 20px rgba(7, 17, 31, 0.15);
+.btn-secondary:hover,
+.btn.btn-secondary:hover {
+  background-color: var(--dark, #07111f) !important;
+  color: #ffffff !important;
+  border-color: var(--dark, #07111f) !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
-.btn-success {
-  background: var(--green);
-  color: #fff;
-  border: 1px solid var(--green);
+.btn-success,
+.btn.btn-success {
+  background-color: var(--green, #18b67a) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--green, #18b67a) !important;
+  box-shadow: none !important;
 }
 
-.btn-success:hover {
-  background: #139663;
-  border-color: #139663;
-  box-shadow: 0 8px 20px rgba(24, 182, 122, 0.25);
+.btn-success:hover,
+.btn.btn-success:hover {
+  background-color: #139663 !important;
+  border-color: #139663 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
-.btn-neutral {
-  background: #fff;
-  color: var(--dark);
-  border: 1px solid var(--line);
+.btn-neutral,
+.btn.btn-neutral {
+  background-color: #f1f5f9 !important;
+  color: var(--dark, #07111f) !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: none !important;
 }
 
-.btn-neutral:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+.btn-neutral:hover,
+.btn.btn-neutral:hover {
+  background-color: var(--dark, #07111f) !important;
+  color: #ffffff !important;
+  border-color: var(--dark, #07111f) !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
-.btn-warning {
-  background: #ffb800;
-  color: #fff;
-  border: 1px solid #ffb800;
+.btn-info,
+.btn.btn-info {
+  background-color: var(--primary2, #0a8cff) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--primary2, #0a8cff) !important;
+  box-shadow: none !important;
 }
 
-.btn-warning:hover {
-  background: #e0a100;
-  border-color: #e0a100;
-  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.25);
+.btn-info:hover,
+.btn.btn-info:hover {
+  background-color: #0073e6 !important;
+  border-color: #0073e6 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
+}
+
+.btn-warning,
+.btn.btn-warning {
+  background-color: #ff9800 !important;
+  color: #ffffff !important;
+  border: 1px solid #ff9800 !important;
+  box-shadow: none !important;
+}
+
+.btn-warning:hover,
+.btn.btn-warning:hover {
+  background-color: #e68500 !important;
+  border-color: #e68500 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .btn-large {
@@ -973,22 +1015,22 @@
   font-weight: 700;
   font-size: 15px;
   border-radius: 99px;
-  background: var(--primary, #0046ff);
+  background-color: var(--primary, #0046ff) !important;
   color: #ffffff !important;
   border: 1px solid var(--primary, #0046ff);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(0, 70, 255, 0.2);
+  box-shadow: none !important;
   box-sizing: border-box;
 }
 
 .support-card-btn:hover {
-  background: #0036d0;
-  border-color: #0036d0;
+  background-color: #0036d0 !important;
+  border-color: #0036d0 !important;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 70, 255, 0.35);
+  box-shadow: none !important;
 }
 
 .support-card-btn .btn-arrow {
@@ -1412,7 +1454,7 @@
   border-radius: 30px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: none !important;
   background-color: #1a73e8;
   color: #ffffff !important;
 }
@@ -1420,7 +1462,7 @@
 .btn-kv-action:hover {
   background-color: #1557b0;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+  box-shadow: none !important;
 }
 
 .btn-kv-action.btn-kv-secondary {
@@ -1429,14 +1471,14 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #ffffff !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .btn-kv-action.btn-kv-secondary:hover {
   background-color: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.7);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: none !important;
 }
 
 /* If the slide is black (light background, dark text) */
@@ -1447,18 +1489,20 @@
 
 .kv-slide.is-black .btn-kv-action:hover {
   background-color: #444444;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: none !important;
 }
 
 .kv-slide.is-black .btn-kv-action.btn-kv-secondary {
   background-color: rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.18);
   color: #222222 !important;
+  box-shadow: none !important;
 }
 
 .kv-slide.is-black .btn-kv-action.btn-kv-secondary:hover {
   background-color: rgba(0, 0, 0, 0.12);
   border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: none !important;
 }
 
 @media (max-width: 767px) {
