@@ -3,23 +3,17 @@
 <?= $this->section('content') ?>
 
 <?php
-$sySiteName    = '신영로파마';
-$syAddr1       = sy_site_setting('addr1');
-if (empty($syAddr1) || strpos($syAddr1, '도봉') !== false || strpos($syAddr1, '구로') !== false) {
-	$syAddr1 = '서울특별시 강서구 마곡중앙6로 42 사이언스타 1024호';
-}
-$syAddr2       = '';
-$syFullAddr    = trim($syAddr1 . ($syAddr2 ? ' ' . $syAddr2 : ''));
-$syCustomPhone = '02-2272-7678~9 / 02-2103-4070';
-$syFax         = '02-2278-9047 / 02-2103-4083';
+$sySiteName    = sy_site_setting('site_name', '신영로파마');
+$syCustomPhone = sy_site_setting('custom_phone', '02-900-0436');
 $sySiteEmail   = sy_site_setting('email', 'lofarma@lofarma.kr');
-if (empty($sySiteEmail) || strpos($sySiteEmail, 'auto-style') !== false) {
-	$sySiteEmail = 'lofarma@lofarma.kr';
-}
+$syAddr1       = sy_site_setting('addr1', '서울시 도봉구 도봉로 156길 17-5');
+$syAddr2       = sy_site_setting('addr2', '');
+$syFullAddr    = trim($syAddr1 . ' ' . $syAddr2);
 $syWorkTime    = '평일 09:00 ~ 18:00 (점심시간 12:00 ~ 13:00 / 토·일·공휴일 휴무)';
 
-$syPhoneClean  = '02-2272-7678';
-$syMapQueryAddr = '서울특별시 강서구 마곡중앙6로 42 사이언스타';
+$syPhoneClean  = preg_replace('/[^0-9\-+]/', '', explode('/', $syCustomPhone)[0] ?? $syCustomPhone);
+$syPhoneClean  = trim(explode('~', $syPhoneClean)[0]);
+$syMapQueryAddr = $syFullAddr;
 $syEncodedAddr  = urlencode($syMapQueryAddr);
 
 $syLat = 37.560195;
@@ -240,10 +234,6 @@ $syLng = 126.830635;
 				<div style="display:flex; align-items:center; gap:12px; margin-bottom:10px; font-size:14px; flex-wrap:wrap;">
 					<span style="font-size:12px; font-weight:800; color:#7b8a9e; width:60px;">대표전화</span>
 					<a href="tel:<?= esc($syPhoneClean, 'attr') ?>" style="color:#1a62cc; font-weight:700; text-decoration:none;"><?= esc($syCustomPhone) ?></a>
-				</div>
-				<div style="display:flex; align-items:center; gap:12px; margin-bottom:10px; font-size:14px; flex-wrap:wrap;">
-					<span style="font-size:12px; font-weight:800; color:#7b8a9e; width:60px;">팩스번호</span>
-					<span style="color:#333d4b; font-weight:600;"><?= esc($syFax) ?></span>
 				</div>
 				<div style="display:flex; align-items:center; gap:12px; margin-bottom:10px; font-size:14px; flex-wrap:wrap;">
 					<span style="font-size:12px; font-weight:800; color:#7b8a9e; width:60px;">이메일</span>

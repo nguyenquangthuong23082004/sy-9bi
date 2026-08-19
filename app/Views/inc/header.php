@@ -23,9 +23,11 @@ if (!function_exists('sy_site_nav')) {
 	 */
 	function sy_site_nav(): array
 	{
-		$phone = '02-2272-7678~9 / 02-2103-4070';
-		$email = 'lofarma@lofarma.kr';
-		$addr = '서울특별시 강서구 마곡중앙6로 42 사이언스타 1024호';
+		$phone = sy_site_setting('custom_phone', '02-900-0436');
+		$email = sy_site_setting('email', 'lofarma@lofarma.kr');
+		$addr1 = sy_site_setting('addr1', '서울시 도봉구 도봉로 156길 17-5');
+		$addr2 = sy_site_setting('addr2', '');
+		$addr  = trim($addr1 . ' ' . $addr2);
 
 		return [
 
