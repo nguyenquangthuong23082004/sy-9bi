@@ -16,16 +16,54 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Lấy toàn bộ commit history để so sánh git diff
+
+    - name: Lọc các file mới / file thay đổi
+      id: prepare_files
+      run: |
+        mkdir -p deploy_staging
+        
+        # Xác định commit trước và sau để lấy danh sách file thay đổi
+        if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ] || [ -z "${{ github.event.before }}" ]; then
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT HEAD~1 HEAD 2>/dev/null || git ls-files)
+        else
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.sha }})
+        fi
+
+        echo "=== Danh sách file sẽ đẩy lên server ==="
+        echo "$CHANGED_FILES"
+        echo "======================================="
+
+        # Copy các file thay đổi vào thư mục tạm deploy_staging giữ nguyên cấu trúc thư mục
+        for file in $CHANGED_FILES; do
+          # Bỏ qua các file cấu hình CI/CD và file ẩn nhạy cảm không cần đẩy đè
+          if [[ "$file" == .github/* ]] || [[ "$file" == .env* ]]; then
+            continue
+          fi
+          if [ -f "$file" ]; then
+            mkdir -p "deploy_staging/$(dirname "$file")"
+            cp "$file" "deploy_staging/$file"
+          fi
+        done
+
+        # Kiểm tra xem có file nào cần đẩy không
+        if [ -n "$(ls -A deploy_staging 2>/dev/null)" ]; then
+          echo "has_files=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_files=false" >> $GITHUB_OUTPUT
+          echo "Không có file nào mới cần đẩy."
+        fi
 
     - name: SFTP Deploy to Cafe24
+      if: steps.prepare_files.outputs.has_files == 'true'
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.SFTP_HOST }}
         username: ${{ secrets.SFTP_USER }}
         password: ${{ secrets.SFTP_PASS }}
         port: ${{ secrets.SFTP_PORT }}
-        source: "./*"
+        source: "deploy_staging/**"
         target: ${{ secrets.SFTP_REMOTE_PATH }}
-        # Loại bỏ các file không cần thiết, tương tự như lệnh exclude cũ
+        strip_components: 1
         rm: false
-        strip_components: 0
