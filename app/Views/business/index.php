@@ -5,9 +5,8 @@
 <?php
 /**
  * ruvair(루베어) 브랜드 사이트 주소.
- * (기본값: '#')
  */
-$syRuvairUrl = '#';
+$syRuvairUrl = 'https://ruvair.kr';
 ?>
 
 <!-- ===== 페이지 인트로 ===== -->
@@ -115,8 +114,8 @@ $syRuvairUrl = '#';
 			</ul>
 		</div>
 
-		<figure class="sy-company-figure sy-business-row-visual">
-			<img src="<?= base_url('images/business/ibion.webp') ?>" alt="의료기기 이미지">
+		<figure class="sy-company-figure sy-business-row-visual sy-business-row-visual--logo">
+			<img src="<?= base_url('images/business/ibion.webp') ?>" alt="ibion 로고">
 		</figure>
 	</div>
 </section>
@@ -153,8 +152,8 @@ $syRuvairUrl = '#';
 			</p>
 		</div>
 
-		<figure class="sy-company-figure sy-business-row-visual">
-			<img src="<?= base_url('images/business/skincare.webp') ?>" alt="스킨케어 이미지">
+		<figure class="sy-company-figure sy-business-row-visual sy-business-row-visual--logo">
+			<img src="<?= base_url('images/ruvair_logo.png') ?>" alt="ruvair 로고">
 		</figure>
 	</div>
 </section>

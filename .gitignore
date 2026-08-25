@@ -8,11 +8,9 @@
 *.sql
 *.zip
 .phpunit.result.cache
-/public/uploads/*
-!/public/uploads/index.html
-/public/data/*
-!/public/data/index.html
-/public/adm_assets/_images/*
+
+# Ignore toàn bộ thư mục public
+/public/*
 
 # Docker & Nginx config
 [Dd]ockerfile
@@ -20,4 +18,3 @@ docker-compose.yml
 docker-compose.*
 docker-entrypoint.sh
 /docker/nginx/*
-public/images/*
