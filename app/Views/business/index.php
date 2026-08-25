@@ -101,17 +101,11 @@ $syRuvairUrl = '#';
 
 			<div class="sy-company-text">
 				<p>치료 이후에도 환자의 일상 불편은 계속될 수 있습니다.
-					신영로파마는 기존 제품 EARVENT와 의료기기 브랜드 ibion (이비온)을 통해,
+					신영로파마는 의료기기 브랜드 ibion (이비온)을 통해,
 					알레르기 환자의 증상 관리와 생활 편의를 돕는 포트폴리오를 전개합니다.</p>
 			</div>
 
 			<ul class="sy-business-brands">
-				<li>
-					<a href="<?= base_url('product/earvent') ?>">
-						<strong>EARVENT</strong>
-						<span>기존 운영 제품 — 이관 기능 개선을 위한 의료용 고무풍선</span>
-					</a>
-				</li>
 				<li>
 					<div class="sy-business-brands-static">
 						<strong>ibion <span>(이비온)</span></strong>
@@ -119,14 +113,10 @@ $syRuvairUrl = '#';
 					</div>
 				</li>
 			</ul>
-
-			<p class="sy-company-linkrow">
-				<a href="<?= base_url('product/earvent') ?>">의료기기 보기 <span aria-hidden="true">&rarr;</span></a>
-			</p>
 		</div>
 
 		<figure class="sy-company-figure sy-business-row-visual">
-			<img src="<?= base_url('images/business/medicine.webp') ?>" alt="의료기기 이미지">
+			<img src="<?= base_url('images/business/ibion.webp') ?>" alt="의료기기 이미지">
 		</figure>
 	</div>
 </section>
