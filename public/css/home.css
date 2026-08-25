@@ -314,21 +314,32 @@
 }
 
 .eyebrow-tag {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: fit-content;
   background: none !important;
   border: none !important;
   border-radius: 0 !important;
   padding: 0 !important;
   margin-bottom: 24px;
-  text-align: left;
-  align-items: center;
+}
+
+.stats-left .eyebrow-tag,
+.split-text-wrap .eyebrow-tag,
+.contact-left .eyebrow-tag {
+  align-items: center !important;
+  text-align: center !important;
+  width: fit-content !important;
 }
 
 .section-header-center .eyebrow-tag,
 .mall-content-wrap .eyebrow-tag {
   text-align: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .eyebrow-tag .ko {
@@ -907,6 +918,7 @@
 .split-text-wrap {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .split-desc-main {
@@ -1256,6 +1268,13 @@
     padding-right: 0;
   }
 
+  .stats-left .eyebrow-tag,
+  .split-text-wrap .eyebrow-tag,
+  .contact-left .eyebrow-tag {
+    align-items: center;
+    text-align: center;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1274,6 +1293,10 @@
     grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
+  }
+
+  .split-text-wrap {
+    align-items: center;
   }
 
   .split-layout.reverse-desktop {
