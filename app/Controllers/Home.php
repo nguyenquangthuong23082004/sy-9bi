@@ -22,74 +22,15 @@ class Home extends BaseController
             ]);
         }
 
-        // 2. FAQ List Seeding
-        $hasTypo = $bbsModel->where('code', 'faq')
+        // 2. Cleanup old autostyle test FAQ if any
+        $bbsModel->where('code', 'faq')
             ->groupStart()
-                ->like('contents', '파at너')
+                ->like('contents', '오토스타일')
+                ->orLike('contents', '장기렌터카')
+                ->orLike('contents', '파at너')
                 ->orLike('contents', 'of 공제')
             ->groupEnd()
-            ->countAllResults();
-        $hasZeroOnum = $bbsModel->where('code', 'faq')->where('onum', 0)->countAllResults();
-        if ($hasTypo > 0 || $hasZeroOnum > 0) {
-            $bbsModel->where('code', 'faq')->delete();
-        }
-
-        $faqCount = $bbsModel->where('code', 'faq')->countAllResults();
-        if ($faqCount == 0) {
-            $defaultFaqs = [
-                [
-                    'code' => 'faq',
-                    'subject' => '차를 잘 모르는 초보도 할수 있나요?',
-                    'writer' => '관리자',
-                    'contents' => '네, 오토스타일에서는 장기렌터카 영업 교육을 기본 제공하며, 복잡한 견적과 심사 등의 실무 업무를 전문가가 1:1로 밀착 지원해드립니다. 차를 잘 모르시더라도 고객 상담 및 연계 프로세스만으로도 충분히 세일즈 파트너로 활동하실 수 있습니다.',
-                    'r_date' => date('Y-m-d H:i:s'),
-                    'b_ref' => 1,
-                    'b_step' => 0,
-                    'b_level' => 0,
-                    'hit' => 0,
-                    'onum' => 4
-                ],
-                [
-                    'code' => 'faq',
-                    'subject' => '수익 구조는 어떻게 되나요?',
-                    'writer' => '관리자',
-                    'contents' => '오토스타일은 업계 최고의 판매 수수료율을 보장합니다. 본인의 장기렌터카 계약 건수와 거래 유형에 따라 투명하게 산정된 수수료가 정산되며, 영업 지원 명목의 공제는 일절 없습니다.',
-                    'r_date' => date('Y-m-d H:i:s'),
-                    'b_ref' => 2,
-                    'b_step' => 0,
-                    'b_level' => 0,
-                    'hit' => 0,
-                    'onum' => 3
-                ],
-                [
-                    'code' => 'faq',
-                    'subject' => '법인 간 제휴를 하는 것도 가능한가요?',
-                    'writer' => '관리자',
-                    'contents' => '개인 단위의 제휴가 아닌, 중고차 에이전시 · 보험대리점 단위 B2B 제휴도 가능합니다. 제휴 조건과 정산 등에 대한 상담을 위해서는 제휴 상담을 요청해주시기 바랍니다.',
-                    'r_date' => date('Y-m-d H:i:s'),
-                    'b_ref' => 3,
-                    'b_step' => 0,
-                    'b_level' => 0,
-                    'hit' => 0,
-                    'onum' => 2
-                ],
-                [
-                    'code' => 'faq',
-                    'subject' => '자격증이 따로 필요한가요?',
-                    'writer' => '관리자',
-                    'contents' => '장기렌터카 판매 및 세일즈 파트너 가입을 위해 필수적으로 요구되는 전문 자격증은 없습니다. 오토스타일의 교육 과정과 멘토링을 이수하시면 누구나 파트너로 즉시 영업 활동이 가능합니다.',
-                    'r_date' => date('Y-m-d H:i:s'),
-                    'b_ref' => 4,
-                    'b_step' => 0,
-                    'b_level' => 0,
-                    'hit' => 0,
-                    'onum' => 1
-                ]
-            ];
-            foreach ($defaultFaqs as $f) {
-                $bbsModel->insert($f);
-            }
-        }
+            ->delete();
 
         // 3. Policy Config
         $existingConfig = $configModel->getConfig('policy');
